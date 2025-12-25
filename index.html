@@ -147,15 +147,15 @@
         <main class="flex-1 flex flex-col h-[calc(100vh-2rem)] relative">
             
             <!-- MOBILE HEADER (Sticky Top, Scrollable) -->
-            <header class="md:hidden glass-panel mb-4 px-4 py-3 rounded-b-2xl z-50 sticky top-0 backdrop-blur-xl shadow-sm overflow-x-auto no-scrollbar">
-                <div class="flex items-center gap-3 w-max">
+            <header class="md:hidden glass-panel mb-2 px-2 py-2 rounded-b-xl z-50 sticky top-0 backdrop-blur-xl shadow-sm overflow-x-auto no-scrollbar">
+                <div class="flex items-center gap-2 w-max">
                     <!-- 1. Logo -->
                     <div class="w-8 h-8 rounded-lg bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white text-sm">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     
                     <!-- 2. App Name -->
-                    <span class="font-extrabold text-lg text-indigo-900 flex-shrink-0">SparkCoder</span>
+                    <span class="font-extrabold text-lg text-indigo-900 flex-shrink-0 mr-1">SparkCoder</span>
 
                     <!-- 3. Language Selector -->
                     <select id="mobile-lang-select" onchange="app.setLanguage(this.value)" class="bg-indigo-50 text-indigo-800 text-xs font-bold rounded-lg px-2 py-1 outline-none border border-indigo-100 w-24 flex-shrink-0">
