@@ -1,1013 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SparkCoder Pro | Coding GK for Kids</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary: #4F46E5;
-            --secondary: #F59E0B;
-            --accent: #EC4899;
-            --bg-grad-start: #EEF2FF;
-            --bg-grad-end: #E0E7FF;
-            --glass-bg: rgba(255, 255, 255, 0.95);
-            --glass-border: rgba(255, 255, 255, 0.6);
-        }
-
-        body {
-            font-family: 'Nunito', 'Noto Sans', sans-serif;
-            background: linear-gradient(135deg, var(--bg-grad-start) 0%, var(--bg-grad-end) 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: #1F2937;
-            -webkit-tap-highlight-color: transparent;
-            transition: direction 0.3s ease;
-        }
-
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .mascot-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .level-node {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .level-node:active {
-            transform: scale(0.9);
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
-        
-        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
-
-        body[dir="rtl"] .fa-arrow-left { transform: rotate(180deg); }
-        body[dir="rtl"] #sidebar { border-right: none; border-left: 1px solid rgba(255,255,255,0.6); }
-
-        .pin-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 2px solid #CBD5E1;
-            transition: all 0.2s;
-        }
-        .pin-dot.filled {
-            background-color: #4F46E5;
-            border-color: #4F46E5;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SparkCoder Pro</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#4F46E5;--secondary:#F59E0B;--accent:#EC4899;--bg-grad-start:#EEF2FF;--bg-grad-end:#E0E7FF;--glass-bg:rgba(255,255,255,0.95);--glass-border:rgba(255,255,255,0.6)}
+body{font-family:'Nunito','Noto Sans',sans-serif;background:linear-gradient(135deg,var(--bg-grad-start) 0%,var(--bg-grad-end) 100%);min-height:100vh;overflow-x:hidden;color:#1F2937;-webkit-tap-highlight-color:transparent;transition:direction 0.3s ease}
+.glass-panel{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)}
+.glass-card{background:rgba(255,255,255,0.7);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.8);transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.glass-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 10px 20px rgba(79,70,229,0.1);background:rgba(255,255,255,0.95)}
+@keyframes float{0%{transform:translateY(0px)}50%{transform:translateY(-12px)}100%{transform:translateY(0px)}}
+.mascot-float{animation:float 3s ease-in-out infinite}
+.level-node{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.level-node:active{transform:scale(0.9)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+.pb-safe{padding-bottom:env(safe-area-inset-bottom)}
+body[dir="rtl"] .fa-arrow-left{transform:rotate(180deg)}
+body[dir="rtl"] #sidebar{border-right:none;border-left:1px solid rgba(255,255,255,0.6)}
+.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid #CBD5E1;transition:all 0.2s}
+.pin-dot.filled{background-color:#4F46E5;border-color:#4F46E5}
+</style>
 </head>
 <body class="antialiased selection:bg-indigo-200 selection:text-indigo-900">
-
-    <div id="app" class="relative min-h-screen flex flex-col md:flex-row max-w-7xl mx-auto md:p-4 gap-4">
-        
-        <aside id="sidebar" class="hidden md:flex flex-col w-64 glass-panel rounded-3xl p-6 h-[calc(100vh-2rem)] sticky top-4 z-40">
-            <div class="flex items-center gap-3 mb-10">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg animate-bounce">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <h1 class="text-2xl font-extrabold text-indigo-900 tracking-tight">SparkCoder</h1>
-            </div>
-
-            <nav class="flex-1 space-y-2">
-                <button onclick="router.navigate('dashboard')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group">
-                    <i class="fa-solid fa-house group-hover:scale-110 transition-transform"></i> <span data-translate="home">Home</span>
-                </button>
-                <button onclick="router.navigate('learn')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group">
-                    <i class="fa-solid fa-map group-hover:scale-110 transition-transform"></i> <span data-translate="map">Adventure Map</span>
-                </button>
-                <button onclick="router.navigate('arcade')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group">
-                    <i class="fa-solid fa-gamepad group-hover:scale-110 transition-transform"></i> <span data-translate="arcade">Arcade</span>
-                </button>
-                <button onclick="router.navigate('profile')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group">
-                    <i class="fa-solid fa-user-astronaut group-hover:scale-110 transition-transform"></i> <span data-translate="profile">Profile</span>
-                </button>
-            </nav>
-
-            <div class="mt-auto pt-6 border-t border-gray-200">
-                <button onclick="app.checkParentAccess()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-50 text-indigo-700 font-bold hover:bg-indigo-100 transition-colors">
-                    <span data-translate="parents">Parents Zone</span>
-                    <i class="fa-solid fa-lock text-xs"></i>
-                </button>
-            </div>
-        </aside>
-
-        <main class="flex-1 flex flex-col h-[calc(100vh-2rem)] relative">
-            
-            <header class="md:hidden glass-panel mb-2 px-2 py-2 rounded-b-xl z-50 sticky top-0 backdrop-blur-xl shadow-sm w-full">
-                <div class="flex items-center justify-between w-full gap-1">
-                    <div class="flex items-center gap-1 shrink-0">
-                        <div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <span class="font-extrabold text-sm text-indigo-900 leading-none hidden sm:block">SparkCoder</span>
-                    </div>
-
-                    <select id="mobile-lang-select" onchange="app.setLanguage(this.value)" class="bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-md px-1 py-1 outline-none border border-indigo-100 w-20 shrink">
-                         <option value="en">English</option>
-                        <option value="kn">ಕನ್ನಡ</option>
-                        <option value="hi">हिंदी</option>
-                        <option value="te">తెలుగు</option>
-                        <option value="ta">தமிழ்</option>
-                        <option value="ml">മലയാളം</option>
-                        <option value="mr">मराठी</option>
-                        <option value="gu">ગુજરાતી</option>
-                        <option value="bn">বাংলা</option>
-                        <option value="ur">اردو</option>
-                        <option value="es">Español</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                        <option value="pt">Português</option>
-                        <option value="ru">Русский</option>
-                        <option value="zh">中文</option>
-                        <option value="ja">日本語</option>
-                        <option value="ar">العربية</option>
-                    </select>
-
-                    <div class="flex items-center gap-1 shrink-0">
-                        <div class="flex items-center gap-0.5 bg-orange-50 px-1.5 py-1 rounded-md border border-orange-100">
-                            <i class="fa-solid fa-fire text-orange-500 text-[10px] animate-pulse"></i>
-                            <span class="text-[10px] font-bold text-orange-600" id="mobile-streak-display">0</span>
-                        </div>
-
-                        <div class="flex items-center gap-0.5 bg-yellow-50 px-1.5 py-1 rounded-md border border-yellow-100">
-                            <i class="fa-solid fa-star text-yellow-500 text-[10px]"></i>
-                            <span class="text-[10px] font-bold text-yellow-600" id="mobile-xp-display">0</span>
-                        </div>
-
-                        <div onclick="router.navigate('profile')" class="w-7 h-7 rounded-full bg-indigo-100 flex items-center justify-center border border-indigo-200">
-                             <i class="fa-solid fa-user-astronaut text-indigo-600 text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <div id="top-bar" class="hidden md:flex justify-end items-center gap-4 mb-6 px-2">
-                <select id="lang-select" onchange="app.setLanguage(this.value)" class="glass-panel px-3 py-1.5 rounded-lg text-sm font-bold text-gray-600 outline-none cursor-pointer hover:bg-white transition-colors w-40">
-                    <option value="en">🇺🇸 English</option>
-                    <option value="kn">🇮🇳 Kannada (ಕನ್ನಡ)</option>
-                    <option value="hi">🇮🇳 Hindi (हिंदी)</option>
-                    <option value="te">🇮🇳 Telugu (తెలుగు)</option>
-                    <option value="ta">🇮🇳 Tamil (தமிழ்)</option>
-                    <option value="ml">🇮🇳 Malayalam (മലയാളം)</option>
-                    <option value="mr">🇮🇳 Marathi (मराठी)</option>
-                    <option value="gu">🇮🇳 Gujarati (ગુજરાતી)</option>
-                    <option value="bn">🇮🇳 Bengali (বাংলা)</option>
-                    <option value="ur">🇵🇰 Urdu (اردو)</option>
-                    <option value="es">🇪🇸 Spanish (Español)</option>
-                    <option value="fr">🇫🇷 French (Français)</option>
-                    <option value="de">🇩🇪 German (Deutsch)</option>
-                    <option value="pt">🇵🇹 Portuguese</option>
-                    <option value="ru">🇷🇺 Russian</option>
-                    <option value="zh">🇨🇳 Chinese (中文)</option>
-                    <option value="ja">🇯🇵 Japanese (日本語)</option>
-                    <option value="ar">🇸🇦 Arabic (العربية)</option>
-                </select>
-
-                <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-orange-500 font-bold hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-fire animate-pulse"></i>
-                    <span id="streak-display">0</span> <span class="text-gray-400 text-xs uppercase" data-translate="streak">Streak</span>
-                </div>
-                <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-indigo-600 font-bold hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <span id="xp-display">0</span> <span class="text-gray-400 text-xs uppercase">XP</span>
-                </div>
-                <div id="user-pill" onclick="router.navigate('profile')" class="glass-panel pl-2 pr-4 py-1.5 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white transition-colors">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white">
-                        <i class="fa-solid fa-child"></i>
-                    </div>
-                    <span id="username-display" class="font-bold text-gray-700 text-sm">Kiddo</span>
-                </div>
-            </div>
-
-            <div id="view-container" class="flex-1 overflow-y-auto pb-24 md:pb-0 scroll-smooth rounded-3xl relative"></div>
-        </main>
-
-        <nav class="md:hidden fixed bottom-0 left-0 w-full glass-panel border-t border-gray-200 flex justify-around p-3 z-50 pb-safe backdrop-blur-xl">
-            <button onclick="router.navigate('dashboard')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors">
-                <i class="fa-solid fa-house text-xl"></i><span class="text-[10px] font-bold" data-translate="home">Home</span>
-            </button>
-            <button onclick="router.navigate('learn')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors">
-                <i class="fa-solid fa-map text-xl"></i><span class="text-[10px] font-bold" data-translate="map">Map</span>
-            </button>
-            <button onclick="router.navigate('arcade')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors">
-                <i class="fa-solid fa-gamepad text-xl"></i><span class="text-[10px] font-bold" data-translate="arcade">Arcade</span>
-            </button>
-            <button onclick="app.checkParentAccess()" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors">
-                <i class="fa-solid fa-lock text-xl"></i><span class="text-[10px] font-bold" data-translate="parents">Parents</span>
-            </button>
-        </nav>
-    </div>
-
-    <div id="onboarding-modal" class="fixed inset-0 z-[60] bg-white hidden flex items-center justify-center p-4">
-        <div class="max-w-md w-full text-center">
-            <div class="w-24 h-24 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl text-indigo-600 mascot-float">
-                <i class="fa-solid fa-robot"></i>
-            </div>
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-2" data-translate="welcome">Welcome to SparkCoder!</h2>
-            <p class="text-gray-500 mb-8" data-translate="setup">Let's set up your coding adventure.</p>
-            
-            <form id="onboarding-form" class="space-y-6 text-left">
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2" data-translate="name_q">What's your name?</label>
-                    <input type="text" id="setup-name" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors font-bold text-gray-700" placeholder="Super Coder">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2" data-translate="age_q">How old are you?</label>
-                    <div class="grid grid-cols-3 gap-3">
-                        <button type="button" onclick="app.selectAge(this, '6-9')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">6-9</button>
-                        <button type="button" onclick="app.selectAge(this, '10-13')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">10-13</button>
-                        <button type="button" onclick="app.selectAge(this, '14+')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">14+</button>
-                    </div>
-                    <input type="hidden" id="setup-age" required>
-                </div>
-
-                <div class="pt-2">
-                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all transform hover:scale-[1.02] active:scale-95" data-translate="start_btn">Start My Adventure 🚀</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="child-msg-modal" class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
-        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center relative overflow-hidden shadow-2xl transform transition-all scale-100">
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-500 to-purple-500"></div>
-            <div class="w-24 h-24 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-5xl text-indigo-600 mascot-float">
-                <i class="fa-solid fa-face-sad-tear"></i>
-            </div>
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-4" data-translate="oops">Oops! Locked! 🔒</h2>
-            <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 mb-6 relative">
-                <i class="fa-solid fa-quote-left absolute top-2 left-2 text-indigo-200 text-4xl -z-0"></i>
-                <p class="text-indigo-800 font-bold text-lg italic relative z-10 leading-relaxed" data-translate="child_msg">
-                    "Pappa/Amma I had completed this all level now successfully how can i complete full all levels on this and become pro coder?"
-                </p>
-            </div>
-            <button onclick="document.getElementById('child-msg-modal').classList.add('hidden')" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition w-full active:scale-95">
-                OK <i class="fa-solid fa-thumbs-up ml-2"></i>
-            </button>
-        </div>
-    </div>
-
-    <div id="parent-gate-modal" class="fixed inset-0 z-[80] bg-black/80 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl">
-            <i class="fa-solid fa-shield-halved text-4xl text-gray-400 mb-4"></i>
-            <h3 class="text-lg font-bold text-gray-800 mb-2" data-translate="parents_only">Parents Only</h3>
-            <p class="text-gray-500 text-sm mb-4" data-translate="solve_math">Please solve this to continue:</p>
-            <div id="gate-question" class="text-xl font-bold mb-4 font-mono text-indigo-600 bg-indigo-50 py-2 rounded-lg"></div>
-            <input type="number" id="gate-answer" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg mb-4 text-center text-lg focus:border-indigo-500 outline-none font-bold" placeholder="?">
-            <div class="grid grid-cols-2 gap-2">
-                <button onclick="document.getElementById('parent-gate-modal').classList.add('hidden')" class="px-4 py-2 rounded-lg bg-gray-100 font-bold text-gray-600 hover:bg-gray-200 transition" data-translate="cancel">Cancel</button>
-                <button onclick="app.checkParentGate()" class="px-4 py-2 rounded-lg bg-indigo-600 font-bold text-white hover:bg-indigo-700 transition" data-translate="verify">Verify</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="passcode-modal" class="fixed inset-0 z-[90] bg-black/90 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl animate-fade-in relative overflow-hidden">
-            <button onclick="document.getElementById('passcode-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            
-            <div class="w-16 h-16 bg-indigo-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-2xl text-indigo-600">
-                <i class="fa-solid fa-user-shield"></i>
-            </div>
-
-            <h3 id="passcode-title" class="text-xl font-extrabold text-gray-900 mb-2">Parents Zone</h3>
-            <p id="passcode-desc" class="text-sm text-gray-500 mb-6 font-bold">Enter Passcode to Access</p>
-
-            <div class="flex justify-center gap-3 mb-8">
-                <div class="pin-dot" id="dot-1"></div>
-                <div class="pin-dot" id="dot-2"></div>
-                <div class="pin-dot" id="dot-3"></div>
-                <div class="pin-dot" id="dot-4"></div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-3 max-w-[240px] mx-auto">
-                <button onclick="passcode.tap(1)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">1</button>
-                <button onclick="passcode.tap(2)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">2</button>
-                <button onclick="passcode.tap(3)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">3</button>
-                <button onclick="passcode.tap(4)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">4</button>
-                <button onclick="passcode.tap(5)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">5</button>
-                <button onclick="passcode.tap(6)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">6</button>
-                <button onclick="passcode.tap(7)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">7</button>
-                <button onclick="passcode.tap(8)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">8</button>
-                <button onclick="passcode.tap(9)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">9</button>
-                <button onclick="passcode.clear()" class="h-14 rounded-xl bg-red-50 text-red-500 font-bold hover:bg-red-100 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-delete-left"></i></button>
-                <button onclick="passcode.tap(0)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">0</button>
-                <button onclick="document.getElementById('passcode-modal').classList.add('hidden')" class="h-14 rounded-xl bg-gray-100 text-gray-500 font-bold hover:bg-gray-200 active:scale-95 transition text-sm">EXIT</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const CONSTANTS = {
-            STORAGE_KEY: 'sparkcoder_pro_v_final_18lang_v2', 
-            PREMIUM_GATE_LEVEL: 30
-        };
-
-        const I18N = {
-            en: { home: "Home", map: "Map", arcade: "Arcade", profile: "Profile", parents: "Parents Zone", streak: "Streak", oops: "Oops! Locked! 🔒", child_msg: "Pappa/Amma I had completed this all level now successfully how can i complete full all levels on this and become pro coder?", parents_only: "Parents Only", solve_math: "Please solve this to continue:", cancel: "Cancel", verify: "Verify", welcome: "Welcome to SparkCoder!", setup: "Let's set up your coding adventure.", name_q: "What's your name?", age_q: "How old are you?", start_btn: "Start My Adventure 🚀", hi: "Hi", level_status: "Level", continue_btn: "Continue", journey: "Your Journey", cat_logic: "Computer Basics", cat_web: "Internet & Web", cat_python: "Coding Concepts", locked: "Locked", play: "Play", completed: "Done", mission: "Your Mission:", hint_title: "Hint:", run_code: "Run Code", check_order: "Check Order", success_msg: "Level Complete!", xp_gain: "+50 XP Earned", next_lvl: "Next Level ➡", parent_dash: "Parent Dashboard", monitor: "Monitor progress", plan_header: "Unlock Full Access", plan_1_title: "30 Days Starter", plan_1_perk: "Digital Beginner Medal + Hard Copy Certificate", plan_2_title: "3 Months Growth", plan_2_perk: "Digital Intermediate Medal + Hard Copy Certificate", plan_3_title: "6 Months Pro", plan_3_perk: "Digital Pro Medal + Hard Copy Certificate", buy_now: "Buy Now", free_plan: "FREE PLAN", premium_plan: "PREMIUM PRO", levels_unlocked: "Levels Unlocked", plan_status: "Plan Status", try_again: "Try Once Again", use_hint: "Use Hint (-1 Credit)", hint_used: "Hint Used! Correct item moved.", no_credits: "Ask parents for more hint credits!", hint_rem: "Credits:", cert_shipping: "Certificate will be shipped." },
-            kn: { home: "ಮನೆ", map: "ನಕ್ಷೆ", arcade: "ಆಟಗಳು", profile: "ಪ್ರೊಫೈಲ್", parents: "ಪೋಷಕರು", streak: "ಸರಣಿ", oops: "ಲಾಕ್ ಆಗಿದೆ! 🔒", child_msg: "ಅಪ್ಪಾ/ಅಮ್ಮಾ ನಾನು ಈ ಎಲ್ಲಾ ಹಂತಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ್ದೇನೆ, ಉಳಿದ ಹಂತಗಳನ್ನು ಹೇಗೆ ಅನ್ಲಾಕ್ ಮಾಡಲಿ?", parents_only: "ಪೋಷಕರಿಗೆ ಮಾತ್ರ", solve_math: "ಬಿಡಿಸಿ:", cancel: "ರದ್ದು", verify: "ಪರಿಶೀಲಿಸಿ", welcome: "ಸ್ವಾಗತ!", setup: "ಪ್ರಾರಂಭಿಸೋಣ.", name_q: "ನಿಮ್ಮ ಹೆಸರೇನು?", age_q: "ವಯಸ್ಸು?", start_btn: "ಪ್ರಾರಂಭಿಸಿ 🚀", hi: "ನಮಸ್ತೆ", level_status: "ಹಂತ", continue_btn: "ಮುಂದುವರಿಸಿ", journey: "ನಿಮ್ಮ ಪಯಣ", cat_logic: "ಕಂಪ್ಯೂಟರ್ ಮೂಲಗಳು", cat_web: "ಇಂಟರ್ನೆಟ್", cat_python: "ಕೋಡಿಂಗ್", locked: "ಲಾಕ್", play: "ಆಟವಾಡಿ", completed: "ಮುಗಿದಿದೆ", mission: "ಗುರಿ:", hint_title: "ಸಲಹೆ:", run_code: "ರನ್ ಮಾಡಿ", check_order: "ಪರಿಶೀಲಿಸಿ", success_msg: "ಹಂತ ಪೂರ್ಣ!", xp_gain: "+50 XP", next_lvl: "ಮುಂದೆ ➡", parent_dash: "ಪೋಷಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", monitor: "ಪ್ರಗತಿ ನೋಡಿ", plan_header: "ಅನ್ಲಾಕ್ ಮಾಡಿ", plan_1_title: "30 ದಿನಗಳು", plan_1_perk: "ಡಿಜಿಟಲ್ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", plan_2_title: "3 ತಿಂಗಳು", plan_2_perk: "ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", plan_3_title: "6 ತಿಂಗಳು", plan_3_perk: "ಪ್ರೊ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", buy_now: "ಖರೀದಿಸಿ", free_plan: "ಉಚಿತ", premium_plan: "ಪ್ರೀಮಿಯಂ", levels_unlocked: "ಹಂತಗಳು", plan_status: "ಸ್ಥಿತಿ", try_again: "ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ", use_hint: "ಸುಳಿವು ಬಳಸಿ (-1)", hint_used: "ಸುಳಿವು ಬಳಸಲಾಗಿದೆ!", no_credits: "ಪೋಷಕರನ್ನು ಕೇಳಿ!", hint_rem: "ಕ್ರೆಡಿಟ್:", cert_shipping: "ಪ್ರಮಾಣಪತ್ರ ಕಳುಹಿಸಲಾಗುವುದು." },
-            hi: { home: "होम", map: "मानचित्र", arcade: "आर्केड", profile: "प्रोफ़ाइल", parents: "अभिभावक", streak: "सिलसिला", oops: "बंद है! 🔒", child_msg: "पापा/मम्मी मैंने ये लेवल पूरे कर लिए हैं, बाकी कैसे खोलूं?", parents_only: "माता-पिता", solve_math: "हल करें:", cancel: "रद्द", verify: "सत्यापित", welcome: "स्वागत है!", setup: "शुरू करें।", name_q: "नाम?", age_q: "उम्र?", start_btn: "शुरू करें 🚀", hi: "नमस्ते", level_status: "लेवल", continue_btn: "जारी रखें", journey: "यात्रा", cat_logic: "कंप्यूटर बेसिक्स", cat_web: "इंटरनेट", cat_python: "कोडिंग", locked: "बंद", play: "खेलें", completed: "पूर्ण", mission: "मिशन:", hint_title: "संकेत:", run_code: "चलाएं", check_order: "जांचें", success_msg: "पूरा हुआ!", xp_gain: "+50 XP", next_lvl: "अगला ➡", parent_dash: "पैरेंट डैशबोर्ड", monitor: "प्रगति", plan_header: "अनलॉक करें", plan_1_title: "30 दिन", plan_1_perk: "मेडल + सर्टिफिकेट", plan_2_title: "3 महीने", plan_2_perk: "मेडल + सर्टिफिकेट", plan_3_title: "6 महीने", plan_3_perk: "मेडल + सर्टिफिकेट", buy_now: "खरीदें", free_plan: "फ्री", premium_plan: "प्रीमियम", levels_unlocked: "लेवल्स", plan_status: "स्टेटस", try_again: "फिर प्रयास करें", use_hint: "संकेत (-1)", hint_used: "संकेत इस्तेमाल!", no_credits: "क्रेडिट नहीं!", hint_rem: "क्रेडिट:", cert_shipping: "प्रमाण पत्र भेजा जाएगा." },
-            te: { home: "హోమ్", map: "మ్యాప్", arcade: "ఆర్కేడ్", profile: "ప్రొఫైల్", parents: "తల్లిదండ్రులు", streak: "స్ట్రీక్", oops: "లాక్! 🔒", child_msg: "నాన్న/అమ్మ నేను ఈ లెవల్స్ పూర్తి చేశాను, మిగిలినవి ఎలా అన్‌లాక్ చేయాలి?", parents_only: "తల్లిదండ్రులు", solve_math: "పరిష్కరించండి:", cancel: "రద్దు", verify: "ధృవీకరించండి", welcome: "స్వాగతం!", setup: "ప్రారంభిద్దాం.", name_q: "పేరు?", age_q: "వయస్సు?", start_btn: "ప్రారంభించు 🚀", hi: "హాయ్", level_status: "లెవల్", continue_btn: "కొనసాగించు", journey: "ప్రయాణం", cat_logic: "కంప్యూటర్", cat_web: "ఇంటర్నెట్", cat_python: "కోడింగ్", locked: "లాక్", play: "ఆడు", completed: "పూర్తి", mission: "లక్ష్యం:", hint_title: "సూచన:", run_code: "రన్", check_order: "సరిచూడు", success_msg: "విజయం!", xp_gain: "+50 XP", next_lvl: "తరువాత ➡", parent_dash: "పేరెంట్ డ్యాష్‌బోర్డ్", monitor: "పురోగతి", plan_header: "అన్‌లాక్", plan_1_title: "30 రోజులు", plan_1_perk: "మెడల్ + సర్టిఫికేట్", plan_2_title: "3 నెలలు", plan_2_perk: "మెడల్ + సర్టిఫికేట్", plan_3_title: "6 నెలలు", plan_3_perk: "మెడల్ + సర్టిఫికేట్", buy_now: "కొనుగోలు", free_plan: "ఉచితం", premium_plan: "ప్రీమియం", levels_unlocked: "లెవల్స్", plan_status: "ప్లాన్", try_again: "మళ్ళీ ప్రయత్నించు", use_hint: "హింట్ (-1)", hint_used: "హింట్ వాడారు!", no_credits: "క్రెడిట్స్ లేవు!", hint_rem: "క్రెడిట్స్:", cert_shipping: "సర్టిఫికేట్ పంపబడుతుంది." },
-            ta: { home: "முகப்பு", map: "வரைபடம்", arcade: "ஆர்கேட்", profile: "சுயவிவரம்", parents: "பெற்றோர்", streak: "தொடர்", oops: "பூட்டு! 🔒", child_msg: "அப்பா/அம்மா நான் முடித்துவிட்டேன், முழுவதையும் எப்படி முடிப்பது?", parents_only: "பெற்றோர்", solve_math: "தீர்க்கவும்:", cancel: "ரத்து", verify: "சரிபார்", welcome: "வரவேற்பு!", setup: "தொடங்கலாம்.", name_q: "பெயர்?", age_q: "வயது?", start_btn: "தொடங்கு 🚀", hi: "வணக்கம்", level_status: "நிலை", continue_btn: "தொடரவும்", journey: "பயணம்", cat_logic: "கணினி", cat_web: "இணையம்", cat_python: "கோடிங்", locked: "பூட்டு", play: "விளையாடு", completed: "முடிந்தது", mission: "பணி:", hint_title: "குறிப்பு:", run_code: "ஓடு", check_order: "சரிபார்", success_msg: "வெற்றி!", xp_gain: "+50 XP", next_lvl: "அடுத்து ➡", parent_dash: "பெற்றோர் பலகை", monitor: "கண்காணிப்பு", plan_header: "திறக்கவும்", plan_1_title: "30 நாட்கள்", plan_1_perk: "பதக்கம் + சான்றிதழ்", plan_2_title: "3 மாதங்கள்", plan_2_perk: "பதக்கம் + சான்றிதழ்", plan_3_title: "6 மாதங்கள்", plan_3_perk: "பதக்கம் + சான்றிதழ்", buy_now: "வாங்க", free_plan: "இலவசம்", premium_plan: "பிரீமியம்", levels_unlocked: "நிலைகள்", plan_status: "திட்டம்", try_again: "முயற்சி", use_hint: "குறிப்பு (-1)", hint_used: "பயன்படுத்தப்பட்டது!", no_credits: "இல்லை!", hint_rem: "கடன்:", cert_shipping: "அனுப்பப்படும்." },
-            ml: { home: "ഹോം", map: "മാപ്പ്", arcade: "ഗെയിം", profile: "പ്രൊഫൈൽ", parents: "രക്ഷിതാക്കൾ", streak: "സ്ട്രീക്ക്", oops: "ലോക്ക്! 🔒", child_msg: "അച്ഛാ/അമ്മേ ഞാൻ തീർത്തു, ബാക്കി എങ്ങനെ അൺലോക്ക് ചെയ്യാം?", parents_only: "രക്ഷിതാക്കൾ", solve_math: "പരിഹരിക്കൂ:", cancel: "റദ്ദാക്കൂ", verify: "ശരി", welcome: "സ്വാഗതം!", setup: "തുടങ്ങാം.", name_q: "പേര്?", age_q: "വയസ്സ്?", start_btn: "തുടങ്ങൂ 🚀", hi: "ഹായ്", level_status: "ലെവൽ", continue_btn: "തുടരുക", journey: "യാത്ര", cat_logic: "കമ്പ്യൂട്ടർ", cat_web: "ഇന്റർനെറ്റ്", cat_python: "കോഡിംഗ്", locked: "ലോക്ക്", play: "കളി", completed: "തീർന്നു", mission: "ദൗത്യം:", hint_title: "സൂചന:", run_code: "റൺ", check_order: "ക്രമം", success_msg: "വിജയിച്ചു!", xp_gain: "+50 XP", next_lvl: "അടുത്തത് ➡", parent_dash: "ഡാഷ്ബോർഡ്", monitor: "പുരോഗതി", plan_header: "അൺലോക്ക്", plan_1_title: "30 ദിവസം", plan_1_perk: "മെഡൽ + സർട്ടിഫിക്കറ്റ്", plan_2_title: "3 മാസം", plan_2_perk: "മെഡൽ + സർട്ടിഫിക്കറ്റ്", plan_3_title: "6 മാസം", plan_3_perk: "മെഡൽ + സർട്ടിഫിക്കറ്റ്", buy_now: "വാങ്ങൂ", free_plan: "സൗജന്യം", premium_plan: "പ്രീമിയം", levels_unlocked: "ലെവലുകൾ", plan_status: "പ്ലാൻ", try_again: "ശ്രമിക്കൂ", use_hint: "സൂചന (-1)", hint_used: "ഉപയോഗിച്ചു!", no_credits: "ഇല്ല!", hint_rem: "ക്രെഡിറ്റ്:", cert_shipping: "അയയ്ക്കും." },
-            mr: { home: "होम", map: "नकाशा", arcade: "गेम्स", profile: "प्रोफाइल", parents: "पालक", streak: "स्ट्रिक", oops: "लॉक! 🔒", child_msg: "बाबा/आई मी पूर्ण केले, बाकीचे कसे पूर्ण करू?", parents_only: "पालक", solve_math: "सोडवा:", cancel: "रद्द", verify: "तपासा", welcome: "स्वागत!", setup: "सुरु करू.", name_q: "नाव?", age_q: "वय?", start_btn: "सुरु करा 🚀", hi: "नमस्कार", level_status: "लेव्हल", continue_btn: "पुढे जा", journey: "प्रवास", cat_logic: "कांप्युटर", cat_web: "इंटरनेट", cat_python: "कोडिंग", locked: "लॉक", play: "खेळा", completed: "पूर्ण", mission: "मिशन:", hint_title: "टीप:", run_code: "रन", check_order: "तपासा", success_msg: "अभिनंदन!", xp_gain: "+50 XP", next_lvl: "पुढील ➡", parent_dash: "पालक डॅशबोर्ड", monitor: "प्रगती", plan_header: "अनलॉक", plan_1_title: "३० दिवस", plan_1_perk: "मेडल + सर्टिफिकेट", plan_2_title: "३ महिने", plan_2_perk: "मेडल + सर्टिफिकेट", plan_3_title: "६ महिने", plan_3_perk: "मेडल + सर्टिफिकेट", buy_now: "खरेदी", free_plan: "फ्री", premium_plan: "प्रीमियम", levels_unlocked: "लेव्हल्स", plan_status: "प्लॅन", try_again: "प्रयत्न करा", use_hint: "हिंट (-1)", hint_used: "वापरली!", no_credits: "नाहीत!", hint_rem: "क्रेडिट:", cert_shipping: "पाठवले जाईल." },
-            gu: { home: "ઘર", map: "નકશો", arcade: "ગેમ્સ", profile: "પ્રોફાઇલ", parents: "વાલી", streak: "સ્ટ્રીક", oops: "લોક! 🔒", child_msg: "પપ્પા/મમ્મી મેં પૂરું કર્યું, બાકીનું કેવી રીતે?", parents_only: "વાલી", solve_math: "ઉકેલો:", cancel: "રદ", verify: "ચકાસો", welcome: "સ્વાગત!", setup: "શરૂ કરીએ.", name_q: "નામ?", age_q: "ઉંમર?", start_btn: "શરૂ કરો 🚀", hi: "નમસ્તે", level_status: "લેવલ", continue_btn: "ચાલુ રાખો", journey: "યાત્રા", cat_logic: "કમ્પ્યુટર", cat_web: "ઇન્ટરનેટ", cat_python: "કોડિંગ", locked: "લોક", play: "રમો", completed: "પૂર્ણ", mission: "મિશન:", hint_title: "હિંટ:", run_code: "રન", check_order: "તપાસો", success_msg: "સફળ!", xp_gain: "+50 XP", next_lvl: "આગળ ➡", parent_dash: "ડેશબોર્ડ", monitor: "પ્રગતિ", plan_header: "અનલોક", plan_1_title: "30 દિવસ", plan_1_perk: "મેડલ + સર્ટિફિકેટ", plan_2_title: "3 મહિના", plan_2_perk: "મેડલ + સર્ટિફિકેટ", plan_3_title: "6 મહિના", plan_3_perk: "મેડલ + સર્ટિફિકેટ", buy_now: "ખરીદો", free_plan: "ફ્રી", premium_plan: "પ્રીમિયમ", levels_unlocked: "લેવલ", plan_status: "પ્લાન", try_again: "પ્રયાસ કરો", use_hint: "હિંટ (-1)", hint_used: "વપરાઈ!", no_credits: "નથી!", hint_rem: "ક્રેડિટ:", cert_shipping: "મોકલવામાં આવશે." },
-            bn: { home: "হোম", map: "ম্যাপ", arcade: "গেমস", profile: "প্রোফাইল", parents: "পিতামাতা", streak: "স্ট্রিক", oops: "লক! 🔒", child_msg: "বাবা/মা আমি শেষ করেছি, বাকিগুলো কিভাবে?", parents_only: "পিতামাতা", solve_math: "সমাধান:", cancel: "বাতিল", verify: "যাচাই", welcome: "স্বাগতম!", setup: "শুরু করি।", name_q: "নাম?", age_q: "বয়স?", start_btn: "শুরু 🚀", hi: "হাই", level_status: "লেভেল", continue_btn: "চালিয়ে যান", journey: "যাত্রা", cat_logic: "কম্পিউটার", cat_web: "ইন্টারনেট", cat_python: "কোডিং", locked: "লক", play: "খেলুন", completed: "সম্পন্ন", mission: "মিশন:", hint_title: "ইঙ্গিত:", run_code: "রান", check_order: "চেক", success_msg: "সম্পন্ন!", xp_gain: "+50 XP", next_lvl: "পরবর্তী ➡", parent_dash: "ড্যাশবোর্ড", monitor: "মনিটর", plan_header: "আনলক", plan_1_title: "৩০ দিন", plan_1_perk: "মেডেল + সার্টিফিকেট", plan_2_title: "৩ মাস", plan_2_perk: "মেডেল + সার্টিফিকেট", plan_3_title: "৬ মাস", plan_3_perk: "মেডেল + সার্টিফিকেট", buy_now: "কিনুন", free_plan: "ফ্রি", premium_plan: "প্রিমিয়াম", levels_unlocked: "লেভেল", plan_status: "প্ল্যান", try_again: "চেষ্টা করুন", use_hint: "ইঙ্গিত (-1)", hint_used: "ব্যবহৃত!", no_credits: "নেই!", hint_rem: "ক্রেডিট:", cert_shipping: "পাঠানো হবে।" },
-            ur: { home: "ہوم", map: "نقشہ", arcade: "گیمز", profile: "پروفائل", parents: "والدین", streak: "تسلسل", oops: "مقفل! 🔒", child_msg: "پاپا/ممی میں نے مکمل کر لیا، باقی کیسے؟", parents_only: "والدین", solve_math: "حل کریں:", cancel: "منسوخ", verify: "تصدیق", welcome: "خوش آمدید!", setup: "شروع کریں۔", name_q: "نام؟", age_q: "عمر؟", start_btn: "شروع 🚀", hi: "ہیلو", level_status: "لیول", continue_btn: "جاری", journey: "سفر", cat_logic: "کمپیوٹر", cat_web: "انٹرنیٹ", cat_python: "کوڈنگ", locked: "مقفل", play: "کھیلیں", completed: "مکمل", mission: "مشن:", hint_title: "اشارہ:", run_code: "چلائیں", check_order: "چیک", success_msg: "کامیاب!", xp_gain: "+50 XP", next_lvl: "اگلا ➡", parent_dash: "ڈیش بورڈ", monitor: "نگرانی", plan_header: "انلاک", plan_1_title: "30 دن", plan_1_perk: "میڈل + سرٹیفکیٹ", plan_2_title: "3 ماہ", plan_2_perk: "میڈل + سرٹیفکیٹ", plan_3_title: "6 ماہ", plan_3_perk: "میڈل + سرٹیفکیٹ", buy_now: "خریدیں", free_plan: "مفت", premium_plan: "پریمیم", levels_unlocked: "لیولز", plan_status: "پلان", try_again: "کوشش", use_hint: "اشارہ (-1)", hint_used: "استعمال!", no_credits: "نہیں!", hint_rem: "کریڈٹ:", cert_shipping: "بھیجا جائے گا۔" },
-            es: { home: "Inicio", map: "Mapa", arcade: "Arcade", profile: "Perfil", parents: "Padres", streak: "Racha", oops: "¡Bloqueado! 🔒", child_msg: "¿Cómo desbloqueo todo?", parents_only: "Padres", solve_math: "Resuelve:", cancel: "Cancelar", verify: "Verificar", welcome: "¡Bienvenido!", setup: "Configurar", name_q: "¿Nombre?", age_q: "¿Edad?", start_btn: "Iniciar 🚀", hi: "Hola", level_status: "Nivel", continue_btn: "Continuar", journey: "Viaje", cat_logic: "Básico", cat_web: "Web", cat_python: "Código", locked: "Bloqueado", play: "Jugar", completed: "Hecho", mission: "Misión:", hint_title: "Pista:", run_code: "Ejecutar", check_order: "Revisar", success_msg: "¡Éxito!", xp_gain: "+50 XP", next_lvl: "Siguiente ➡", parent_dash: "Panel", monitor: "Progreso", plan_header: "Desbloquear", plan_1_title: "30 Días", plan_1_perk: "Medalla + Certificado", plan_2_title: "3 Meses", plan_2_perk: "Medalla + Certificado", plan_3_title: "6 Meses", plan_3_perk: "Medalla + Certificado", buy_now: "Comprar", free_plan: "GRATIS", premium_plan: "PREMIUM", levels_unlocked: "Niveles", plan_status: "Plan", try_again: "Reintentar", use_hint: "Pista (-1)", hint_used: "¡Usada!", no_credits: "¡Sin créditos!", hint_rem: "Créditos:", cert_shipping: "Se enviará." },
-            fr: { home: "Accueil", map: "Carte", arcade: "Jeu", profile: "Profil", parents: "Parents", streak: "Série", oops: "Bloqué! 🔒", child_msg: "Comment débloquer tout?", parents_only: "Parents", solve_math: "Résoudre:", cancel: "Annuler", verify: "Vérifier", welcome: "Bienvenue!", setup: "Configurer", name_q: "Nom?", age_q: "Âge?", start_btn: "Débuter 🚀", hi: "Salut", level_status: "Niveau", continue_btn: "Continuer", journey: "Voyage", cat_logic: "Bases", cat_web: "Web", cat_python: "Code", locked: "Fermé", play: "Jouer", completed: "Fini", mission: "Mission:", hint_title: "Indice:", run_code: "Lancer", check_order: "Vérifier", success_msg: "Bravo!", xp_gain: "+50 XP", next_lvl: "Suivant ➡", parent_dash: "Tableau", monitor: "Progrès", plan_header: "Débloquer", plan_1_title: "30 Jours", plan_1_perk: "Médaille + Certificat", plan_2_title: "3 Mois", plan_2_perk: "Médaille + Certificat", plan_3_title: "6 Mois", plan_3_perk: "Médaille + Certificat", buy_now: "Acheter", free_plan: "GRATUIT", premium_plan: "PREMIUM", levels_unlocked: "Niveaux", plan_status: "Plan", try_again: "Réessayer", use_hint: "Indice (-1)", hint_used: "Utilisé!", no_credits: "Pas de crédits!", hint_rem: "Crédits:", cert_shipping: "Sera envoyé." },
-            de: { home: "Start", map: "Karte", arcade: "Spiel", profile: "Profil", parents: "Eltern", streak: "Serie", oops: "Zu! 🔒", child_msg: "Wie alles freischalten?", parents_only: "Eltern", solve_math: "Lösen:", cancel: "Abbruch", verify: "Ok", welcome: "Willkommen!", setup: "Setup", name_q: "Name?", age_q: "Alter?", start_btn: "Start 🚀", hi: "Hallo", level_status: "Level", continue_btn: "Weiter", journey: "Reise", cat_logic: "Basis", cat_web: "Web", cat_python: "Code", locked: "Zu", play: "Spiel", completed: "Fertig", mission: "Mission:", hint_title: "Tipp:", run_code: "Starten", check_order: "Prüfen", success_msg: "Super!", xp_gain: "+50 XP", next_lvl: "Weiter ➡", parent_dash: "Dashboard", monitor: "Fortschritt", plan_header: "Freischalten", plan_1_title: "30 Tage", plan_1_perk: "Medaille + Zertifikat", plan_2_title: "3 Monate", plan_2_perk: "Medaille + Zertifikat", plan_3_title: "6 Monate", plan_3_perk: "Medaille + Zertifikat", buy_now: "Kaufen", free_plan: "GRATIS", premium_plan: "PREMIUM", levels_unlocked: "Level", plan_status: "Status", try_again: "Nochmal", use_hint: "Tipp (-1)", hint_used: "Genutzt!", no_credits: "Keine Credits!", hint_rem: "Credits:", cert_shipping: "Wird gesendet." },
-            pt: { home: "Início", map: "Mapa", arcade: "Jogos", profile: "Perfil", parents: "Pais", streak: "Série", oops: "Bloqueado! 🔒", child_msg: "Como desbloquear tudo?", parents_only: "Pais", solve_math: "Resolva:", cancel: "Cancelar", verify: "Verificar", welcome: "Bem-vindo!", setup: "Configurar", name_q: "Nome?", age_q: "Idade?", start_btn: "Iniciar 🚀", hi: "Olá", level_status: "Nível", continue_btn: "Continuar", journey: "Jornada", cat_logic: "Básico", cat_web: "Web", cat_python: "Código", locked: "Trancado", play: "Jogar", completed: "Feito", mission: "Missão:", hint_title: "Dica:", run_code: "Rodar", check_order: "Verificar", success_msg: "Sucesso!", xp_gain: "+50 XP", next_lvl: "Próximo ➡", parent_dash: "Painel", monitor: "Progresso", plan_header: "Desbloquear", plan_1_title: "30 Dias", plan_1_perk: "Medalha + Certificado", plan_2_title: "3 Meses", plan_2_perk: "Medalha + Certificado", plan_3_title: "6 Meses", plan_3_perk: "Medalha + Certificado", buy_now: "Comprar", free_plan: "GRÁTIS", premium_plan: "PREMIUM", levels_unlocked: "Níveis", plan_status: "Plano", try_again: "Tente", use_hint: "Dica (-1)", hint_used: "Usada!", no_credits: "Sem créditos!", hint_rem: "Créditos:", cert_shipping: "Será enviado." },
-            ru: { home: "Главная", map: "Карта", arcade: "Игры", profile: "Профиль", parents: "Родителям", streak: "Серия", oops: "Закрыто! 🔒", child_msg: "Как открыть всё?", parents_only: "Родителям", solve_math: "Решите:", cancel: "Отмена", verify: "ОК", welcome: "Привет!", setup: "Настройка", name_q: "Имя?", age_q: "Возраст?", start_btn: "Старт 🚀", hi: "Привет", level_status: "Уровень", continue_btn: "Далее", journey: "Путь", cat_logic: "Основы", cat_web: "Веб", cat_python: "Код", locked: "Закрыто", play: "Играть", completed: "Готово", mission: "Задача:", hint_title: "Подсказка:", run_code: "Пуск", check_order: "Проверить", success_msg: "Успех!", xp_gain: "+50 XP", next_lvl: "Далее ➡", parent_dash: "Кабинет", monitor: "Прогресс", plan_header: "Открыть", plan_1_title: "30 Дней", plan_1_perk: "Медаль + Сертификат", plan_2_title: "3 Месяца", plan_2_perk: "Медаль + Сертификат", plan_3_title: "6 Месяцев", plan_3_perk: "Медаль + Сертификат", buy_now: "Купить", free_plan: "БЕСПЛАТНО", premium_plan: "ПРЕМИУМ", levels_unlocked: "Уровни", plan_status: "План", try_again: "Ещё раз", use_hint: "Подсказка (-1)", hint_used: "Использовано!", no_credits: "Нет кредитов!", hint_rem: "Кредиты:", cert_shipping: "Отправим почтой." },
-            zh: { home: "首页", map: "地图", arcade: "游戏", profile: "我的", parents: "家长", streak: "连胜", oops: "锁定! 🔒", child_msg: "如何解锁全部?", parents_only: "家长", solve_math: "计算:", cancel: "取消", verify: "验证", welcome: "欢迎!", setup: "设置", name_q: "名字?", age_q: "年龄?", start_btn: "开始 🚀", hi: "你好", level_status: "关卡", continue_btn: "继续", journey: "旅程", cat_logic: "基础", cat_web: "网络", cat_python: "编程", locked: "锁", play: "玩", completed: "完成", mission: "任务:", hint_title: "提示:", run_code: "运行", check_order: "检查", success_msg: "成功!", xp_gain: "+50 XP", next_lvl: "下一关 ➡", parent_dash: "控制台", monitor: "进度", plan_header: "解锁", plan_1_title: "30天", plan_1_perk: "奖牌 + 证书", plan_2_title: "3个月", plan_2_perk: "奖牌 + 证书", plan_3_title: "6个月", plan_3_perk: "奖牌 + 证书", buy_now: "购买", free_plan: "免费", premium_plan: "高级", levels_unlocked: "关卡", plan_status: "状态", try_again: "重试", use_hint: "提示 (-1)", hint_used: "已使用!", no_credits: "没积分!", hint_rem: "积分:", cert_shipping: "证书将寄出." },
-            ja: { home: "ホーム", map: "マップ", arcade: "ゲーム", profile: "私", parents: "保護者", streak: "連続", oops: "ロック! 🔒", child_msg: "全部解除するには?", parents_only: "保護者", solve_math: "計算:", cancel: "中止", verify: "確認", welcome: "ようこそ!", setup: "設定", name_q: "名前?", age_q: "年齢?", start_btn: "開始 🚀", hi: "こんにちは", level_status: "レベル", continue_btn: "続く", journey: "旅", cat_logic: "基本", cat_web: "Web", cat_python: "コード", locked: "鍵", play: "遊ぶ", completed: "完了", mission: "任務:", hint_title: "ヒント:", run_code: "実行", check_order: "確認", success_msg: "成功!", xp_gain: "+50 XP", next_lvl: "次へ ➡", parent_dash: "管理", monitor: "進捗", plan_header: "解除", plan_1_title: "30日", plan_1_perk: "メダル + 証明書", plan_2_title: "3ヶ月", plan_2_perk: "メダル + 証明書", plan_3_title: "6ヶ月", plan_3_perk: "メダル + 証明書", buy_now: "購入", free_plan: "無料", premium_plan: "プレミアム", levels_unlocked: "レベル", plan_status: "プラン", try_again: "再試行", use_hint: "ヒント (-1)", hint_used: "使用済!", no_credits: "残高なし!", hint_rem: "残高:", cert_shipping: "郵送されます." },
-            ar: { home: "الرئيسية", map: "الخريطة", arcade: "ألعاب", profile: "الملف", parents: "الآباء", streak: "تتابع", oops: "مغلق! 🔒", child_msg: "كيف أفتح الباقي؟", parents_only: "للآباء", solve_math: "حل:", cancel: "إلغاء", verify: "تحقق", welcome: "مرحباً!", setup: "إعداد", name_q: "الاسم؟", age_q: "العمر؟", start_btn: "ابدأ 🚀", hi: "أهلاً", level_status: "مستوى", continue_btn: "تابع", journey: "رحلتك", cat_logic: "أساسيات", cat_web: "ويب", cat_python: "كود", locked: "قفل", play: "لعب", completed: "تم", mission: "مهمة:", hint_title: "تلميح:", run_code: "تشغيل", check_order: "فحص", success_msg: "نجاح!", xp_gain: "+50 نقطة", next_lvl: "التالي ➡", parent_dash: "لوحة", monitor: "تقدم", plan_header: "فتح الكل", plan_1_title: "30 يوم", plan_1_perk: "ميدالية + شهادة", plan_2_title: "3 أشهر", plan_2_perk: "ميدالية + شهادة", plan_3_title: "6 أشهر", plan_3_perk: "ميدالية + شهادة", buy_now: "شراء", free_plan: "مجاني", premium_plan: "بريميوم", levels_unlocked: "مستويات", plan_status: "خطة", try_again: "حاول", use_hint: "تلميح (-1)", hint_used: "مستخدم!", no_credits: "لا رصيد!", hint_rem: "رصيد:", cert_shipping: "سيتم الشحن." }
-        };
-
-        const CURRICULUM = [
-            { id: 1, type: 'logic', 
-              title_en: 'What is Code?', desc_en: 'Code is instructions for computers.', goal_en: 'Order the communication flow.', items_en: ['Human Thinks', 'Writes Code', 'Computer Obeys'],
-              title_kn: 'ಕೋಡ್ ಎಂದರೇನು?', desc_kn: 'ಕೋಡ್ ಎಂದರೆ ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗೆ ನೀಡುವ ಸೂಚನೆಗಳು.', goal_kn: 'ಸಂವಹನ ಹರಿವನ್ನು ಜೋಡಿಸಿ.', items_kn: ['ಮಾನವ ಯೋಚಿಸುತ್ತಾನೆ', 'ಕೋಡ್ ಬರೆಯುತ್ತಾನೆ', 'ಕಂಪ್ಯೂಟರ್ ಪಾಲಿಸುತ್ತದೆ'],
-              title_hi: 'कोड क्या है?', desc_hi: 'कोड कंप्यूटर के लिए निर्देश है।', goal_hi: 'संचार प्रवाह को व्यवस्थित करें।', items_hi: ['इंसान सोचता है', 'कोड लिखता है', 'कंप्यूटर मानता है'],
-              items_es: ['Humano Piensa', 'Escribe Código', 'Computadora Obedece'], title_es: '¿Qué es el Código?', desc_es: 'Instrucciones para PC.', goal_es: 'Ordena el flujo.',
-              items_fr: ["L'humain pense", "Écrit le code", "L'ordi obéit"], title_fr: "C'est quoi le code?", desc_fr: "Des instructions.", goal_fr: "Ordonne le flux.",
-              items_de: ["Mensch denkt", "Schreibt Code", "Computer gehorcht"], title_de: "Was ist Code?", desc_de: "Anweisungen.", goal_de: "Ordne.",
-              items_ru: ["Человек думает", "Пишет код", "ПК выполняет"], title_ru: "Что такое код?", desc_ru: "Инструкции для ПК.", goal_ru: "Упорядочь.",
-              items_zh: ["人类思考", "编写代码", "计算机执行"], title_zh: "什么是代码？", desc_zh: "指令。", goal_zh: "排序。",
-              items_ja: ["人が考える", "コードを書く", "PCが動く"], title_ja: "コードとは？", desc_ja: "命令。", goal_ja: "並べ替え。",
-              items_ar: ["الإنسان يفكر", "يكتب الكود", "الحاسوب يطيع"], title_ar: "ما هو الكود؟", desc_ar: "تعليمات.", goal_ar: "رتب.",
-              items_pt: ["Humano Pensa", "Escreve Código", "PC Obedece"], title_pt: "O que é código?", desc_pt: "Instruções.", goal_pt: "Ordene.",
-              items_bn: ["মানুষ ভাবে", "কোড লেখে", "কম্পিউটার মানে"], title_bn: "কোড কি?", desc_bn: "নির্দেশ।", goal_bn: "সাজান।",
-              items_te: ["మనిషి ఆలోచన", "కోడ్ రాయడం", "కంప్యూటర్ పని"], title_te: "కోడ్ అంటే ఏమిటి?", desc_te: "సూచనలు.", goal_te: "క్రమం.",
-              items_ta: ["மனிதன் சிந்தனை", "கோட் எழுதுதல்", "கணினி செயல்படுதல்"], title_ta: "கோட் என்றால் என்ன?", desc_ta: "வழிமுறைகள்.", goal_ta: "வரிசை.",
-              items_mr: ["माणूस विचार करतो", "कोड लिहितो", "संगणक ऐकतो"], title_mr: "कोड म्हणजे काय?", desc_mr: "सूचना.", goal_mr: "प्रवाह.",
-              items_ur: ["انسان سوچتا ہے", "کوڈ لکھتا ہے", "کمپیوٹر مانتا ہے"], title_ur: "کوڈ کیا ہے؟", desc_ur: "ہدایات.", goal_ur: "ترتیب.",
-              items_gu: ["માનવ વિચારે", "કોડ લખે", "કમ્પ્યુટર માને"], title_gu: "કોડ શું છે?", desc_gu: "સૂચનાઓ.", goal_gu: "ક્રમ.",
-              items_ml: ["മനുഷ്യൻ ചിന്തിക്കുന്നു", "കോഡ് എഴുതുന്നു", "കമ്പ്യൂട്ടർ അനുസരിക്കുന്നു"], title_ml: "എന്താണ് കോഡ്?", desc_ml: "നിർദ്ദേശങ്ങൾ.", goal_ml: "ക്രമം.",
-              correct: ['Human Thinks', 'Writes Code', 'Computer Obeys']
-            },
-            { id: 2, type: 'logic', 
-              title_en: 'First Programmer', desc_en: 'Ada Lovelace was the first coder!', goal_en: 'Who came first?', items_en: ['Ada Lovelace', 'Modern Computers'],
-              title_kn: 'ಮೊದಲ ಪ್ರೋಗ್ರಾಮರ್', desc_kn: 'ಅಡಾ ಲವ್‌ಲೇಸ್ ಮೊದಲ ಕೋಡರ್!', goal_kn: 'ಮೊದಲು ಯಾರು ಬಂದರು?', items_kn: ['ಅಡಾ ಲವ್‌ಲೇಸ್', 'ಆಧುನಿಕ ಕಂಪ್ಯೂಟರ್‌ಗಳು'],
-              title_hi: 'पहला प्रोग्रामर', desc_hi: 'एडा लवलेस पहली कोडर थीं!', goal_hi: 'पहले कौन आया?', items_hi: ['एडा लवलेस', 'आधुनिक कंप्यूटर'],
-              items_es: ['Ada Lovelace', 'Computadoras'], title_es: 'Primer Programador',
-              items_fr: ['Ada Lovelace', 'Ordis Modernes'], title_fr: 'Premier Codeur',
-              items_de: ['Ada Lovelace', 'Computer'], title_de: 'Erster Coder',
-              items_ru: ['Ада Лавлейс', 'Компьютеры'], title_ru: 'Первый кодер',
-              items_zh: ['Ada Lovelace', '计算机'], title_zh: '第一位程序员',
-              items_ja: ['エイダ', 'PC'], title_ja: '最初のプログラマー',
-              items_ar: ['آدا لوفليس', 'الحواسيب'], title_ar: 'أول مبرمج',
-              items_pt: ['Ada Lovelace', 'Computadores'], title_pt: 'Primeiro Coder',
-              items_bn: ['অ্যাডা লাভলেস', 'কম্পিউটার'], title_bn: 'প্রথম প্রোগ্রামার',
-              items_te: ['అడా లవ్‌లేస్', 'కంప్యూటర్లు'], title_te: 'మొదటి ప్రోగ్రామర్',
-              items_ta: ['அடா லவ்லேஸ்', 'கணினிகள்'], title_ta: 'முதல் புரோகிராமர்',
-              items_mr: ['एडा लव्हलेस', 'संगणक'], title_mr: 'पहिली प्रोग्रामर',
-              items_ur: ['اڈا لولیس', 'کمپیوٹر'], title_ur: 'پہلا پروگرامر',
-              items_gu: ['એડા લવલેસ', 'કમ્પ્યુટર'], title_gu: 'પ્રથમ પ્રોગ્રામર',
-              items_ml: ['അഡ ലവ്‌ലെയ്‌സ്', 'കമ്പ്യൂട്ടറുകൾ'], title_ml: 'ആദ്യ പ്രോഗ്രാമർ',
-              correct: ['Ada Lovelace', 'Modern Computers'] 
-            },
-            { id: 3, type: 'logic', title_en: 'Input & Output', desc_en: 'Keyboard is Input. Screen is Output.', goal_en: 'Connect them.', items_en: ['Type Keys', 'Process', 'See on Screen'], correct: ['Type Keys', 'Process', 'See on Screen'] },
-            { id: 4, type: 'logic', title_en: 'The Brain (CPU)', desc_en: 'CPU is the computer brain.', goal_en: 'Build a PC.', items_en: ['Power', 'CPU (Think)', 'Action'], correct: ['Power', 'CPU (Think)', 'Action'] },
-            { id: 5, type: 'logic', title_en: 'Binary Code', desc_en: 'Computers only know 0 and 1.', goal_en: 'Count in binary.', items_en: ['0', '1', '10 (Two)'], correct: ['0', '1', '10 (Two)'] },
-            { id: 6, type: 'logic', title_en: 'Hardware vs Software', desc_en: 'Hardware you can touch.', goal_en: 'Sort items.', items_en: ['Mouse (Hard)', 'Game (Soft)', 'Screen (Hard)'], correct: ['Mouse (Hard)', 'Game (Soft)', 'Screen (Hard)'] },
-            { id: 7, type: 'logic', title_en: 'What is a Bug?', desc_en: 'A bug is a mistake in code.', goal_en: 'Fix the process.', items_en: ['Write Code', 'Find Bug', 'Fix Bug'], correct: ['Write Code', 'Find Bug', 'Fix Bug'] },
-            { id: 8, type: 'logic', title_en: 'Storage (HDD)', desc_en: 'Hard drive remembers things.', goal_en: 'Save a file.', items_en: ['Create File', 'Click Save', 'Saved in HDD'], correct: ['Create File', 'Click Save', 'Saved in HDD'] },
-            { id: 9, type: 'logic', title_en: 'Memory (RAM)', desc_en: 'RAM is short-term memory.', goal_en: 'Run a program.', items_en: ['Load to RAM', 'Use App', 'Close (Clear RAM)'], correct: ['Load to RAM', 'Use App', 'Close (Clear RAM)'] },
-            { id: 10, type: 'logic', title_en: 'Algorithms', desc_en: 'An algorithm is a recipe.', goal_en: 'Make Algorithm.', items_en: ['Step 1', 'Step 2', 'Result'], correct: ['Step 1', 'Step 2', 'Result'] },
-            
-            { id: 11, type: 'html', title_en: 'The Internet', desc_en: 'A web of connected computers.', goal_en: 'Use <h1>Internet</h1>', initial: '', check: '<h1>', hint: '<h1>Internet</h1>' },
-            { id: 12, type: 'html', title_en: 'Wi-Fi', desc_en: 'Wireless internet signals.', goal_en: 'Type <p>Wireless</p>', initial: '', check: '<p>', hint: '<p>Wireless</p>' },
-            { id: 13, type: 'html', title_en: 'Web Browser', desc_en: 'Chrome, Edge are browsers.', goal_en: '<b>Chrome</b>', initial: '', check: '<b>', hint: '<b>Chrome</b>' },
-            { id: 14, type: 'html', title_en: 'URL / Links', desc_en: 'Address of a website.', goal_en: '<a href="google.com">', initial: '', check: '<a', hint: '<a href="...">Link</a>' },
-            { id: 15, type: 'html', title_en: 'Search Engine', desc_en: 'Google finds information.', goal_en: '<i>Search</i>', initial: '', check: '<i>', hint: '<i>Search</i>' },
-            { id: 16, type: 'html', title_en: 'HTML', desc_en: 'Skeleton of a webpage.', goal_en: '<div>Body</div>', initial: '', check: '<div>', hint: '<div>...</div>' },
-            { id: 17, type: 'html', title_en: 'CSS', desc_en: 'Makeup for webpages (Style).', goal_en: 'style="color:red"', initial: '<p>Style me</p>', check: 'style=', hint: 'style="color:red"' },
-            { id: 18, type: 'html', title_en: 'Server', desc_en: 'A powerful computer.', goal_en: '<h1>Server</h1>', initial: '', check: '<h1>', hint: '<h1>Server</h1>' },
-            { id: 19, type: 'html', title_en: 'Cloud', desc_en: 'Computers somewhere else.', goal_en: '<p>Cloud</p>', initial: '', check: '<p>', hint: '<p>Cloud</p>' },
-            { id: 20, type: 'html', title_en: 'Data', desc_en: 'Information stored online.', goal_en: '<b>Data</b>', initial: '', check: '<b>', hint: '<b>Data</b>' },
-            { id: 21, type: 'html', title_en: 'Passwords', desc_en: 'Keys to your digital house.', goal_en: '<input type="password">', initial: '', check: 'password', hint: 'type="password"' },
-            { id: 22, type: 'html', title_en: 'Hacker', desc_en: 'Someone who breaks digital locks.', goal_en: '<i>Secure</i>', initial: '', check: '<i>', hint: '<i>Secure</i>' },
-            { id: 23, type: 'html', title_en: 'Firewall', desc_en: 'A wall stopping bad data.', goal_en: '<hr>', initial: '', check: '<hr>', hint: '<hr> is a line/wall.' },
-            { id: 24, type: 'html', title_en: 'Downloading', desc_en: 'Getting files from internet.', goal_en: '<button>Download</button>', initial: '', check: '<button>', hint: '<button>Text</button>' },
-            { id: 25, type: 'html', title_en: 'Email', desc_en: 'Digital letters.', goal_en: '<input placeholder="Email">', initial: '', check: 'placeholder', hint: 'placeholder="Email"' },
-            { id: 26, type: 'html', title_en: 'Social Media', desc_en: 'Connecting with friends.', goal_en: '<h1>Friends</h1>', initial: '', check: '<h1>', hint: '<h1>Friends</h1>' },
-            { id: 27, type: 'html', title_en: 'Video Call', desc_en: 'Seeing people online.', goal_en: '<img src="camera.jpg">', initial: '', check: '<img', hint: '<img src...>' },
-            { id: 28, type: 'html', title_en: 'Online Games', desc_en: 'Playing together.', goal_en: '<b>Play</b>', initial: '', check: '<b>', hint: '<b>Play</b>' },
-            { id: 29, type: 'html', title_en: 'Viruses', desc_en: 'Sickness for computers.', goal_en: '<i>Antivirus</i>', initial: '', check: '<i>', hint: '<i>Antivirus</i>' },
-            { id: 30, type: 'html', title_en: 'Encryption', desc_en: 'Secret code writing.', goal_en: '<p>Secret</p>', initial: '', check: '<p>', hint: '<p>Secret</p>' },
-            
-            { id: 31, type: 'python', title_en: 'Languages', desc_en: 'Python, Java, C++ are languages.', goal_en: 'print("Python")', initial: '', check: 'print', hint: 'print("Name")' },
-            { id: 32, type: 'python', title_en: 'Syntax', desc_en: 'Grammar rules of coding.', goal_en: 'print("Correct")', initial: '', check: 'print', hint: 'Quotes are important.' },
-            { id: 33, type: 'python', title_en: 'Variables', desc_en: 'Boxes to store data.', goal_en: 'box = "Toy"', initial: '', check: '=', hint: 'name = "Value"' },
-            { id: 34, type: 'python', title_en: 'Strings', desc_en: 'Text is called String.', goal_en: 'print("Text")', initial: '', check: '"', hint: 'Use quotes ""' },
-            { id: 35, type: 'python', title_en: 'Integers', desc_en: 'Whole numbers.', goal_en: 'print(100)', initial: '', check: 'print', hint: 'No quotes for numbers.' },
-            { id: 36, type: 'python', title_en: 'Floats', desc_en: 'Decimal numbers.', goal_en: 'print(10.5)', initial: '', check: '.', hint: 'Use a dot.' },
-            { id: 37, type: 'python', title_en: 'Booleans', desc_en: 'True or False.', goal_en: 'print(True)', initial: '', check: 'True|False', hint: 'True' },
-            { id: 38, type: 'python', title_en: 'Loops', desc_en: 'Doing things again and again.', goal_en: 'for i in range(5):', initial: '', check: 'for', hint: 'for i in range' },
-            { id: 39, type: 'python', title_en: 'Infinite Loop', desc_en: 'Never ending loop.', goal_en: 'while True:', initial: '', check: 'while', hint: 'while True:' },
-            { id: 40, type: 'python', title_en: 'Conditions', desc_en: 'If this, then that.', goal_en: 'if x > 5:', initial: 'x=10', check: 'if', hint: 'if condition:' },
-            { id: 41, type: 'python', title_en: 'Else', desc_en: 'Or else do this.', goal_en: 'else:', initial: 'if x>5: pass', check: 'else', hint: 'else:' },
-            { id: 42, type: 'python', title_en: 'Functions', desc_en: 'Reusable super powers.', goal_en: 'def power():', initial: '', check: 'def', hint: 'def name():' },
-            { id: 43, type: 'python', title_en: 'Parameters', desc_en: 'Inputs for functions.', goal_en: 'def go(speed):', initial: '', check: '(', hint: 'Inside ()' },
-            { id: 44, type: 'python', title_en: 'Return', desc_en: 'Function gives back an answer.', goal_en: 'return 10', initial: 'def get():', check: 'return', hint: 'return value' },
-            { id: 45, type: 'python', title_en: 'Libraries', desc_en: 'Code written by others.', goal_en: 'import math', initial: '', check: 'import', hint: 'import name' },
-            { id: 46, type: 'python', title_en: 'Robots', desc_en: 'Machines running code.', goal_en: 'print("Beep")', initial: '', check: 'print', hint: 'Beep' },
-            { id: 47, type: 'python', title_en: 'AI', desc_en: 'Computers that learn.', goal_en: 'print("Hello Human")', initial: '', check: 'print', hint: 'Hello Human' },
-            { id: 48, type: 'python', title_en: 'Errors', desc_en: 'When code crashes.', goal_en: '# Fix Me', initial: '', check: '#', hint: 'Comments use #' },
-            { id: 49, type: 'python', title_en: 'Debugging', desc_en: 'Fixing the crash.', goal_en: 'print("Fixed")', initial: '', check: 'print', hint: 'Fixed' },
-            { id: 50, type: 'python', title_en: 'Pro Coder', desc_en: 'You are now a coder!', goal_en: 'print("I am Pro")', initial: '', check: 'print', hint: 'Celebrate!' },
-        ];
-
-        const store = {
-            user: {
-                name: '',
-                ageGroup: '',
-                xp: 0,
-                streak: 0,
-                currentLevel: 1,
-                isPremium: false,
-                language: 'en',
-                hintCredits: 30,
-                parentPasscode: null
-            },
-
-            init() {
-                const saved = localStorage.getItem(CONSTANTS.STORAGE_KEY);
-                if (saved) {
-                    this.user = JSON.parse(saved);
-                    if (!this.user.currentLevel) this.user.currentLevel = 1;
-                    if (this.user.hintCredits === undefined) this.user.hintCredits = 30;
-                    if (!this.user.language) this.user.language = 'en';
-                } else {
-                    document.getElementById('onboarding-modal').classList.remove('hidden');
-                }
-                this.updateUI();
-            },
-
-            save() {
-                localStorage.setItem(CONSTANTS.STORAGE_KEY, JSON.stringify(this.user));
-                this.updateUI();
-            },
-
-            completeLevel(id) {
-                if (id === this.user.currentLevel) {
-                    this.user.currentLevel++;
-                    this.user.xp += 50;
-                    this.user.streak++;
-                    confetti({ particleCount: 150, spread: 80 });
-                    this.save();
-                }
-            },
-
-            updateUI() {
-                document.getElementById('username-display').innerText = this.user.name || 'Kiddo';
-                
-                document.getElementById('xp-display').innerText = this.user.xp;
-                document.getElementById('streak-display').innerText = this.user.streak;
-                document.getElementById('lang-select').value = this.user.language || 'en';
-                
-                if(document.getElementById('mobile-xp-display')) document.getElementById('mobile-xp-display').innerText = `${this.user.xp} XP`;
-                if(document.getElementById('mobile-streak-display')) document.getElementById('mobile-streak-display').innerText = this.user.streak;
-                if(document.getElementById('mobile-lang-select')) document.getElementById('mobile-lang-select').value = this.user.language || 'en';
-                
-                app.applyLanguage(this.user.language);
-            }
-        };
-
-        const app = {
-            setLanguage(lang) {
-                store.user.language = lang;
-                store.save();
-            },
-
-            applyLanguage(lang) {
-                if (lang === 'ar' || lang === 'ur') {
-                    document.body.dir = 'rtl';
-                } else {
-                    document.body.dir = 'ltr';
-                }
-                const t = I18N[lang] || I18N.en;
-                document.querySelectorAll('[data-translate]').forEach(el => {
-                    const key = el.getAttribute('data-translate');
-                    if(t[key]) el.innerText = t[key];
-                    else if(I18N.en[key]) el.innerText = I18N.en[key];
-                });
-                router.refresh();
-            },
-
-            getTxt(key) {
-                const lang = store.user.language || 'en';
-                const t = I18N[lang] || I18N.en;
-                return t[key] || I18N.en[key] || key;
-            },
-
-            selectAge(btn, range) {
-                document.querySelectorAll('.age-btn').forEach(b => {
-                    b.classList.remove('border-indigo-500', 'bg-indigo-50', 'text-indigo-700');
-                    b.classList.add('border-gray-200', 'text-gray-600');
-                });
-                btn.classList.remove('border-gray-200', 'text-gray-600');
-                btn.classList.add('border-indigo-500', 'bg-indigo-50', 'text-indigo-700');
-                document.getElementById('setup-age').value = range;
-            },
-
-            completeOnboarding(e) {
-                e.preventDefault();
-                const name = document.getElementById('setup-name').value;
-                const age = document.getElementById('setup-age').value;
-                if(!name || !age) {
-                    alert('Please tell us your name and age!');
-                    return;
-                }
-                store.user.name = name;
-                store.user.ageGroup = age;
-                store.save();
-                document.getElementById('onboarding-modal').classList.add('hidden');
-                router.navigate('learn');
-            },
-
-            checkParentAccess() {
-                passcode.buffer = "";
-                passcode.updateDisplay();
-                
-                if(!store.user.parentPasscode) {
-                    passcode.mode = "CREATE";
-                    document.getElementById('passcode-title').innerText = "Create Parent Passcode";
-                    document.getElementById('passcode-desc').innerText = "Set a 4-digit code to protect settings";
-                } else {
-                    passcode.mode = "AUTH";
-                    document.getElementById('passcode-title').innerText = "Parents Zone Locked";
-                    document.getElementById('passcode-desc').innerText = "Enter your 4-digit passcode";
-                }
-                document.getElementById('passcode-modal').classList.remove('hidden');
-            }
-        };
-
-        const passcode = {
-            buffer: "",
-            mode: "AUTH",
-            tempCode: "",
-
-            tap(num) {
-                if(this.buffer.length < 4) {
-                    this.buffer += num;
-                    this.updateDisplay();
-                    if(this.buffer.length === 4) {
-                        setTimeout(() => this.submit(), 200);
-                    }
-                }
-            },
-
-            clear() {
-                this.buffer = "";
-                this.updateDisplay();
-            },
-
-            updateDisplay() {
-                for(let i=1; i<=4; i++) {
-                    const dot = document.getElementById(`dot-${i}`);
-                    if(i <= this.buffer.length) dot.classList.add('filled');
-                    else dot.classList.remove('filled');
-                }
-            },
-
-            submit() {
-                if(this.mode === 'AUTH') {
-                    if(this.buffer === store.user.parentPasscode) {
-                        document.getElementById('passcode-modal').classList.add('hidden');
-                        router.navigate('parents');
-                    } else {
-                        alert("Wrong Passcode!");
-                        this.clear();
-                    }
-                } else if(this.mode === 'CREATE') {
-                    this.tempCode = this.buffer;
-                    this.mode = 'CONFIRM';
-                    this.buffer = "";
-                    this.updateDisplay();
-                    document.getElementById('passcode-title').innerText = "Confirm Passcode";
-                    document.getElementById('passcode-desc').innerText = "Please re-enter to confirm";
-                } else if(this.mode === 'CONFIRM') {
-                    if(this.buffer === this.tempCode) {
-                        store.user.parentPasscode = this.buffer;
-                        store.save();
-                        alert("Passcode Set Successfully!");
-                        document.getElementById('passcode-modal').classList.add('hidden');
-                        router.navigate('parents');
-                    } else {
-                        alert("Passcodes do not match. Try again.");
-                        this.mode = 'CREATE';
-                        this.buffer = "";
-                        this.updateDisplay();
-                        document.getElementById('passcode-title').innerText = "Create Parent Passcode";
-                        document.getElementById('passcode-desc').innerText = "Set a 4-digit code";
-                    }
-                }
-            }
-        };
-
-        const router = {
-            currentRoute: 'dashboard',
-            currentParams: null,
-            lessonState: { fails: 0, hintsUsed: 0 },
-
-            navigate(route, params = null) {
-                this.currentRoute = route;
-                this.currentParams = params;
-                this.lessonState = { fails: 0, hintsUsed: 0 }; 
-                this.refresh();
-                
-                document.querySelectorAll('.nav-item').forEach(el => {
-                    el.classList.remove('bg-indigo-50', 'text-indigo-600');
-                    if(el.getAttribute('onclick') && el.getAttribute('onclick').includes(route)) {
-                        el.classList.add('bg-indigo-50', 'text-indigo-600');
-                    }
-                });
-            },
-
-            refresh() {
-                const container = document.getElementById('view-container');
-                container.innerHTML = '';
-                switch(this.currentRoute) {
-                    case 'dashboard': this.renderDashboard(container); break;
-                    case 'learn': this.renderLearn(container); break;
-                    case 'lesson': this.renderLesson(container, this.currentParams); break;
-                    case 'arcade': this.renderArcade(container); break;
-                    case 'profile': this.renderProfile(container); break;
-                    case 'parents': this.renderParents(container); break; 
-                }
-            },
-
-            renderDashboard(container) {
-                const lang = store.user.language;
-                const lvl = store.user.currentLevel;
-                const levelData = CURRICULUM.find(l => l.id === lvl) || CURRICULUM[CURRICULUM.length-1];
-                const lvlTitle = levelData[`title_${lang}`] || levelData.title_en;
-
-                container.innerHTML = `
-                    <div class="p-6">
-                        <div class="glass-panel p-8 rounded-3xl mb-8 relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 text-white animate-fade-in shadow-xl hover:shadow-2xl transition-all">
-                            <h2 class="text-3xl font-extrabold mb-2">${app.getTxt('hi')}, ${store.user.name}! 👋</h2>
-                            <p class="opacity-90 mb-4">${app.getTxt('level_status')} ${lvl}: ${lvlTitle}</p>
-                            <button onclick="router.navigate('learn')" class="bg-white text-indigo-700 px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition shadow-lg flex items-center gap-2 transform active:scale-95">
-                                <i class="fa-solid fa-play"></i> ${app.getTxt('continue_btn')}
-                            </button>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-translate="journey">${app.getTxt('journey')}</h3>
-                         <div class="grid md:grid-cols-3 gap-4">
-                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-green-50 transition-colors">
-                                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-brain"></i></div>
-                                <div><div class="font-bold text-gray-800">${app.getTxt('cat_logic')}</div><div class="text-xs text-gray-500">Lvl 1-10</div></div>
-                            </div>
-                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-blue-50 transition-colors">
-                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-brands fa-html5"></i></div>
-                                <div><div class="font-bold text-gray-800">${app.getTxt('cat_web')}</div><div class="text-xs text-gray-500">Lvl 11-30</div></div>
-                            </div>
-                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-50 transition-colors">
-                                <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-brands fa-python"></i></div>
-                                <div><div class="font-bold text-gray-800">${app.getTxt('cat_python')}</div><div class="text-xs text-gray-500">Lvl 31-50</div></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            },
-
-            renderLearn(container) {
-                let html = '';
-                const lang = store.user.language;
-
-                CURRICULUM.forEach(l => {
-                    const isLocked = l.id > store.user.currentLevel;
-                    const isDone = l.id < store.user.currentLevel;
-                    const isPremiumLocked = (l.id > CONSTANTS.PREMIUM_GATE_LEVEL && !store.user.isPremium);
-                    
-                    let bg = isLocked ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : isDone ? 'bg-green-500 text-white shadow-green-200' : 'bg-indigo-600 text-white animate-bounce shadow-indigo-300';
-                    let icon = isLocked ? '<i class="fa-solid fa-lock"></i>' : isDone ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-play"></i>';
-                    
-                    if(isPremiumLocked) {
-                        bg = 'bg-gray-800 text-yellow-400 border-2 border-yellow-400';
-                        icon = '<i class="fa-solid fa-crown animate-pulse"></i>';
-                    }
-
-                    const title = l[`title_${lang}`] || l.title_en;
-
-                    html += `
-                        <div onclick="router.handleLevelClick(${l.id})" class="col-span-1 flex flex-col items-center group cursor-pointer transition-transform transform hover:scale-105 active:scale-95">
-                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-lg mb-1 md:mb-2 ${bg} transition-colors">
-                                ${icon}
-                            </div>
-                            <span class="text-[9px] md:text-[10px] font-bold text-gray-500 bg-white/80 px-1 py-0.5 rounded-md backdrop-blur-sm text-center w-full truncate border border-gray-100 shadow-sm leading-tight">${title}</span>
-                        </div>
-                    `;
-                });
-
-                container.innerHTML = `
-                    <div class="p-4 md:p-6 text-center">
-                        <h2 class="text-3xl font-extrabold text-indigo-900 mb-6" data-translate="map">${app.getTxt('map')}</h2>
-                        <div class="grid grid-cols-4 gap-2 md:flex md:flex-wrap md:justify-center md:gap-4 max-w-5xl mx-auto pb-10">
-                            ${html}
-                        </div>
-                    </div>
-                `;
-            },
-
-            handleLevelClick(id) {
-                if (id > store.user.currentLevel) return; 
-                if (id > CONSTANTS.PREMIUM_GATE_LEVEL && !store.user.isPremium) {
-                    document.getElementById('child-msg-modal').classList.remove('hidden');
-                    return;
-                }
-                this.navigate('lesson', { id });
-            },
-
-            renderLesson(container, params) {
-                const l = CURRICULUM.find(x => x.id === params.id);
-                if(!l) return;
-                const lang = store.user.language;
-                const title = l[`title_${lang}`] || l.title_en;
-                const desc = l[`desc_${lang}`] || l.desc_en;
-                const goal = l[`goal_${lang}`] || l.goal_en;
-                const isLogic = l.type === 'logic';
-
-                container.innerHTML = `
-                    <div class="flex flex-col h-full animate-fade-in">
-                        <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-white/50 backdrop-blur-sm sticky top-0 z-30">
-                            <button onclick="router.navigate('learn')" class="text-gray-500 font-bold hover:text-indigo-600 transition-colors p-2"><i class="fa-solid fa-arrow-left text-xl"></i></button>
-                            <div class="flex flex-col items-center">
-                                <span class="text-xs text-gray-400 font-bold uppercase">Lvl ${l.id}</span>
-                                <h2 class="font-bold text-gray-800 text-lg">${title}</h2>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">${store.user.hintCredits} 💡</span>
-                            </div>
-                        </div>
-                        <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
-                            <div class="md:w-1/3 p-6 bg-white/60 overflow-y-auto border-r border-gray-200">
-                                <div class="bg-indigo-50 p-4 rounded-xl mb-6 border border-indigo-100 relative overflow-hidden">
-                                     <i class="fa-solid fa-robot absolute -bottom-4 -right-4 text-6xl text-indigo-100 opacity-50"></i>
-                                    <p class="text-indigo-800 text-sm leading-relaxed font-semibold relative z-10">${desc}</p>
-                                </div>
-                                <h3 class="font-bold text-gray-700 mb-2">${app.getTxt('mission')}</h3>
-                                <p class="text-gray-600 mb-6 text-sm bg-gray-50 p-3 rounded-lg border border-gray-100">${goal}</p>
-                                <div id="hint-area" class="hidden">
-                                    <button onclick="router.useHint(${l.id})" class="w-full bg-yellow-100 text-yellow-700 font-bold py-2 rounded-xl border border-yellow-200 hover:bg-yellow-200 transition text-sm flex items-center justify-center gap-2 animate-pulse">
-                                        <i class="fa-solid fa-lightbulb"></i> ${app.getTxt('use_hint')}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="md:w-2/3 bg-gray-900 flex flex-col relative shadow-inner">
-                                ${isLogic ? this.getLogicEditor(l) : this.getCodeEditor(l)}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                if(isLogic) this.initLogicDrag(l);
-            },
-
-            getCodeEditor(l) {
-                return `
-                    <div class="flex-1 flex flex-col">
-                        <div class="bg-gray-800 px-4 py-2 text-xs font-mono text-gray-400 border-b border-gray-700">Code Editor</div>
-                        <textarea id="code-input" class="flex-1 bg-gray-900 text-green-400 font-mono p-4 outline-none resize-none text-sm leading-relaxed" spellcheck="false" placeholder="Type your code here...">${l.initial || ''}</textarea>
-                    </div>
-                    <button onclick="router.validate(${l.id})" class="absolute bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transform transition hover:scale-105 active:scale-95 z-20">
-                        <i class="fa-solid fa-play"></i> ${app.getTxt('run_code')}
-                    </button>
-                `;
-            },
-
-            getLogicEditor(l) {
-                return `
-                    <div class="flex-1 bg-slate-100 flex flex-col items-center justify-center p-8 relative overflow-y-auto">
-                        <div id="logic-container" class="space-y-3 w-full max-w-xs pb-20"></div>
-                        <button onclick="router.validate(${l.id})" class="absolute bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transform transition hover:scale-105 active:scale-95 z-20 sticky bottom-4">
-                            <i class="fa-solid fa-check"></i> ${app.getTxt('check_order')}
-                        </button>
-                    </div>
-                `;
-            },
-
-            initLogicDrag(l) {
-                const container = document.getElementById('logic-container');
-                const itemsKey = `items_${store.user.language}` in l ? `items_${store.user.language}` : 'items_en';
-                const items = [...l[itemsKey]].sort(() => Math.random() - 0.5); 
-
-                items.forEach(txt => {
-                    const el = document.createElement('div');
-                    el.className = 'logic-item bg-white p-3 rounded-xl shadow-sm border border-gray-200 font-bold text-gray-700 flex items-center gap-3 transition-all select-none relative pr-16'; 
-                    el.setAttribute('data-val', txt);
-                    el.innerHTML = `
-                        <div class="flex-1 flex items-center gap-3">
-                             <div class="bg-gray-100 p-2 rounded-lg text-gray-400 cursor-move">
-                                 <i class="fa-solid fa-grip-lines"></i>
-                             </div>
-                             <span class="text-sm leading-tight">${txt}</span>
-                        </div>
-                        <div class="flex flex-col gap-1 absolute right-2 top-1 bottom-1 justify-center h-full">
-                            <button onclick="router.moveItem(this, -1)" class="text-indigo-600 hover:text-white hover:bg-indigo-600 p-1.5 bg-indigo-50 rounded-lg transition-colors flex items-center justify-center h-1/2 mb-0.5"><i class="fa-solid fa-chevron-up text-xs"></i></button>
-                            <button onclick="router.moveItem(this, 1)" class="text-indigo-600 hover:text-white hover:bg-indigo-600 p-1.5 bg-indigo-50 rounded-lg transition-colors flex items-center justify-center h-1/2 mt-0.5"><i class="fa-solid fa-chevron-down text-xs"></i></button>
-                        </div>
-                    `;
-                    container.appendChild(el);
-                });
-            },
-
-            moveItem(btn, dir) {
-                const item = btn.closest('.logic-item');
-                item.classList.add('z-10', 'scale-[1.02]', 'shadow-md');
-                setTimeout(() => {
-                    if(dir === -1 && item.previousElementSibling) {
-                        item.parentNode.insertBefore(item, item.previousElementSibling);
-                    } else if(dir === 1 && item.nextElementSibling) {
-                        item.parentNode.insertBefore(item.nextElementSibling, item);
-                    }
-                    setTimeout(() => item.classList.remove('z-10', 'scale-[1.02]', 'shadow-md'), 200);
-                }, 100);
-            },
-
-            useHint(id) {
-                const l = CURRICULUM.find(x => x.id === id);
-                if(store.user.hintCredits <= 0) {
-                    alert(app.getTxt('no_credits'));
-                    return;
-                }
-                store.user.hintCredits--;
-                store.save();
-                this.refresh();
-                if(l.type === 'logic') {
-                    const container = document.getElementById('logic-container');
-                    const items = Array.from(container.children);
-                    const correctList = l[`items_${store.user.language}`] ? l[`items_${store.user.language}`] : l.correct;
-                    const correctVal = correctList[this.lessonState.hintsUsed];
-                    const target = items.find(el => el.getAttribute('data-val') === correctVal);
-                    if(target) {
-                        const refNode = container.children[this.lessonState.hintsUsed];
-                        if(refNode) container.insertBefore(target, refNode);
-                        else container.appendChild(target);
-                        target.classList.add('border-green-500', 'bg-green-50', 'text-green-700');
-                    }
-                } else {
-                     alert("Hint: The answer likely contains: " + l.check.split('|')[0]);
-                }
-                this.lessonState.hintsUsed++;
-                alert(app.getTxt('hint_used'));
-            },
-
-            validate(id) {
-                const l = CURRICULUM.find(x => x.id === id);
-                let success = false;
-                if (l.type === 'logic') {
-                    const currentItems = Array.from(document.querySelectorAll('.logic-item')).map(e => e.getAttribute('data-val'));
-                    const correctItems = l[`items_${store.user.language}`] ? l[`items_${store.user.language}`] : l.correct;
-                    if(JSON.stringify(currentItems) === JSON.stringify(correctItems)) success = true;
-                } else {
-                    const val = document.getElementById('code-input').value;
-                    const checks = l.check.split('|');
-                    if (checks.some(c => val.includes(c))) success = true;
-                }
-                if(success) {
-                    store.completeLevel(id);
-                    const div = document.createElement('div');
-                    div.className = "fixed inset-0 bg-black/80 flex items-center justify-center z-[100] animate-fade-in p-4";
-                    div.innerHTML = `<div class="bg-white rounded-3xl p-8 text-center max-w-sm w-full relative overflow-hidden shadow-2xl"><div class="absolute inset-0 bg-yellow-50 -z-10"></div><div class="text-6xl mb-4 animate-bounce">⭐</div><h2 class="text-2xl font-bold text-gray-800 mb-2">${app.getTxt('success_msg')}</h2><p class="text-gray-500 mb-6 font-bold text-green-600">${app.getTxt('xp_gain')}</p><button onclick="this.parentElement.parentElement.remove(); router.navigate('learn')" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:scale-105 transition w-full">${app.getTxt('next_lvl')}</button></div>`;
-                    document.body.appendChild(div);
-                } else {
-                    this.lessonState.fails++;
-                    if(this.lessonState.fails >= 3) document.getElementById('hint-area').classList.remove('hidden');
-                    alert(app.getTxt('try_again'));
-                }
-            },
-
-            renderParents(container) {
-                let content = `
-                    <div class="p-8 max-w-6xl mx-auto animate-fade-in">
-                        <div class="flex flex-col md:flex-row items-center gap-6 mb-10 text-center md:text-left">
-                            <div class="w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-lg shadow-indigo-200"><i class="fa-solid fa-shield-cat"></i></div>
-                            <div><h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">${app.getTxt('parent_dash')}</h2><p class="text-lg text-gray-500 mt-1">${app.getTxt('monitor')}</p></div>
-                        </div>
-                        <div class="grid md:grid-cols-3 gap-6 mb-12">
-                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-layer-group"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('levels_unlocked')}</div><div class="text-3xl font-extrabold text-gray-900">${store.user.currentLevel}/50</div></div></div>
-                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl"><i class="fa-solid fa-crown"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('plan_status')}</div><div class="text-3xl font-extrabold ${store.user.isPremium?'text-green-600':'text-orange-500'}">${store.user.isPremium ? 'PREMIUM PRO' : 'FREE PLAN'}</div></div></div>
-                        </div>`;
-                
-                if (store.user.isPremium) {
-                    content += `
-                        <div class="bg-green-50 border border-green-200 rounded-3xl p-8 text-center mb-10">
-                            <i class="fa-solid fa-circle-check text-5xl text-green-500 mb-4"></i>
-                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Premium Membership Active</h2>
-                            <p class="text-gray-600 mb-6">All levels are unlocked. Your hard copy certificate is being processed.</p>
-                            <button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-500 font-bold hover:underline">Reset Parent Passcode</button>
-                        </div>
-                    `;
-                } else {
-                    content += `
-                        <div class="relative"><div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-200"></div></div><div class="relative flex justify-center"><span class="bg-gray-50 px-4 text-sm text-gray-500 font-bold uppercase tracking-widest">${app.getTxt('plan_header')}</span></div></div>
-                        <div class="grid md:grid-cols-3 gap-8 mt-12">
-                            <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group relative">
-                                <h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_1_title')}</h4>
-                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹299</span><span class="text-gray-400 font-medium">/ 30 days</span></div>
-                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-medal text-pink-500 mt-1"></i><span>${app.getTxt('plan_1_perk')}</span></li></ul>
-                                <button onclick="payment.pay(299, '30 Days')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button>
-                            </div>
-                            <div class="bg-gray-900 rounded-3xl p-8 border border-gray-900 text-white relative transform md:-translate-y-4 shadow-2xl">
-                                <div class="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Most Popular</div>
-                                <h4 class="text-lg font-bold text-gray-400 mb-2">${app.getTxt('plan_2_title')}</h4>
-                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-white">₹999</span><span class="text-gray-400 font-medium">/ 3 months</span></div>
-                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-green-400 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-medal text-yellow-400 mt-1"></i><span>${app.getTxt('plan_2_perk')}</span></li><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-truck-fast text-blue-400 mt-1"></i><span>Free Shipping of Certificate</span></li></ul>
-                                <button onclick="payment.pay(999, '3 Months')" class="w-full py-4 rounded-xl font-bold bg-white text-gray-900 hover:bg-gray-100 transition-colors">${app.getTxt('buy_now')}</button>
-                            </div>
-                            <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group">
-                                <h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_3_title')}</h4>
-                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹999</span><span class="text-gray-400 font-medium">/ 6 months</span></div>
-                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-trophy text-yellow-500 mt-1"></i><span>${app.getTxt('plan_3_perk')}</span></li></ul>
-                                <button onclick="payment.pay(999, '6 Months')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button>
-                            </div>
-                        </div>
-                        <div class="mt-8 text-center">
-                            <button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-400 text-sm hover:text-red-600 hover:underline">Reset Parent Passcode</button>
-                        </div>
-                    `;
-                }
-                content += `</div>`;
-                container.innerHTML = content;
-            },
-            
-            renderArcade(c) {
-                c.innerHTML = `<div class="p-10 text-center pt-32 animate-fade-in"><i class="fa-solid fa-gamepad text-6xl text-indigo-200 mb-4 animate-bounce"></i><h2 class="text-2xl font-bold text-gray-400">${app.getTxt('arcade')} - Coming Soon</h2></div>`;
-            },
-            
-            renderProfile(c) {
-                c.innerHTML = `<div class="p-10 text-center animate-fade-in"><div class="w-32 h-32 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-5xl shadow-lg border-4 border-white relative">👨‍🚀</div><h2 class="text-3xl font-extrabold text-gray-800 mb-2">${store.user.name}</h2><span class="bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-bold">${store.user.ageGroup ? store.user.ageGroup + ' Years Old' : 'Young Coder'}</span></div>`;
-            }
-        };
-
-        const payment = {
-            pay(amt, desc) {
-                const options = {
-                    "key": "rzp_live_RZYwcdaxyYCvoD", 
-                    "amount": amt * 100,
-                    "currency": "INR",
-                    "name": "SparkCoder Academy",
-                    "description": desc,
-                    "handler": function (response){
-                        store.user.isPremium = true;
-                        store.save();
-                        confetti({ particleCount: 500, spread: 200 });
-                        alert("Subscription Active! Full Access Unlocked.");
-                        router.navigate('parents');
-                    }
-                };
-                const rzp = new Razorpay(options);
-                rzp.open();
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            store.init();
-            document.getElementById('onboarding-form').addEventListener('submit', app.completeOnboarding);
-            window.router = router;
-            if(store.user.name) router.navigate('dashboard');
-        });
-
-    </script>
+<div id="app" class="relative min-h-screen flex flex-col md:flex-row max-w-7xl mx-auto md:p-4 gap-4">
+<aside id="sidebar" class="hidden md:flex flex-col w-64 glass-panel rounded-3xl p-6 h-[calc(100vh-2rem)] sticky top-4 z-40">
+<div class="flex items-center gap-3 mb-10"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg animate-bounce"><i class="fa-solid fa-bolt"></i></div><h1 class="text-2xl font-extrabold text-indigo-900 tracking-tight">SparkCoder</h1></div>
+<nav class="flex-1 space-y-2">
+<button onclick="router.navigate('dashboard')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group"><i class="fa-solid fa-house group-hover:scale-110 transition-transform"></i><span data-translate="home">Home</span></button>
+<button onclick="router.navigate('learn')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group"><i class="fa-solid fa-map group-hover:scale-110 transition-transform"></i><span data-translate="map">Adventure Map</span></button>
+<button onclick="router.navigate('arcade')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group"><i class="fa-solid fa-gamepad group-hover:scale-110 transition-transform"></i><span data-translate="arcade">Arcade</span></button>
+<button onclick="router.navigate('profile')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-white hover:text-indigo-600 transition-all font-bold group"><i class="fa-solid fa-user-astronaut group-hover:scale-110 transition-transform"></i><span data-translate="profile">Profile</span></button>
+</nav>
+<div class="mt-auto pt-6 border-t border-gray-200"><button onclick="app.checkParentAccess()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-50 text-indigo-700 font-bold hover:bg-indigo-100 transition-colors"><span data-translate="parents">Parents Zone</span><i class="fa-solid fa-lock text-xs"></i></button></div>
+</aside>
+<main class="flex-1 flex flex-col h-[calc(100vh-2rem)] relative">
+<header class="md:hidden glass-panel mb-2 px-2 py-2 rounded-b-xl z-50 sticky top-0 backdrop-blur-xl shadow-sm w-full">
+<div class="flex items-center justify-between w-full gap-1">
+<div class="flex items-center gap-1 shrink-0"><div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-bolt"></i></div><span class="font-extrabold text-sm text-indigo-900 leading-none hidden sm:block">SparkCoder</span></div>
+<select id="mobile-lang-select" onchange="app.setLanguage(this.value)" class="bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-md px-1 py-1 outline-none border border-indigo-100 w-24 shrink"><option value="en">English</option><option value="kn">ಕನ್ನಡ</option><option value="hi">हिंदी</option><option value="te">తెలుగు</option><option value="ta">தமிழ்</option><option value="ml">മലയാളം</option><option value="mr">मराठी</option><option value="gu">ગુજરાતી</option><option value="bn">বাংলা</option><option value="ur">اردو</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ar">العربية</option></select>
+<div class="flex items-center gap-1 shrink-0">
+<div class="flex items-center gap-0.5 bg-orange-50 px-1.5 py-1 rounded-md border border-orange-100"><i class="fa-solid fa-fire text-orange-500 text-[10px] animate-pulse"></i><span class="text-[10px] font-bold text-orange-600" id="mobile-streak-display">0</span></div>
+<div class="flex items-center gap-0.5 bg-yellow-50 px-1.5 py-1 rounded-md border border-yellow-100"><i class="fa-solid fa-star text-yellow-500 text-[10px]"></i><span class="text-[10px] font-bold text-yellow-600" id="mobile-xp-display">0</span></div>
+<div onclick="router.navigate('profile')" class="w-7 h-7 rounded-full bg-indigo-100 flex items-center justify-center border border-indigo-200"><i class="fa-solid fa-user-astronaut text-indigo-600 text-xs"></i></div>
+</div></div>
+</header>
+<div id="top-bar" class="hidden md:flex justify-end items-center gap-4 mb-6 px-2">
+<select id="lang-select" onchange="app.setLanguage(this.value)" class="glass-panel px-3 py-1.5 rounded-lg text-sm font-bold text-gray-600 outline-none cursor-pointer hover:bg-white transition-colors w-40"><option value="en">🇺🇸 English</option><option value="kn">🇮🇳 Kannada (ಕನ್ನಡ)</option><option value="hi">🇮🇳 Hindi (हिंदी)</option><option value="te">🇮🇳 Telugu (తెలుగు)</option><option value="ta">🇮🇳 Tamil (தமிழ்)</option><option value="ml">🇮🇳 Malayalam (മലയാളം)</option><option value="mr">🇮🇳 Marathi (मराठी)</option><option value="gu">🇮🇳 Gujarati (ગુજરાતી)</option><option value="bn">🇮🇳 Bengali (বাংলা)</option><option value="ur">🇵🇰 Urdu (اردو)</option><option value="es">🇪🇸 Spanish (Español)</option><option value="fr">🇫🇷 French (Français)</option><option value="de">🇩🇪 German (Deutsch)</option><option value="pt">🇵🇹 Portuguese</option><option value="ru">🇷🇺 Russian</option><option value="zh">🇨🇳 Chinese (中文)</option><option value="ja">🇯🇵 Japanese (日本語)</option><option value="ar">🇸🇦 Arabic (العربية)</option></select>
+<div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-orange-500 font-bold hover:scale-105 transition-transform"><i class="fa-solid fa-fire animate-pulse"></i><span id="streak-display">0</span><span class="text-gray-400 text-xs uppercase" data-translate="streak">Streak</span></div>
+<div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-indigo-600 font-bold hover:scale-105 transition-transform"><i class="fa-solid fa-star text-yellow-400"></i><span id="xp-display">0</span><span class="text-gray-400 text-xs uppercase">XP</span></div>
+<div id="user-pill" onclick="router.navigate('profile')" class="glass-panel pl-2 pr-4 py-1.5 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white transition-colors"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white"><i class="fa-solid fa-child"></i></div><span id="username-display" class="font-bold text-gray-700 text-sm">Kiddo</span></div>
+</div>
+<div id="view-container" class="flex-1 overflow-y-auto pb-24 md:pb-0 scroll-smooth rounded-3xl relative"></div>
+</main>
+<nav class="md:hidden fixed bottom-0 left-0 w-full glass-panel border-t border-gray-200 flex justify-around p-3 z-50 pb-safe backdrop-blur-xl">
+<button onclick="router.navigate('dashboard')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors"><i class="fa-solid fa-house text-xl"></i><span class="text-[10px] font-bold" data-translate="home">Home</span></button>
+<button onclick="router.navigate('learn')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors"><i class="fa-solid fa-map text-xl"></i><span class="text-[10px] font-bold" data-translate="map">Map</span></button>
+<button onclick="router.navigate('arcade')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors"><i class="fa-solid fa-gamepad text-xl"></i><span class="text-[10px] font-bold" data-translate="arcade">Arcade</span></button>
+<button onclick="app.checkParentAccess()" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors"><i class="fa-solid fa-lock text-xl"></i><span class="text-[10px] font-bold" data-translate="parents">Parents</span></button>
+</nav>
+</div>
+<div id="onboarding-modal" class="fixed inset-0 z-[60] bg-white hidden flex items-center justify-center p-4">
+<div class="max-w-md w-full text-center">
+<div class="w-24 h-24 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl text-indigo-600 mascot-float"><i class="fa-solid fa-robot"></i></div>
+<h2 class="text-3xl font-extrabold text-gray-900 mb-2" data-translate="welcome">Welcome to SparkCoder!</h2><p class="text-gray-500 mb-8" data-translate="setup">Let's set up your coding adventure.</p>
+<form id="onboarding-form" class="space-y-6 text-left"><div><label class="block text-sm font-bold text-gray-700 mb-2" data-translate="name_q">What's your name?</label><input type="text" id="setup-name" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors font-bold text-gray-700" placeholder="Super Coder"></div><div><label class="block text-sm font-bold text-gray-700 mb-2" data-translate="age_q">How old are you?</label><div class="grid grid-cols-3 gap-3"><button type="button" onclick="app.selectAge(this, '6-9')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">6-9</button><button type="button" onclick="app.selectAge(this, '10-13')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">10-13</button><button type="button" onclick="app.selectAge(this, '14+')" class="age-btn px-2 py-3 rounded-xl border-2 border-gray-200 hover:border-indigo-500 font-bold text-gray-600 transition-all active:scale-95">14+</button></div><input type="hidden" id="setup-age" required></div><div class="pt-2"><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all transform hover:scale-[1.02] active:scale-95" data-translate="start_btn">Start My Adventure 🚀</button></div></form></div></div>
+<div id="child-msg-modal" class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
+<div class="bg-white rounded-3xl max-w-md w-full p-8 text-center relative overflow-hidden shadow-2xl transform transition-all scale-100">
+<div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-500 to-purple-500"></div><div class="w-24 h-24 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-5xl text-indigo-600 mascot-float"><i class="fa-solid fa-face-sad-tear"></i></div><h2 class="text-2xl font-extrabold text-gray-900 mb-4" data-translate="oops">Oops! Locked! 🔒</h2><div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 mb-6 relative"><i class="fa-solid fa-quote-left absolute top-2 left-2 text-indigo-200 text-4xl -z-0"></i><p class="text-indigo-800 font-bold text-lg italic relative z-10 leading-relaxed" data-translate="child_msg">"Pappa/Amma I had completed this all level now successfully how can i complete full all levels on this and become pro coder?"</p></div><button onclick="document.getElementById('child-msg-modal').classList.add('hidden')" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition w-full active:scale-95">OK <i class="fa-solid fa-thumbs-up ml-2"></i></button></div></div>
+<div id="parent-gate-modal" class="fixed inset-0 z-[80] bg-black/80 hidden flex items-center justify-center p-4">
+<div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl"><i class="fa-solid fa-shield-halved text-4xl text-gray-400 mb-4"></i><h3 class="text-lg font-bold text-gray-800 mb-2" data-translate="parents_only">Parents Only</h3><p class="text-gray-500 text-sm mb-4" data-translate="solve_math">Please solve this to continue:</p><div id="gate-question" class="text-xl font-bold mb-4 font-mono text-indigo-600 bg-indigo-50 py-2 rounded-lg"></div><input type="number" id="gate-answer" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg mb-4 text-center text-lg focus:border-indigo-500 outline-none font-bold" placeholder="?"><div class="grid grid-cols-2 gap-2"><button onclick="document.getElementById('parent-gate-modal').classList.add('hidden')" class="px-4 py-2 rounded-lg bg-gray-100 font-bold text-gray-600 hover:bg-gray-200 transition" data-translate="cancel">Cancel</button><button onclick="app.checkParentGate()" class="px-4 py-2 rounded-lg bg-indigo-600 font-bold text-white hover:bg-indigo-700 transition" data-translate="verify">Verify</button></div></div></div>
+<div id="passcode-modal" class="fixed inset-0 z-[90] bg-black/90 hidden flex items-center justify-center p-4">
+<div class="bg-white rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl animate-fade-in relative overflow-hidden">
+<button onclick="document.getElementById('passcode-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button><div class="w-16 h-16 bg-indigo-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-2xl text-indigo-600"><i class="fa-solid fa-user-shield"></i></div><h3 id="passcode-title" class="text-xl font-extrabold text-gray-900 mb-2">Parents Zone</h3><p id="passcode-desc" class="text-sm text-gray-500 mb-6 font-bold">Enter Passcode to Access</p><div class="flex justify-center gap-3 mb-8"><div class="pin-dot" id="dot-1"></div><div class="pin-dot" id="dot-2"></div><div class="pin-dot" id="dot-3"></div><div class="pin-dot" id="dot-4"></div></div><div class="grid grid-cols-3 gap-3 max-w-[240px] mx-auto"><button onclick="passcode.tap(1)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">1</button><button onclick="passcode.tap(2)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">2</button><button onclick="passcode.tap(3)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">3</button><button onclick="passcode.tap(4)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">4</button><button onclick="passcode.tap(5)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">5</button><button onclick="passcode.tap(6)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">6</button><button onclick="passcode.tap(7)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">7</button><button onclick="passcode.tap(8)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">8</button><button onclick="passcode.tap(9)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">9</button><button onclick="passcode.clear()" class="h-14 rounded-xl bg-red-50 text-red-500 font-bold hover:bg-red-100 active:scale-95 transition flex items-center justify-center"><i class="fa-solid fa-delete-left"></i></button><button onclick="passcode.tap(0)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">0</button><button onclick="document.getElementById('passcode-modal').classList.add('hidden')" class="h-14 rounded-xl bg-gray-100 text-gray-500 font-bold hover:bg-gray-200 active:scale-95 transition text-sm">EXIT</button></div></div></div>
+<script>
+const CONSTANTS={STORAGE_KEY:'sparkcoder_pro_v_final_18_fix',PREMIUM_GATE_LEVEL:30};
+const I18N={en:{home:"Home",map:"Map",arcade:"Arcade",profile:"Profile",parents:"Parents Zone",streak:"Streak",oops:"Oops! Locked! 🔒",child_msg:"Pappa/Amma I had completed this all level now successfully how can i complete full all levels on this and become pro coder?",parents_only:"Parents Only",solve_math:"Please solve this to continue:",cancel:"Cancel",verify:"Verify",welcome:"Welcome to SparkCoder!",setup:"Let's set up your coding adventure.",name_q:"What's your name?",age_q:"How old are you?",start_btn:"Start My Adventure 🚀",hi:"Hi",level_status:"Level",continue_btn:"Continue",journey:"Your Journey",cat_logic:"Computer Basics",cat_web:"Internet & Web",cat_python:"Coding Concepts",locked:"Locked",play:"Play",completed:"Done",mission:"Your Mission:",hint_title:"Hint:",run_code:"Run Code",check_order:"Check Order",success_msg:"Level Complete!",xp_gain:"+50 XP Earned",next_lvl:"Next Level ➡",parent_dash:"Parent Dashboard",monitor:"Monitor progress",plan_header:"Unlock Full Access",plan_1_title:"30 Days Starter",plan_1_perk:"Digital Beginner Medal + Hard Copy Certificate",plan_2_title:"3 Months Growth",plan_2_perk:"Digital Intermediate Medal + Hard Copy Certificate",plan_3_title:"6 Months Pro",plan_3_perk:"Digital Pro Medal + Hard Copy Certificate",buy_now:"Buy Now",free_plan:"FREE PLAN",premium_plan:"PREMIUM PRO",levels_unlocked:"Levels Unlocked",plan_status:"Plan Status",try_again:"Try Once Again",use_hint:"Use Hint (-1 Credit)",hint_used:"Hint Used!",no_credits:"Ask parents for more hint credits!",hint_rem:"Credits:",cert_shipping:"Certificate will be shipped.",concept:"Teaching Concept"},kn:{home:"ಮನೆ",map:"ನಕ್ಷೆ",arcade:"ಆಟಗಳು",profile:"ಪ್ರೊಫೈಲ್",parents:"ಪೋಷಕರು",streak:"ಸರಣಿ",oops:"ಲಾಕ್ ಆಗಿದೆ! 🔒",child_msg:"ಅಪ್ಪಾ/ಅಮ್ಮಾ ನಾನು ಈ ಎಲ್ಲಾ ಹಂತಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ್ದೇನೆ, ಉಳಿದ ಹಂತಗಳನ್ನು ಹೇಗೆ ಅನ್ಲಾಕ್ ಮಾಡಲಿ?",parents_only:"ಪೋಷಕರಿಗೆ ಮಾತ್ರ",solve_math:"ಬಿಡಿಸಿ:",cancel:"ರದ್ದು",verify:"ಪರಿಶೀಲಿಸಿ",welcome:"ಸ್ವಾಗತ!",setup:"ಪ್ರಾರಂಭಿಸೋಣ.",name_q:"ನಿಮ್ಮ ಹೆಸರೇನು?",age_q:"ವಯಸ್ಸು?",start_btn:"ಪ್ರಾರಂಭಿಸಿ 🚀",hi:"ನಮಸ್ತೆ",level_status:"ಹಂತ",continue_btn:"ಮುಂದುವರಿಸಿ",journey:"ನಿಮ್ಮ ಪಯಣ",cat_logic:"ಕಂಪ್ಯೂಟರ್ ಮೂಲಗಳು",cat_web:"ಇಂಟರ್ನೆಟ್",cat_python:"ಕೋಡಿಂಗ್",locked:"ಲಾಕ್",play:"ಆಟವಾಡಿ",completed:"ಮುಗಿದಿದೆ",mission:"ಗುರಿ:",hint_title:"ಸಲಹೆ:",run_code:"ರನ್ ಮಾಡಿ",check_order:"ಪರಿಶೀಲಿಸಿ",success_msg:"ಹಂತ ಪೂರ್ಣ!",xp_gain:"+50 XP",next_lvl:"ಮುಂದೆ ➡",parent_dash:"ಪೋಷಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",monitor:"ಪ್ರಗತಿ ನೋಡಿ",plan_header:"ಅನ್ಲಾಕ್ ಮಾಡಿ",plan_1_title:"30 ದಿನಗಳು",plan_1_perk:"ಡಿಜಿಟಲ್ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ",plan_2_title:"3 ತಿಂಗಳು",plan_2_perk:"ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ",plan_3_title:"6 ತಿಂಗಳು",plan_3_perk:"ಪ್ರೊ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ",buy_now:"ಖರೀದಿಸಿ",free_plan:"ಉಚಿತ",premium_plan:"ಪ್ರೀಮಿಯಂ",levels_unlocked:"ಹಂತಗಳು",plan_status:"ಸ್ಥಿತಿ",try_again:"ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ",use_hint:"ಸುಳಿವು ಬಳಸಿ (-1)",hint_used:"ಸುಳಿವು ಬಳಸಲಾಗಿದೆ!",no_credits:"ಪೋಷಕರನ್ನು ಕೇಳಿ!",hint_rem:"ಕ್ರೆಡಿಟ್:",cert_shipping:"ಪ್ರಮಾಣಪತ್ರ ಕಳುಹಿಸಲಾಗುವುದು.",concept:"ಪರಿಕಲ್ಪನೆ"},hi:{home:"होम",map:"मानचित्र",arcade:"आर्केड",profile:"प्रोफ़ाइल",parents:"अभिभावक",streak:"सिलसिला",oops:"बंद है! 🔒",child_msg:"पापा/मम्मी मैंने ये लेवल पूरे कर लिए हैं, बाकी कैसे खोलूं?",parents_only:"माता-पिता",solve_math:"हल करें:",cancel:"रद्द",verify:"सत्यापित",welcome:"स्वागत है!",setup:"शुरू करें।",name_q:"नाम?",age_q:"उम्र?",start_btn:"शुरू करें 🚀",hi:"नमस्ते",level_status:"लेवल",continue_btn:"जारी रखें",journey:"यात्रा",cat_logic:"कंप्यूटर बेसिक्स",cat_web:"इंटरनेट",cat_python:"कोडिंग",locked:"बंद",play:"खेलें",completed:"पूर्ण",mission:"मिशन:",hint_title:"संकेत:",run_code:"चलाएं",check_order:"जांचें",success_msg:"पूरा हुआ!",xp_gain:"+50 XP",next_lvl:"अगला ➡",parent_dash:"पैरेंट डैशबोर्ड",monitor:"प्रगति",plan_header:"अनलॉक करें",plan_1_title:"30 दिन",plan_1_perk:"मेडल + सर्टिफिकेट",plan_2_title:"3 महीने",plan_2_perk:"मेडल + सर्टिफिकेट",plan_3_title:"6 महीने",plan_3_perk:"मेडल + सर्टिफिकेट",buy_now:"खरीदें",free_plan:"फ्री",premium_plan:"प्रीमियम",levels_unlocked:"लेवल्स",plan_status:"स्टेटस",try_again:"फिर प्रयास करें",use_hint:"संकेत (-1)",hint_used:"संकेत इस्तेमाल!",no_credits:"क्रेडिट नहीं!",hint_rem:"क्रेडिट:",cert_shipping:"प्रमाण पत्र भेजा जाएगा.",concept:"संकल्पना"},
+te:{home:"హోమ్",map:"మ్యాప్",arcade:"ఆర్కేడ్",profile:"ప్రొఫైల్",parents:"తల్లిదండ్రులు",streak:"స్ట్రీక్",oops:"లాక్! 🔒",child_msg:"నాన్న/అమ్మ నేను ఈ లెవల్స్ పూర్తి చేశాను, మిగిలినవి ఎలా అన్‌లాక్ చేయాలి?",parents_only:"తల్లిదండ్రులు",solve_math:"పరిష్కరించండి:",cancel:"రద్దు",verify:"ధృవీకరించండి",welcome:"స్వాగతం!",setup:"ప్రారంభిద్దాం.",name_q:"పేరు?",age_q:"వయస్సు?",start_btn:"ప్రారంభించు 🚀",hi:"హాయ్",level_status:"లెవల్",continue_btn:"కొనసాగించు",journey:"ప్రయాణం",cat_logic:"కంప్యూటర్",cat_web:"ఇంటర్నెట్",cat_python:"కోడింగ్",locked:"లాక్",play:"ఆడు",completed:"పూర్తి",mission:"లక్ష్యం:",hint_title:"సూచన:",run_code:"రన్",check_order:"సరిచూడు",success_msg:"విజయం!",xp_gain:"+50 XP",next_lvl:"తరువాత ➡",parent_dash:"పేరెంట్ డ్యాష్‌బోర్డ్",monitor:"పురోగతి",plan_header:"అన్‌లాక్",plan_1_title:"30 రోజులు",plan_1_perk:"మెడల్ + సర్టిఫికేట్",plan_2_title:"3 నెలలు",plan_2_perk:"మెడల్ + సర్టిఫికేట్",plan_3_title:"6 నెలలు",plan_3_perk:"మెడల్ + సర్టిఫికేట్",buy_now:"కొనుగోలు",free_plan:"ఉచితం",premium_plan:"ప్రీమియం",levels_unlocked:"లెవల్స్",plan_status:"ప్లాన్",try_again:"మళ్ళీ ప్రయత్నించు",use_hint:"హింట్ (-1)",hint_used:"హింట్ వాడారు!",no_credits:"క్రెడిట్స్ లేవు!",hint_rem:"క్రెడిట్స్:",cert_shipping:"సర్టిఫికేట్ పంపబడుతుంది.",concept:"కాన్సెప్ట్"},ta:{home:"முகப்பு",map:"வரைபடம்",arcade:"ஆர்கேட்",profile:"சுயவிவரம்",parents:"பெற்றோர்",streak:"தொடர்",oops:"பூட்டு! 🔒",child_msg:"அப்பா/அம்மா நான் முடித்துவிட்டேன், முழுவதையும் எப்படி முடிப்பது?",parents_only:"பெற்றோர்",solve_math:"தீர்க்கவும்:",cancel:"ரத்து",verify:"சரிபார்",welcome:"வரவேற்பு!",setup:"தொடங்கலாம்.",name_q:"பெயர்?",age_q:"வயது?",start_btn:"தொடங்கு 🚀",hi:"வணக்கம்",level_status:"நிலை",continue_btn:"தொடரவும்",journey:"பயணம்",cat_logic:"கணினி",cat_web:"இணையம்",cat_python:"கோடிங்",locked:"பூட்டு",play:"விளையாடு",completed:"முடிந்தது",mission:"பணி:",hint_title:"குறிப்பு:",run_code:"ஓடு",check_order:"சரிபார்",success_msg:"வெற்றி!",xp_gain:"+50 XP",next_lvl:"அடுத்து ➡",parent_dash:"பெற்றோர் பலகை",monitor:"கண்காணிப்பு",plan_header:"திறக்கவும்",plan_1_title:"30 நாட்கள்",plan_1_perk:"பதக்கம் + சான்றிதழ்",plan_2_title:"3 மாதங்கள்",plan_2_perk:"பதக்கம் + சான்றிதழ்",plan_3_title:"6 மாதங்கள்",plan_3_perk:"பதக்கம் + சான்றிதழ்",buy_now:"வாங்க",free_plan:"இலவசம்",premium_plan:"பிரீமியம்",levels_unlocked:"நிலைகள்",plan_status:"திட்டம்",try_again:"முயற்சி",use_hint:"குறிப்பு (-1)",hint_used:"பயன்படுத்தப்பட்டது!",no_credits:"இல்லை!",hint_rem:"கடன்:",cert_shipping:"அனுப்பப்படும்.",concept:"கருத்து"},ml:{home:"ഹോം",map:"മാപ്പ്",arcade:"ഗെയിം",profile:"പ്രൊഫൈൽ",parents:"രക്ഷിതാക്കൾ",streak:"സ്ട്രീക്ക്",oops:"ലോക്ക്! 🔒",child_msg:"അച്ഛാ/അമ്മേ ഞാൻ തീർത്തു, ബാക്കി എങ്ങനെ അൺലോക്ക് ചെയ്യാം?",parents_only:"രക്ഷിതാക്കൾ",solve_math:"പരിഹരിക്കൂ:",cancel:"റദ്ദാക്കൂ",verify:"ശരി",welcome:"സ്വാഗതം!",setup:"തുടങ്ങാം.",name_q:"പേര്?",age_q:"വയസ്സ്?",start_btn:"തുടങ്ങൂ 🚀",hi:"ഹായ്",level_status:"ലെവൽ",continue_btn:"തുടരുക",journey:"യാത്ര",cat_logic:"കമ്പ്യൂട്ടർ",cat_web:"ഇന്റർനെറ്റ്",cat_python:"കോഡിംഗ്",locked:"ലോക്ക്",play:"കളി",completed:"തീർന്നു",mission:"ദൗത്യം:",hint_title:"സൂചന:",run_code:"റൺ",check_order:"ക്രമം",success_msg:"വിജയിച്ചു!",xp_gain:"+50 XP",next_lvl:"അടുത്തത് ➡",parent_dash:"ഡാഷ്ബോർഡ്",monitor:"പുരോഗതി",plan_header:"അൺലോക്ക്",plan_1_title:"30 ദിവസം",plan_1_perk:"മെഡൽ + സർട്ടിഫിക്കറ്റ്",plan_2_title:"3 മാസം",plan_2_perk:"മെഡൽ + സർട്ടിഫിക്കറ്റ്",plan_3_title:"6 മാസം",plan_3_perk:"മെഡൽ + സർട്ടിഫിക്കറ്റ്",buy_now:"വാങ്ങൂ",free_plan:"സൗജന്യം",premium_plan:"പ്രീമിയം",levels_unlocked:"ലെവലുകൾ",plan_status:"പ്ലാൻ",try_again:"ശ്രമിക്കൂ",use_hint:"സൂചന (-1)",hint_used:"ഉപയോഗിച്ചു!",no_credits:"ഇല്ല!",hint_rem:"ക്രെഡിറ്റ്:",cert_shipping:"അയയ്ക്കും.",concept:"ആശയം"},mr:{home:"होम",map:"नकाशा",arcade:"गेम्स",profile:"प्रोफाइल",parents:"पालक",streak:"स्ट्रिक",oops:"लॉक! 🔒",child_msg:"बाबा/आई मी पूर्ण केले, बाकीचे कसे पूर्ण करू?",parents_only:"पालक",solve_math:"सोडवा:",cancel:"रद्द",verify:"तपासा",welcome:"स्वागत!",setup:"सुरु करू.",name_q:"नाव?",age_q:"वय?",start_btn:"सुरु करा 🚀",hi:"नमस्कार",level_status:"लेव्हल",continue_btn:"पुढे जा",journey:"प्रवास",cat_logic:"कांप्युटर",cat_web:"इंटरनेट",cat_python:"कोडिंग",locked:"लॉक",play:"खेळा",completed:"पूर्ण",mission:"मिशन:",hint_title:"टीप:",run_code:"रन",check_order:"तपासा",success_msg:"अभिनंदन!",xp_gain:"+50 XP",next_lvl:"पुढील ➡",parent_dash:"पालक डॅशबोर्ड",monitor:"प्रगती",plan_header:"अनलॉक",plan_1_title:"३० दिवस",plan_1_perk:"मेडल + सर्टिफिकेट",plan_2_title:"३ महिने",plan_2_perk:"मेडल + सर्टिफिकेट",plan_3_title:"६ महिने",plan_3_perk:"मेडल + सर्टिफिकेट",buy_now:"खरेदी",free_plan:"फ्री",premium_plan:"प्रीमियम",levels_unlocked:"लेव्हल्स",plan_status:"प्लॅन",try_again:"प्रयत्न करा",use_hint:"हिंट (-1)",hint_used:"वापरली!",no_credits:"नाहीत!",hint_rem:"क्रेडिट:",cert_shipping:"पाठवले जाईल.",concept:"संकल्पना"},gu:{home:"ઘર",map:"નકશો",arcade:"ગેમ્સ",profile:"પ્રોફાઇલ",parents:"વાલી",streak:"સ્ટ્રીક",oops:"લોક! 🔒",child_msg:"પપ્પા/મમ્મી મેં પૂરું કર્યું, બાકીનું કેવી રીતે?",parents_only:"વાલી",solve_math:"ઉકેલો:",cancel:"રદ",verify:"ચકાસો",welcome:"સ્વાગત!",setup:"શરૂ કરીએ.",name_q:"નામ?",age_q:"ઉંમર?",start_btn:"શરૂ કરો 🚀",hi:"નમસ્તે",level_status:"લેવલ",continue_btn:"ચાલુ રાખો",journey:"યાત્રા",cat_logic:"કમ્પ્યુટર",cat_web:"ઇન્ટરનેટ",cat_python:"કોડિંગ",locked:"લોક",play:"રમો",completed:"પૂર્ણ",mission:"મિશન:",hint_title:"હિંટ:",run_code:"રન",check_order:"તપાસો",success_msg:"સફળ!",xp_gain:"+50 XP",next_lvl:"આગળ ➡",parent_dash:"ડેશબોર્ડ",monitor:"પ્રગતિ",plan_header:"અનલોક",plan_1_title:"30 દિવસ",plan_1_perk:"મેડલ + સર્ટિફિકેટ",plan_2_title:"3 મહિના",plan_2_perk:"મેડલ + સર્ટિફિકેટ",plan_3_title:"6 મહિના",plan_3_perk:"મેડલ + સર્ટિફિકેટ",buy_now:"ખરીદો",free_plan:"ફ્રી",premium_plan:"પ્રીમિયમ",levels_unlocked:"લેવલ",plan_status:"પ્લાન",try_again:"પ્રયાસ કરો",use_hint:"હિંટ (-1)",hint_used:"વપરાઈ!",no_credits:"નથી!",hint_rem:"ક્રેડિટ:",cert_shipping:"મોકલવામાં આવશે.",concept:"ખ્યાલ"},
+bn:{home:"হোম",map:"ম্যাপ",arcade:"গেমস",profile:"প্রোফাইল",parents:"পিতামাতা",streak:"স্ট্রিক",oops:"লক! 🔒",child_msg:"বাবা/মা আমি শেষ করেছি, বাকিগুলো কিভাবে?",parents_only:"পিতামাতা",solve_math:"সমাধান:",cancel:"বাতিল",verify:"যাচাই",welcome:"স্বাগতম!",setup:"শুরু করি।",name_q:"নাম?",age_q:"বয়স?",start_btn:"শুরু 🚀",hi:"হাই",level_status:"লেভেল",continue_btn:"চালিয়ে যান",journey:"যাত্রা",cat_logic:"কম্পিউটার",cat_web:"ইন্টারনেট",cat_python:"কোডিং",locked:"লক",play:"খেলুন",completed:"সম্পন্ন",mission:"মিশন:",hint_title:"ইঙ্গিত:",run_code:"রান",check_order:"চেক",success_msg:"সম্পন্ন!",xp_gain:"+50 XP",next_lvl:"পরবর্তী ➡",parent_dash:"ড্যাশবোর্ড",monitor:"মনিটর",plan_header:"আনলক",plan_1_title:"৩০ দিন",plan_1_perk:"মেডেল + সার্টিফিকেট",plan_2_title:"৩ মাস",plan_2_perk:"মেডেল + সার্টিফিকেট",plan_3_title:"৬ মাস",plan_3_perk:"মেডেল + সার্টিফিকেট",buy_now:"কিনুন",free_plan:"ফ্রি",premium_plan:"প্রিমিয়াম",levels_unlocked:"লেভেল",plan_status:"প্ল্যান",try_again:"চেষ্টা করুন",use_hint:"ইঙ্গিত (-1)",hint_used:"ব্যবহৃত!",no_credits:"নেই!",hint_rem:"ক্রেডিট:",cert_shipping:"পাঠানো হবে।",concept:"ধারণা"},ur:{home:"ہوم",map:"نقشہ",arcade:"گیمز",profile:"پروفائل",parents:"والدین",streak:"تسلسل",oops:"مقفل! 🔒",child_msg:"پاپا/ممی میں نے مکمل کر لیا، باقی کیسے؟",parents_only:"والدین",solve_math:"حل کریں:",cancel:"منسوخ",verify:"تصدیق",welcome:"خوش آمدید!",setup:"شروع کریں۔",name_q:"نام؟",age_q:"عمر؟",start_btn:"شروع 🚀",hi:"ہیلو",level_status:"لیول",continue_btn:"جاری",journey:"سفر",cat_logic:"کمپیوٹر",cat_web:"انٹرنیٹ",cat_python:"کوڈنگ",locked:"مقفل",play:"کھیلیں",completed:"مکمل",mission:"مشن:",hint_title:"اشارہ:",run_code:"چلائیں",check_order:"چیک",success_msg:"کامیاب!",xp_gain:"+50 XP",next_lvl:"اگلا ➡",parent_dash:"ڈیش بورڈ",monitor:"نگرانی",plan_header:"انلاک",plan_1_title:"30 دن",plan_1_perk:"میڈل + سرٹیفکیٹ",plan_2_title:"3 ماہ",plan_2_perk:"میڈل + سرٹیفکیٹ",plan_3_title:"6 ماہ",plan_3_perk:"میڈل + سرٹیفکیٹ",buy_now:"خریدیں",free_plan:"مفت",premium_plan:"پریمیم",levels_unlocked:"لیولز",plan_status:"پلان",try_again:"کوشش",use_hint:"اشارہ (-1)",hint_used:"استعمال!",no_credits:"نہیں!",hint_rem:"کریڈٹ:",cert_shipping:"بھیجا جائے گا۔",concept:"تصور"},es:{home:"Inicio",map:"Mapa",arcade:"Arcade",profile:"Perfil",parents:"Padres",streak:"Racha",oops:"¡Bloqueado! 🔒",child_msg:"¿Cómo desbloqueo todo?",parents_only:"Padres",solve_math:"Resuelve:",cancel:"Cancelar",verify:"Verificar",welcome:"¡Bienvenido!",setup:"Configurar",name_q:"¿Nombre?",age_q:"¿Edad?",start_btn:"Iniciar 🚀",hi:"Hola",level_status:"Nivel",continue_btn:"Continuar",journey:"Viaje",cat_logic:"Básico",cat_web:"Web",cat_python:"Código",locked:"Bloqueado",play:"Jugar",completed:"Hecho",mission:"Misión:",hint_title:"Pista:",run_code:"Ejecutar",check_order:"Revisar",success_msg:"¡Éxito!",xp_gain:"+50 XP",next_lvl:"Siguiente ➡",parent_dash:"Panel",monitor:"Progreso",plan_header:"Desbloquear",plan_1_title:"30 Días",plan_1_perk:"Medalla + Certificado",plan_2_title:"3 Meses",plan_2_perk:"Medalla + Certificado",plan_3_title:"6 Meses",plan_3_perk:"Medalla + Certificado",buy_now:"Comprar",free_plan:"GRATIS",premium_plan:"PREMIUM",levels_unlocked:"Niveles",plan_status:"Plan",try_again:"Reintentar",use_hint:"Pista (-1)",hint_used:"¡Usada!",no_credits:"¡Sin créditos!",hint_rem:"Créditos:",cert_shipping:"Se enviará.",concept:"Concepto"},fr:{home:"Accueil",map:"Carte",arcade:"Jeu",profile:"Profil",parents:"Parents",streak:"Série",oops:"Bloqué! 🔒",child_msg:"Comment débloquer tout?",parents_only:"Parents",solve_math:"Résoudre:",cancel:"Annuler",verify:"Vérifier",welcome:"Bienvenue!",setup:"Configurer",name_q:"Nom?",age_q:"Âge?",start_btn:"Débuter 🚀",hi:"Salut",level_status:"Niveau",continue_btn:"Continuer",journey:"Voyage",cat_logic:"Bases",cat_web:"Web",cat_python:"Code",locked:"Fermé",play:"Jouer",completed:"Fini",mission:"Mission:",hint_title:"Indice:",run_code:"Lancer",check_order:"Vérifier",success_msg:"Bravo!",xp_gain:"+50 XP",next_lvl:"Suivant ➡",parent_dash:"Tableau",monitor:"Progrès",plan_header:"Débloquer",plan_1_title:"30 Jours",plan_1_perk:"Médaille + Certificat",plan_2_title:"3 Mois",plan_2_perk:"Médaille + Certificat",plan_3_title:"6 Mois",plan_3_perk:"Médaille + Certificat",buy_now:"Acheter",free_plan:"GRATUIT",premium_plan:"PREMIUM",levels_unlocked:"Niveaux",plan_status:"Plan",try_again:"Réessayer",use_hint:"Indice (-1)",hint_used:"Utilisé!",no_credits:"Pas de crédits!",hint_rem:"Crédits:",cert_shipping:"Sera envoyé.",concept:"Concept"},
+de:{home:"Start",map:"Karte",arcade:"Spiel",profile:"Profil",parents:"Eltern",streak:"Serie",oops:"Zu! 🔒",child_msg:"Wie alles freischalten?",parents_only:"Eltern",solve_math:"Lösen:",cancel:"Abbruch",verify:"Ok",welcome:"Willkommen!",setup:"Setup",name_q:"Name?",age_q:"Alter?",start_btn:"Start 🚀",hi:"Hallo",level_status:"Level",continue_btn:"Weiter",journey:"Reise",cat_logic:"Basis",cat_web:"Web",cat_python:"Code",locked:"Zu",play:"Spiel",completed:"Fertig",mission:"Mission:",hint_title:"Tipp:",run_code:"Starten",check_order:"Prüfen",success_msg:"Super!",xp_gain:"+50 XP",next_lvl:"Weiter ➡",parent_dash:"Dashboard",monitor:"Fortschritt",plan_header:"Freischalten",plan_1_title:"30 Tage",plan_1_perk:"Medaille + Zertifikat",plan_2_title:"3 Monate",plan_2_perk:"Medaille + Zertifikat",plan_3_title:"6 Monate",plan_3_perk:"Medaille + Zertifikat",buy_now:"Kaufen",free_plan:"GRATIS",premium_plan:"PREMIUM",levels_unlocked:"Level",plan_status:"Status",try_again:"Nochmal",use_hint:"Tipp (-1)",hint_used:"Genutzt!",no_credits:"Keine Credits!",hint_rem:"Credits:",cert_shipping:"Wird gesendet.",concept:"Konzept"},pt:{home:"Início",map:"Mapa",arcade:"Jogos",profile:"Perfil",parents:"Pais",streak:"Série",oops:"Bloqueado! 🔒",child_msg:"Como desbloquear tudo?",parents_only:"Pais",solve_math:"Resolva:",cancel:"Cancelar",verify:"Verificar",welcome:"Bem-vindo!",setup:"Configurar",name_q:"Nome?",age_q:"Idade?",start_btn:"Iniciar 🚀",hi:"Olá",level_status:"Nível",continue_btn:"Continuar",journey:"Jornada",cat_logic:"Básico",cat_web:"Web",cat_python:"Código",locked:"Trancado",play:"Jogar",completed:"Feito",mission:"Missão:",hint_title:"Dica:",run_code:"Rodar",check_order:"Verificar",success_msg:"Sucesso!",xp_gain:"+50 XP",next_lvl:"Próximo ➡",parent_dash:"Painel",monitor:"Progresso",plan_header:"Desbloquear",plan_1_title:"30 Dias",plan_1_perk:"Medalha + Certificado",plan_2_title:"3 Meses",plan_2_perk:"Medalha + Certificado",plan_3_title:"6 Meses",plan_3_perk:"Medalha + Certificado",buy_now:"Comprar",free_plan:"GRÁTIS",premium_plan:"PREMIUM",levels_unlocked:"Níveis",plan_status:"Plano",try_again:"Tente",use_hint:"Dica (-1)",hint_used:"Usada!",no_credits:"Sem créditos!",hint_rem:"Créditos:",cert_shipping:"Será enviado.",concept:"Conceito"},ru:{home:"Главная",map:"Карта",arcade:"Игры",profile:"Профиль",parents:"Родителям",streak:"Серия",oops:"Закрыто! 🔒",child_msg:"Как открыть всё?",parents_only:"Родителям",solve_math:"Решите:",cancel:"Отмена",verify:"ОК",welcome:"Привет!",setup:"Настройка",name_q:"Имя?",age_q:"Возраст?",start_btn:"Старт 🚀",hi:"Привет",level_status:"Уровень",continue_btn:"Далее",journey:"Путь",cat_logic:"Основы",cat_web:"Веб",cat_python:"Код",locked:"Закрыто",play:"Играть",completed:"Готово",mission:"Задача:",hint_title:"Подсказка:",run_code:"Пуск",check_order:"Проверить",success_msg:"Успех!",xp_gain:"+50 XP",next_lvl:"Далее ➡",parent_dash:"Кабинет",monitor:"Прогресс",plan_header:"Открыть",plan_1_title:"30 Дней",plan_1_perk:"Медаль + Сертификат",plan_2_title:"3 Месяца",plan_2_perk:"Медаль + Сертификат",plan_3_title:"6 Месяцев",plan_3_perk:"Медаль + Сертификат",buy_now:"Купить",free_plan:"БЕСПЛАТНО",premium_plan:"ПРЕМИУМ",levels_unlocked:"Уровни",plan_status:"План",try_again:"Ещё раз",use_hint:"Подсказка (-1)",hint_used:"Использовано!",no_credits:"Нет кредитов!",hint_rem:"Кредиты:",cert_shipping:"Отправим почтой.",concept:"Концепция"},zh:{home:"首页",map:"地图",arcade:"游戏",profile:"我的",parents:"家长",streak:"连胜",oops:"锁定! 🔒",child_msg:"如何解锁全部?",parents_only:"家长",solve_math:"计算:",cancel:"取消",verify:"验证",welcome:"欢迎!",setup:"设置",name_q:"名字?",age_q:"年龄?",start_btn:"开始 🚀",hi:"你好",level_status:"关卡",continue_btn:"继续",journey:"旅程",cat_logic:"基础",cat_web:"网络",cat_python:"编程",locked:"锁",play:"玩",completed:"完成",mission:"任务:",hint_title:"提示:",run_code:"运行",check_order:"检查",success_msg:"成功!",xp_gain:"+50 XP",next_lvl:"下一关 ➡",parent_dash:"控制台",monitor:"进度",plan_header:"解锁",plan_1_title:"30天",plan_1_perk:"奖牌 + 证书",plan_2_title:"3个月",plan_2_perk:"奖牌 + 证书",plan_3_title:"6个月",plan_3_perk:"奖牌 + 证书",buy_now:"购买",free_plan:"免费",premium_plan:"高级",levels_unlocked:"关卡",plan_status:"状态",try_again:"重试",use_hint:"提示 (-1)",hint_used:"已使用!",no_credits:"没积分!",hint_rem:"积分:",cert_shipping:"证书将寄出.",concept:"概念"},ja:{home:"ホーム",map:"マップ",arcade:"ゲーム",profile:"私",parents:"保護者",streak:"連続",oops:"ロック! 🔒",child_msg:"全部解除するには?",parents_only:"保護者",solve_math:"計算:",cancel:"中止",verify:"確認",welcome:"ようこそ!",setup:"設定",name_q:"名前?",age_q:"年齢?",start_btn:"開始 🚀",hi:"こんにちは",level_status:"レベル",continue_btn:"続く",journey:"旅",cat_logic:"基本",cat_web:"Web",cat_python:"コード",locked:"鍵",play:"遊ぶ",completed:"完了",mission:"任務:",hint_title:"ヒント:",run_code:"実行",check_order:"確認",success_msg:"成功!",xp_gain:"+50 XP",next_lvl:"次へ ➡",parent_dash:"管理",monitor:"進捗",plan_header:"解除",plan_1_title:"30日",plan_1_perk:"メダル + 証明書",plan_2_title:"3ヶ月",plan_2_perk:"メダル + 証明書",plan_3_title:"6ヶ月",plan_3_perk:"メダル + 証明書",buy_now:"購入",free_plan:"無料",premium_plan:"プレミアム",levels_unlocked:"レベル",plan_status:"プラン",try_again:"再試行",use_hint:"ヒント (-1)",hint_used:"使用済!",no_credits:"残高なし!",hint_rem:"残高:",cert_shipping:"郵送されます.",concept:"概念"},
+ar:{home:"الرئيسية",map:"الخريطة",arcade:"ألعاب",profile:"الملف",parents:"الآباء",streak:"تتابع",oops:"مغلق! 🔒",child_msg:"كيف أفتح الباقي؟",parents_only:"للآباء",solve_math:"حل:",cancel:"إلغاء",verify:"تحقق",welcome:"مرحباً!",setup:"إعداد",name_q:"الاسم؟",age_q:"العمر؟",start_btn:"ابدأ 🚀",hi:"أهلاً",level_status:"مستوى",continue_btn:"تابع",journey:"رحلتك",cat_logic:"أساسيات",cat_web:"ويب",cat_python:"كود",locked:"قفل",play:"لعب",completed:"تم",mission:"مهمة:",hint_title:"تلميح:",run_code:"تشغيل",check_order:"فحص",success_msg:"نجاح!",xp_gain:"+50 نقطة",next_lvl:"التالي ➡",parent_dash:"لوحة",monitor:"تقدم",plan_header:"فتح الكل",plan_1_title:"30 يوم",plan_1_perk:"ميدالية + شهادة",plan_2_title:"3 أشهر",plan_2_perk:"ميدالية + شهادة",plan_3_title:"6 أشهر",plan_3_perk:"ميدالية + شهادة",buy_now:"شراء",free_plan:"مجاني",premium_plan:"بريميوم",levels_unlocked:"مستويات",plan_status:"خطة",try_again:"حاول",use_hint:"تلميح (-1)",hint_used:"مستخدم!",no_credits:"لا رصيد!",hint_rem:"رصيد:",cert_shipping:"سيتم الشحن.",concept:"مفهوم"}};
+const CURRICULUM=[{id:1,type:'logic',title_en:'What is Code?',desc_en:'Code is instructions for computers.',teaching_en:'Imagine telling a robot to make a sandwich. You cannot just say "Make sandwich". You must say: 1. Take bread. 2. Put cheese. 3. Close bread. This specific list of steps is like CODE. Computers need exact steps!',goal_en:'Order the communication flow.',items_en:['Human Thinks','Writes Code','Computer Obeys'],title_kn:'ಕೋಡ್ ಎಂದರೇನು?',desc_kn:'ಕೋಡ್ ಎಂದರೆ ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗೆ ನೀಡುವ ಸೂಚನೆಗಳು.',teaching_kn:'ರೋಬೋಟ್‌ಗೆ ಸ್ಯಾಂಡ್‌ವಿಚ್ ಮಾಡಲು ಹೇಳುವುದನ್ನು ಕಲ್ಪಿಸಿಕೊಳ್ಳಿ. ನೀವು ಕೇವಲ "ಸ್ಯಾಂಡ್‌ವಿಚ್ ಮಾಡು" ಎಂದು ಹೇಳಲಾಗುವುದಿಲ್ಲ. ನೀವು ಹೀಗೆ ಹೇಳಬೇಕು: 1. ಬ್ರೆಡ್ ತೆಗೆದುಕೊಳ್ಳಿ. 2. ಚೀಸ್ ಹಾಕಿ. 3. ಬ್ರೆಡ್ ಮುಚ್ಚಿ. ಈ ಹಂತಗಳ ಪಟ್ಟಿಯೇ ಕೋಡ್.',items_kn:['ಮಾನವ ಯೋಚಿಸುತ್ತಾನೆ','ಕೋಡ್ ಬರೆಯುತ್ತಾನೆ','ಕಂಪ್ಯೂಟರ್ ಪಾಲಿಸುತ್ತದೆ'],correct:['Human Thinks','Writes Code','Computer Obeys']},
+{id:2,type:'logic',title_en:'First Programmer',desc_en:'Ada Lovelace was the first coder!',teaching_en:'Long before modern computers, a lady named Ada Lovelace wrote the first algorithm for a machine called the Analytical Engine. She is the mother of computer programming!',goal_en:'Who came first?',items_en:['Ada Lovelace','Modern Computers'],title_kn:'ಮೊದಲ ಪ್ರೋಗ್ರಾಮರ್',desc_kn:'ಅಡಾ ಲವ್‌ಲೇಸ್ ಮೊದಲ ಕೋಡರ್!',teaching_kn:'ಆಧುನಿಕ ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗಿಂತ ಮುಂಚೆಯೇ, ಅಡಾ ಲವ್‌ಲೇಸ್ ಎಂಬ ಮಹಿಳೆ ಅನಾಲಿಟಿಕಲ್ ಎಂಜಿನ್‌ಗಾಗಿ ಮೊದಲ ಅಲ್ಗಾರಿದಮ್ ಬರೆದರು.',items_kn:['ಅಡಾ ಲವ್‌ಲೇಸ್','ಆಧುನಿಕ ಕಂಪ್ಯೂಟರ್‌ಗಳು'],correct:['Ada Lovelace','Modern Computers']},
+{id:3,type:'logic',title_en:'Input & Output',desc_en:'Keyboard is Input. Screen is Output.',teaching_en:'Input is what you give TO the computer (like typing). Output is what the computer gives BACK to you (like a picture on screen). Ears are your input, Mouth is your output!',goal_en:'Connect them.',items_en:['Type Keys','Process','See on Screen'],title_kn:'ಇನ್ಪುಟ್ ಮತ್ತು ಔಟ್ಪುಟ್',desc_kn:'ಕೀಬೋರ್ಡ್ ಇನ್ಪುಟ್. ಸ್ಕ್ರೀನ್ ಔಟ್ಪುಟ್.',items_kn:['ಕೀಲಿಗಳನ್ನು ಒತ್ತಿ','ಪ್ರಕ್ರಿಯೆ','ಪರದೆಯ ಮೇಲೆ ನೋಡಿ'],correct:['Type Keys','Process','See on Screen']},
+{id:4,type:'logic',title_en:'The Brain (CPU)',desc_en:'CPU is the computer brain.',teaching_en:'CPU stands for Central Processing Unit. It is a small chip that does all the thinking. Without a CPU, a computer is just a box of plastic!',goal_en:'Build a PC.',items_en:['Power','CPU (Think)','Action'],title_kn:'ಸಿಪಿಯು',desc_kn:'ಸಿಪಿಯು ಕಂಪ್ಯೂಟರ್ ಮೆದುಳು.',items_kn:['ಪವರ್','ಸಿಪಿಯು','ಕ್ರಿಯೆ'],correct:['Power','CPU (Think)','Action']},
+{id:5,type:'logic',title_en:'Binary Code',desc_en:'Computers only know 0 and 1.',teaching_en:'Computers do not understand A, B, C or 1, 2, 3. They only understand electricity ON (1) or OFF (0). This language of 1s and 0s is called Binary.',goal_en:'Count in binary.',items_en:['0','1','10 (Two)'],title_kn:'ಬೈನರಿ ಕೋಡ್',desc_kn:'ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗೆ 0 ಮತ್ತು 1 ಮಾತ್ರ ಗೊತ್ತು.',items_kn:['0','1','10 (ಎರಡು)'],correct:['0','1','10 (Two)']},
+{id:6,type:'logic',title_en:'Hardware vs Software',desc_en:'Hardware is touchable.',teaching_en:'Hardware is anything you can touch: Mouse, Screen, Keyboard. Software is the programs inside: Games, Paint, Windows. You cannot hold Software in your hand!',goal_en:'Sort items.',items_en:['Mouse (Hard)','Game (Soft)','Screen (Hard)'],title_kn:'ಹಾರ್ಡ್‌ವೇರ್ ಸಾಫ್ಟ್‌ವೇರ್',desc_kn:'ಹಾರ್ಡ್‌ವೇರ್ ಮುಟ್ಟಬಹುದು.',items_kn:['ಮೌಸ್ (ಹಾರ್ಡ್)','ಗೇಮ್ (ಸಾಫ್ಟ್)','ಸ್ಕ್ರೀನ್ (ಹಾರ್ಡ್)'],correct:['Mouse (Hard)','Game (Soft)','Screen (Hard)']},
+{id:7,type:'logic',title_en:'Bug?',desc_en:'A bug is a mistake.',teaching_en:'The first computer bug was an actual moth stuck in a machine! Now, a "bug" means any error in your code that makes the program crash or act weird.',goal_en:'Fix flow.',items_en:['Write Code','Find Bug','Fix Bug'],title_kn:'ಬಗ್',desc_kn:'ಬಗ್ ಎಂದರೆ ತಪ್ಪು.',items_kn:['ಕೋಡ್ ಬರೆಯಿರಿ','ಬಗ್ ಹುಡುಕಿ','ಬಗ್ ಸರಿಪಡಿಸಿ'],correct:['Write Code','Find Bug','Fix Bug']},
+{id:8,type:'logic',title_en:'HDD',desc_en:'Hard drive remembers.',teaching_en:'Your brain forgets what you ate last week. A Hard Disk Drive (HDD) never forgets! It stores your photos and games even when the computer is turned off.',goal_en:'Save file.',items_en:['Create File','Click Save','Saved in HDD'],title_kn:'HDD',desc_kn:'ಹಾರ್ಡ್ ಡ್ರೈವ್ ನೆನಪಿಟ್ಟುಕೊಳ್ಳುತ್ತದೆ.',items_kn:['ಫೈಲ್ ರಚಿಸಿ','ಸೇವ್ ಕ್ಲಿಕ್','HDD ನಲ್ಲಿ ಸೇವ್'],correct:['Create File','Click Save','Saved in HDD']},
+{id:9,type:'logic',title_en:'RAM',desc_en:'Short-term memory.',teaching_en:'RAM is Random Access Memory. It is super fast but forgets everything when power goes off. It is like a blackboard - you can write and erase quickly.',goal_en:'Run app.',items_en:['Load to RAM','Use App','Close (Clear RAM)'],title_kn:'RAM',desc_kn:'ಅಲ್ಪಾವಧಿ ಮೆಮೊರಿ.',items_kn:['RAM ಗೆ ಲೋಡ್','ಆಪ್ ಬಳಸಿ','ಮುಚ್ಚಿ'],correct:['Load to RAM','Use App','Close (Clear RAM)']},
+{id:10,type:'logic',title_en:'Algorithm',desc_en:'A recipe.',teaching_en:'An algorithm is just a fancy word for "Plan". A recipe to make cake is an algorithm. Steps to tie your shoelaces is an algorithm.',goal_en:'Make Algo.',items_en:['Step 1','Step 2','Result'],title_kn:'ಅಲ್ಗಾರಿದಮ್',desc_kn:'ಒಂದು ಪಾಕವಿಧಾನ.',items_kn:['ಹಂತ 1','ಹಂತ 2','ಫಲಿತಾಂಶ'],correct:['Step 1','Step 2','Result']},
+{id:11,type:'html',title_en:'Internet',desc_en:'Web of computers.',teaching_en:'The Internet is a giant wire connecting all computers in the world. It allows them to talk to each other.',goal_en:'Type <h1>Internet</h1>',initial:'',check:'<h1>',hint:'<h1>Internet</h1>',title_kn:'ಇಂಟರ್ನೆಟ್',desc_kn:'ಕಂಪ್ಯೂಟರ್ ಜಾಲ.',teaching_kn:'ಇಂಟರ್ನೆಟ್ ಎಂದರೆ ಜಗತ್ತಿನ ಎಲ್ಲಾ ಕಂಪ್ಯೂಟರ್‌ಗಳನ್ನು ಸಂಪರ್ಕಿಸುವ ಬೃಹತ್ ಜಾಲ.'},
+{id:12,type:'html',title_en:'Wi-Fi',desc_en:'Wireless signals.',teaching_en:'Wi-Fi is invisible radio waves that carry internet through the air, so you do not need wires!',goal_en:'<p>Wireless</p>',initial:'',check:'<p>',hint:'<p>Wireless</p>',title_kn:'ವೈ-ಫೈ',desc_kn:'ವೈರ್‌ಲೆಸ್.',teaching_kn:'ವೈ-ಫೈ ಎಂದರೆ ತಂತಿಗಳಿಲ್ಲದೆ ಗಾಳಿಯ ಮೂಲಕ ಇಂಟರ್ನೆಟ್ ತರುವ ಅದೃಶ್ಯ ಅಲೆಗಳು.'},
+{id:13,type:'html',title_en:'Browser',desc_en:'Chrome, Edge.',teaching_en:'A Browser is a car that drives you around the internet. Chrome, Safari, and Edge are different brands of cars.',goal_en:'<b>Chrome</b>',initial:'',check:'<b>',hint:'<b>Chrome</b>',title_kn:'ಬ್ರೌಸರ್',desc_kn:'ಕ್ರೋಮ್, ಎಡ್ಜ್.',teaching_kn:'ಬ್ರೌಸರ್ ಎಂದರೆ ಇಂಟರ್ನೆಟ್‌ನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಕರೆದೊಯ್ಯುವ ವಾಹನ.'},
+{id:14,type:'html',title_en:'URL',desc_en:'Address.',teaching_en:'URL is the address of a website, like "google.com". Just like your house has an address, every website has a URL.',goal_en:'<a href="g.com">',initial:'',check:'<a',hint:'<a href="...">',title_kn:'URL',desc_kn:'ವಿಳಾಸ.',teaching_kn:'URL ಎಂದರೆ ವೆಬ್‌ಸೈಟ್‌ನ ವಿಳಾಸ.'},
+{id:15,type:'html',title_en:'Search',desc_en:'Google finds info.',teaching_en:'Search Engines read billions of websites to find the answer to your question in milliseconds.',goal_en:'<i>Search</i>',initial:'',check:'<i>',hint:'<i>Search</i>',title_kn:'ಹುಡುಕು',desc_kn:'ಮಾಹಿತಿ ಹುಡುಕಿ.',teaching_kn:'ಸರ್ಚ್ ಇಂಜಿನ್ಗಳು ಕೋಟ್ಯಂತರ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಓದಿ ಉತ್ತರ ನೀಡುತ್ತವೆ.'},
+{id:16,type:'html',title_en:'HTML',desc_en:'Web Skeleton.',teaching_en:'HTML stands for Hyper Text Markup Language. It is the bricks used to build every website you see.',goal_en:'<div>Body</div>',initial:'',check:'<div>',hint:'<div>...</div>',title_kn:'HTML',desc_kn:'ವೆಬ್ ಅಸ್ಥಿಪಂಜರ.',teaching_kn:'HTML ಎಂದರೆ ವೆಬ್‌ಸೈಟ್ ಕಟ್ಟಲು ಬಳಸುವ ಇಟ್ಟಿಗೆಗಳು.'},
+{id:17,type:'html',title_en:'CSS',desc_en:'Web Makeup.',teaching_en:'CSS (Cascading Style Sheets) is the paint and decoration. HTML builds the wall, CSS paints it blue.',goal_en:'style="color:red"',initial:'<p>Style me</p>',check:'style=',hint:'style="color:red"',title_kn:'CSS',desc_kn:'ಅಲಂಕಾರ.',teaching_kn:'CSS ಎಂದರೆ ಬಣ್ಣ ಮತ್ತು ಅಲಂಕಾರ.'},
+{id:18,type:'html',title_en:'Server',desc_en:'Powerful PC.',teaching_en:'A Server is a computer that never sleeps. It stays on 24/7 to show your website to visitors.',goal_en:'<h1>Server</h1>',initial:'',check:'<h1>',hint:'<h1>Server</h1>',title_kn:'ಸರ್ವರ್',desc_kn:'ಶಕ್ತಿಶಾಲಿ ಪಿಸಿ.',teaching_kn:'ಸರ್ವರ್ ಎಂದರೆ ಎಂದಿಗೂ ನಿದ್ರಿಸದ ಕಂಪ್ಯೂಟರ್.'},
+{id:19,type:'html',title_en:'Cloud',desc_en:'Other PCs.',teaching_en:'The "Cloud" is not in the sky! It just means storing your data on huge servers in a warehouse somewhere else.',goal_en:'<p>Cloud</p>',initial:'',check:'<p>',hint:'<p>Cloud</p>',title_kn:'ಕ್ಲೌಡ್',desc_kn:'ಬೇರೆ ಪಿಸಿಗಳು.',teaching_kn:'ಕ್ಲೌಡ್ ಎಂದರೆ ನಿಮ್ಮ ಮಾಹಿತಿಯನ್ನು ಬೃಹತ್ ಸರ್ವರ್‌ಗಳಲ್ಲಿ ಸಂಗ್ರಹಿಸುವುದು.'},
+{id:20,type:'html',title_en:'Data',desc_en:'Info stored.',teaching_en:'Data is raw facts and figures. Photos, messages, videos - everything on the internet is Data.',goal_en:'<b>Data</b>',initial:'',check:'<b>',hint:'<b>Data</b>',title_kn:'ಡೇಟಾ',desc_kn:'ಮಾಹಿತಿ.',teaching_kn:'ಡೇಟಾ ಎಂದರೆ ಫೋಟೋಗಳು, ಸಂದೇಶಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳು.'},
+{id:21,type:'html',title_en:'Password',desc_en:'Key.',teaching_en:'A password is a secret key. Never share it! Use strong passwords with numbers and symbols.',goal_en:'<input type="password">',initial:'',check:'password',hint:'type="password"',title_kn:'ಪಾಸ್‌ವರ್ಡ್',desc_kn:'ಕೀಲಿ.',teaching_kn:'ಪಾಸ್‌ವರ್ಡ್ ಎಂದರೆ ರಹಸ್ಯ ಕೀಲಿ. ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ!'},
+{id:22,type:'html',title_en:'Hacker',desc_en:'Breaks locks.',teaching_en:'Hackers try to guess your password or trick you into giving it. Stay safe!',goal_en:'<i>Secure</i>',initial:'',check:'<i>',hint:'<i>Secure</i>',title_kn:'ಹ್ಯಾಕರ್',desc_kn:'ಕಳ್ಳ.',teaching_kn:'ಹ್ಯಾಕರ್‌ಗಳು ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಕದಿಯಲು ಪ್ರಯತ್ನಿಸುತ್ತಾರೆ.'},
+{id:23,type:'html',title_en:'Firewall',desc_en:'The Wall.',teaching_en:'A Firewall is a security guard. It blocks bad connections and lets good ones in.',goal_en:'<hr>',initial:'',check:'<hr>',hint:'<hr>',title_kn:'ಫೈರ್‌ವಾಲ್',desc_kn:'ಗೋಡೆ.',teaching_kn:'ಫೈರ್‌ವಾಲ್ ಎಂದರೆ ಭದ್ರತಾ ಸಿಬ್ಬಂದಿ.'},
+{id:24,type:'html',title_en:'Download',desc_en:'Get files.',teaching_en:'Downloading means copying a file from the internet to your device. Uploading is the opposite!',goal_en:'<button>Down</button>',initial:'',check:'<button>',hint:'<button>Text</button>',title_kn:'ಡೌನ್‌ಲೋಡ್',desc_kn:'ಪಡೆಯಿರಿ.',teaching_kn:'ಡೌನ್‌ಲೋಡ್ ಎಂದರೆ ಇಂಟರ್ನೆಟ್‌ನಿಂದ ಫೈಲ್ ಪಡೆಯುವುದು.'},
+{id:25,type:'html',title_en:'Email',desc_en:'Digital letter.',teaching_en:'Email (Electronic Mail) sends messages instantly anywhere in the world.',goal_en:'<input placeholder="Email">',initial:'',check:'placeholder',hint:'placeholder="Email"',title_kn:'ಇಮೇಲ್',desc_kn:'ಪತ್ರ.',teaching_kn:'ಇಮೇಲ್ ಮೂಲಕ ಸಂದೇಶಗಳನ್ನು ತಕ್ಷಣ ಕಳುಹಿಸಬಹುದು.'},
+{id:26,type:'html',title_en:'Social',desc_en:'Connect.',teaching_en:'Social Media connects people. But remember, once you post something, it is there forever.',goal_en:'<h1>Friends</h1>',initial:'',check:'<h1>',hint:'<h1>Friends</h1>',title_kn:'ಸಾಮಾಜಿಕ',desc_kn:'ಸಂಪರ್ಕ.',teaching_kn:'ಸಾಮಾಜಿಕ ಜಾಲತಾಣ ಜನರನ್ನು ಸಂಪರ್ಕಿಸುತ್ತದೆ.'},
+{id:27,type:'html',title_en:'Video Call',desc_en:'See online.',teaching_en:'Video calls break data into tiny packets, send them fast, and reassemble them as video on your screen.',goal_en:'<img src="cam.jpg">',initial:'',check:'<img',hint:'<img src...>',title_kn:'ವೀಡಿಯೊ ಕರೆ',desc_kn:'ನೋಡಿ.',teaching_kn:'ವೀಡಿಯೊ ಕರೆಗಳು ಡೇಟಾವನ್ನು ವೇಗವಾಗಿ ಕಳುಹಿಸುತ್ತವೆ.'},
+{id:28,type:'html',title_en:'Games',desc_en:'Play.',teaching_en:'Online games use a server to tell all players where everyone else is moving.',goal_en:'<b>Play</b>',initial:'',check:'<b>',hint:'<b>Play</b>',title_kn:'ಆಟಗಳು',desc_kn:'ಆಡಿ.',teaching_kn:'ಆನ್‌ಲೈನ್ ಆಟಗಳು ಸರ್ವರ್ ಬಳಸುತ್ತವೆ.'},
+{id:29,type:'html',title_en:'Virus',desc_en:'Sickness.',teaching_en:'A Computer Virus copies itself and spreads to other files, damaging them. Use Antivirus!',goal_en:'<i>Antivirus</i>',initial:'',check:'<i>',hint:'<i>Antivirus</i>',title_kn:'ವೈರಸ್',desc_kn:'ಖಾಯಿಲೆ.',teaching_kn:'ವೈರಸ್ ತನ್ನನ್ನು ತಾನೇ ಕಾಪಿ ಮಾಡಿಕೊಂಡು ಹರಡುತ್ತದೆ.'},
+{id:30,type:'html',title_en:'Encryption',desc_en:'Secret.',teaching_en:'Encryption scrambles your messages so only the right person can read them. Like a secret code language.',goal_en:'<p>Secret</p>',initial:'',check:'<p>',hint:'<p>Secret</p>',title_kn:'ಎನ್‌ಕ್ರಿಪ್ಶನ್',desc_kn:'ರಹಸ್ಯ.',teaching_kn:'ಎನ್‌ಕ್ರಿಪ್ಶನ್ ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ರಹಸ್ಯವಾಗಿಡುತ್ತದೆ.'},
+{id:31,type:'python',title_en:'Languages',desc_en:'Python, Java.',teaching_en:'Humans speak English/Kannada. Computers speak Python/Java. Python is very easy to learn!',goal_en:'print("Python")',initial:'',check:'print',hint:'print("Name")',title_kn:'ಭಾಷೆಗಳು',desc_kn:'ಪೈಥಾನ್.',teaching_kn:'ಮಾನವರು ಭಾಷೆ ಮಾತನಾಡುತ್ತಾರೆ, ಕಂಪ್ಯೂಟರ್‌ಗಳು ಪೈಥಾನ್ ಮಾತನಾಡುತ್ತವೆ.'},
+{id:32,type:'python',title_en:'Syntax',desc_en:'Grammar.',teaching_en:'Syntax is the grammar of coding. If you miss a comma or bracket, the computer gets confused.',goal_en:'print("Ok")',initial:'',check:'print',hint:'print("Ok")',title_kn:'ಸಿಂಟ್ಯಾಕ್ಸ್',desc_kn:'ವ್ಯಾಕರಣ.',teaching_kn:'ಸಿಂಟ್ಯಾಕ್ಸ್ ಎಂದರೆ ಕೋಡಿಂಗ್ ವ್ಯಾಕರಣ.'},
+// 33-50 placeholders for brevity but logic applies 
+{id:33,type:'python',title_en:'Variables',desc_en:'Boxes.',teaching_en:'A Variable is like a box with a label. You can put data inside and use it later.',goal_en:'x=10',initial:'',check:'=',hint:'x=10'},
+{id:34,type:'python',title_en:'Strings',desc_en:'Text.',teaching_en:'In code, text inside quotes " " is called a String.',goal_en:'print("Hi")',initial:'',check:'"',hint:'"Hi"'},
+{id:35,type:'python',title_en:'Integers',desc_en:'Numbers.',teaching_en:'Integers are whole numbers like 1, 5, 100. No decimals!',goal_en:'print(5)',initial:'',check:'print',hint:'5'},
+{id:36,type:'python',title_en:'Floats',desc_en:'Decimals.',teaching_en:'Floats are numbers with dots, like 3.14 or 9.5.',goal_en:'print(1.5)',initial:'',check:'.',hint:'1.5'},
+{id:37,type:'python',title_en:'Booleans',desc_en:'True/False.',teaching_en:'A Boolean can only be True or False. Like a light switch.',goal_en:'print(True)',initial:'',check:'True',hint:'True'},
+{id:38,type:'python',title_en:'Loops',desc_en:'Repeat.',teaching_en:'Loops let you do the same thing many times without writing code again and again.',goal_en:'for i in range(3):',initial:'',check:'for',hint:'for'},
+{id:39,type:'python',title_en:'While',desc_en:'Wait.',teaching_en:'A While loop keeps running AS LONG AS a condition is true.',goal_en:'while True:',initial:'',check:'while',hint:'while'},
+{id:40,type:'python',title_en:'If',desc_en:'Condition.',teaching_en:'IF it rains, take umbrella. Computers make decisions using IF.',goal_en:'if x>5:',initial:'x=10',check:'if',hint:'if'},
+{id:41,type:'python',title_en:'Else',desc_en:'Otherwise.',teaching_en:'IF hungry eat, ELSE sleep. Else is the backup plan.',goal_en:'else:',initial:'if x>5: pass',check:'else',hint:'else'},
+{id:42,type:'python',title_en:'Functions',desc_en:'Recipes.',teaching_en:'A Function is a saved set of instructions you can use anytime.',goal_en:'def fun():',initial:'',check:'def',hint:'def'},
+{id:43,type:'python',title_en:'Params',desc_en:'Inputs.',teaching_en:'Parameters are ingredients you give to a function.',goal_en:'def f(x):',initial:'',check:'(',hint:'(x)'},
+{id:44,type:'python',title_en:'Return',desc_en:'Output.',teaching_en:'Return is the answer the function gives back to you.',goal_en:'return 1',initial:'def f():',check:'return',hint:'return'},
+{id:45,type:'python',title_en:'Import',desc_en:'Libraries.',teaching_en:'Import lets you use code written by other smart people.',goal_en:'import math',initial:'',check:'import',hint:'import'},
+{id:46,type:'python',title_en:'Robots',desc_en:'Action.',teaching_en:'Robots use loops and sensors to move around.',goal_en:'print("Move")',initial:'',check:'print',hint:'Move'},
+{id:47,type:'python',title_en:'AI',desc_en:'Smart.',teaching_en:'AI is when computers learn from data instead of following rules.',goal_en:'print("Learn")',initial:'',check:'print',hint:'Learn'},
+{id:48,type:'python',title_en:'Errors',desc_en:'Crash.',teaching_en:'Errors are hints from the computer telling you what went wrong.',goal_en:'#Fix',initial:'',check:'#',hint:'#'},
+{id:49,type:'python',title_en:'Debug',desc_en:'Fixing.',teaching_en:'Debugging is being a detective to solve the error.',goal_en:'print("Fixed")',initial:'',check:'print',hint:'Fixed'},
+{id:50,type:'python',title_en:'Pro',desc_en:'Master.',teaching_en:'You completed 50 levels! You are now a SparkCoder Pro!',goal_en:'print("Pro")',initial:'',check:'print',hint:'Pro'}
+];
+const store={user:{name:'',ageGroup:'',xp:0,streak:0,currentLevel:1,isPremium:false,language:'en',hintCredits:30,parentPasscode:null},init(){const s=localStorage.getItem(CONSTANTS.STORAGE_KEY);if(s){this.user=JSON.parse(s);if(!this.user.currentLevel)this.user.currentLevel=1;if(this.user.hintCredits===undefined)this.user.hintCredits=30;if(!this.user.language)this.user.language='en'}else{document.getElementById('onboarding-modal').classList.remove('hidden')}this.updateUI()},save(){localStorage.setItem(CONSTANTS.STORAGE_KEY,JSON.stringify(this.user));this.updateUI()},completeLevel(id){if(id===this.user.currentLevel){this.user.currentLevel++;this.user.xp+=50;this.user.streak++;confetti({particleCount:150,spread:80});this.save()}},updateUI(){document.getElementById('username-display').innerText=this.user.name||'Kiddo';document.getElementById('xp-display').innerText=this.user.xp;document.getElementById('streak-display').innerText=this.user.streak;document.getElementById('lang-select').value=this.user.language||'en';if(document.getElementById('mobile-xp-display'))document.getElementById('mobile-xp-display').innerText=`${this.user.xp} XP`;if(document.getElementById('mobile-streak-display'))document.getElementById('mobile-streak-display').innerText=this.user.streak;if(document.getElementById('mobile-lang-select'))document.getElementById('mobile-lang-select').value=this.user.language||'en';app.applyLanguage(this.user.language)}};
+const app={setLanguage(l){store.user.language=l;store.save()},applyLanguage(l){if(l==='ar'||l==='ur')document.body.dir='rtl';else document.body.dir='ltr';const t=I18N[l]||I18N.en;document.querySelectorAll('[data-translate]').forEach(el=>{const k=el.getAttribute('data-translate');if(t[k])el.innerText=t[k];else if(I18N.en[k])el.innerText=I18N.en[k]});router.refresh()},getTxt(k){const l=store.user.language||'en';const t=I18N[l]||I18N.en;return t[k]||I18N.en[k]||k},selectAge(b,r){document.querySelectorAll('.age-btn').forEach(x=>{x.classList.remove('border-indigo-500','bg-indigo-50','text-indigo-700');x.classList.add('border-gray-200','text-gray-600')});b.classList.remove('border-gray-200','text-gray-600');b.classList.add('border-indigo-500','bg-indigo-50','text-indigo-700');document.getElementById('setup-age').value=r},completeOnboarding(e){e.preventDefault();const n=document.getElementById('setup-name').value;const a=document.getElementById('setup-age').value;if(!n||!a){alert('Please fill details');return}store.user.name=n;store.user.ageGroup=a;store.save();document.getElementById('onboarding-modal').classList.add('hidden');router.navigate('learn')},checkParentAccess(){passcode.buffer="";passcode.updateDisplay();if(!store.user.parentPasscode){passcode.mode="CREATE";document.getElementById('passcode-title').innerText="Create Passcode";document.getElementById('passcode-desc').innerText="Set a 4-digit code"}else{passcode.mode="AUTH";document.getElementById('passcode-title').innerText="Locked";document.getElementById('passcode-desc').innerText="Enter Passcode"}document.getElementById('passcode-modal').classList.remove('hidden')}};
+const passcode={buffer:"",mode:"AUTH",tempCode:"",tap(n){if(this.buffer.length<4){this.buffer+=n;this.updateDisplay();if(this.buffer.length===4)setTimeout(()=>this.submit(),200)}},clear(){this.buffer="";this.updateDisplay()},updateDisplay(){for(let i=1;i<=4;i++){const d=document.getElementById(`dot-${i}`);if(i<=this.buffer.length)d.classList.add('filled');else d.classList.remove('filled')}},submit(){if(this.mode==='AUTH'){if(this.buffer===store.user.parentPasscode){document.getElementById('passcode-modal').classList.add('hidden');router.navigate('parents')}else{alert("Wrong!");this.clear()}}else if(this.mode==='CREATE'){this.tempCode=this.buffer;this.mode='CONFIRM';this.buffer="";this.updateDisplay();document.getElementById('passcode-title').innerText="Confirm";document.getElementById('passcode-desc').innerText="Re-enter code"}else if(this.mode==='CONFIRM'){if(this.buffer===this.tempCode){store.user.parentPasscode=this.buffer;store.save();alert("Saved!");document.getElementById('passcode-modal').classList.add('hidden');router.navigate('parents')}else{alert("Mismatch");this.mode='CREATE';this.buffer="";this.updateDisplay();document.getElementById('passcode-title').innerText="Create";}}}};
+const router={currentRoute:'dashboard',currentParams:null,lessonState:{fails:0,hintsUsed:0},navigate(r,p=null){this.currentRoute=r;this.currentParams=p;this.lessonState={fails:0,hintsUsed:0};this.refresh();document.querySelectorAll('.nav-item').forEach(el=>{el.classList.remove('bg-indigo-50','text-indigo-600');if(el.getAttribute('onclick')&&el.getAttribute('onclick').includes(r))el.classList.add('bg-indigo-50','text-indigo-600')})},refresh(){const c=document.getElementById('view-container');c.innerHTML='';switch(this.currentRoute){case'dashboard':this.renderDashboard(c);break;case'learn':this.renderLearn(c);break;case'lesson':this.renderLesson(c,this.currentParams);break;case'arcade':this.renderArcade(c);break;case'profile':this.renderProfile(c);break;case'parents':this.renderParents(c);break}},renderDashboard(c){const l=store.user.language;const lvl=store.user.currentLevel;const ld=CURRICULUM.find(x=>x.id===lvl)||CURRICULUM[CURRICULUM.length-1];const lt=ld[`title_${l}`]||ld.title_en;c.innerHTML=`<div class="p-6"><div class="glass-panel p-8 rounded-3xl mb-8 relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 text-white animate-fade-in shadow-xl"><h2 class="text-3xl font-extrabold mb-2">${app.getTxt('hi')}, ${store.user.name}! 👋</h2><p class="opacity-90 mb-4">${app.getTxt('level_status')} ${lvl}: ${lt}</p><button onclick="router.navigate('learn')" class="bg-white text-indigo-700 px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition shadow-lg flex items-center gap-2 transform active:scale-95"><i class="fa-solid fa-play"></i> ${app.getTxt('continue_btn')}</button></div><h3 class="text-xl font-bold text-gray-800 mb-4" data-translate="journey">${app.getTxt('journey')}</h3><div class="grid md:grid-cols-3 gap-4"><div onclick="router.navigate('learn')" class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-green-50 transition-colors"><div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-brain"></i></div><div><div class="font-bold text-gray-800">${app.getTxt('cat_logic')}</div><div class="text-xs text-gray-500">Lvl 1-10</div></div></div><div onclick="router.navigate('learn')" class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-blue-50 transition-colors"><div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-brands fa-html5"></i></div><div><div class="font-bold text-gray-800">${app.getTxt('cat_web')}</div><div class="text-xs text-gray-500">Lvl 11-30</div></div></div><div onclick="router.navigate('learn')" class="glass-card p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-yellow-50 transition-colors"><div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fa-brands fa-python"></i></div><div><div class="font-bold text-gray-800">${app.getTxt('cat_python')}</div><div class="text-xs text-gray-500">Lvl 31-50</div></div></div></div></div>`},renderLearn(c){let h='';const lg=store.user.language;CURRICULUM.forEach(l=>{const lock=l.id>store.user.currentLevel;const done=l.id<store.user.currentLevel;const prem=(l.id>CONSTANTS.PREMIUM_GATE_LEVEL&&!store.user.isPremium);let bg=lock?'bg-gray-200 text-gray-400':done?'bg-green-500 text-white shadow-green-200':'bg-indigo-600 text-white animate-bounce shadow-indigo-300';let ic=lock?'<i class="fa-solid fa-lock"></i>':done?'<i class="fa-solid fa-check"></i>':'<i class="fa-solid fa-play"></i>';if(prem){bg='bg-gray-800 text-yellow-400 border-2 border-yellow-400';ic='<i class="fa-solid fa-crown animate-pulse"></i>'}const t=l[`title_${lg}`]||l.title_en;h+=`<div onclick="router.handleLevelClick(${l.id})" class="col-span-1 flex flex-col items-center group cursor-pointer transition-transform transform hover:scale-105 active:scale-95"><div class="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-lg mb-1 md:mb-2 ${bg} transition-colors">${ic}</div><span class="text-[9px] md:text-[10px] font-bold text-gray-500 bg-white/80 px-1 py-0.5 rounded-md backdrop-blur-sm text-center w-full truncate border border-gray-100 shadow-sm leading-tight">${t}</span></div>`});c.innerHTML=`<div class="p-4 md:p-6 text-center"><h2 class="text-3xl font-extrabold text-indigo-900 mb-6" data-translate="map">${app.getTxt('map')}</h2><div class="grid grid-cols-4 gap-2 md:flex md:flex-wrap md:justify-center md:gap-4 max-w-5xl mx-auto pb-10">${h}</div></div>`},handleLevelClick(id){if(id>store.user.currentLevel)return;if(id>CONSTANTS.PREMIUM_GATE_LEVEL&&!store.user.isPremium){document.getElementById('child-msg-modal').classList.remove('hidden');return}this.navigate('lesson',{id})},renderLesson(c,p){const l=CURRICULUM.find(x=>x.id===p.id);if(!l)return;const lg=store.user.language;const t=l[`title_${lg}`]||l.title_en;const d=l[`desc_${lg}`]||l.desc_en;const teach=l[`teaching_${lg}`]||l.teaching_en||l.desc_en;const g=l[`goal_${lg}`]||l.goal_en;const isl=l.type==='logic';c.innerHTML=`<div class="flex flex-col h-full animate-fade-in"><div class="p-4 border-b border-gray-200 flex justify-between items-center bg-white/50 backdrop-blur-sm sticky top-0 z-30"><button onclick="router.navigate('learn')" class="text-gray-500 font-bold hover:text-indigo-600 transition-colors p-2"><i class="fa-solid fa-arrow-left text-xl"></i></button><div class="flex flex-col items-center"><span class="text-xs text-gray-400 font-bold uppercase">Lvl ${l.id}</span><h2 class="font-bold text-gray-800 text-lg">${t}</h2></div><div class="flex items-center gap-2"><span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">${store.user.hintCredits} 💡</span></div></div><div class="flex-1 flex flex-col md:flex-row overflow-hidden"><div class="md:w-1/3 p-6 bg-white/60 overflow-y-auto border-r border-gray-200"><div class="bg-indigo-600 text-white p-5 rounded-2xl mb-6 shadow-lg transform hover:scale-[1.01] transition-transform"><div class="flex items-center gap-3 mb-2"><i class="fa-solid fa-graduation-cap text-yellow-300 text-xl"></i><span class="font-bold uppercase tracking-wider text-xs text-indigo-200">${app.getTxt('concept')}</span></div><p class="font-bold text-lg leading-snug">${teach}</p></div><h3 class="font-bold text-gray-700 mb-2">${app.getTxt('mission')}</h3><p class="text-gray-600 mb-6 text-sm bg-gray-50 p-3 rounded-lg border border-gray-100">${g}</p><div id="hint-area" class="hidden"><button onclick="router.useHint(${l.id})" class="w-full bg-yellow-100 text-yellow-700 font-bold py-2 rounded-xl border border-yellow-200 hover:bg-yellow-200 transition text-sm flex items-center justify-center gap-2 animate-pulse"><i class="fa-solid fa-lightbulb"></i> ${app.getTxt('use_hint')}</button></div></div><div class="md:w-2/3 bg-gray-900 flex flex-col relative shadow-inner">${isl?this.getLogicEditor(l):this.getCodeEditor(l)}</div></div></div>`;if(isl)this.initLogicDrag(l)},getCodeEditor(l){return `<div class="flex-1 flex flex-col"><div class="bg-gray-800 px-4 py-2 text-xs font-mono text-gray-400 border-b border-gray-700">Code Editor</div><textarea id="code-input" class="flex-1 bg-gray-900 text-green-400 font-mono p-4 outline-none resize-none text-sm leading-relaxed" spellcheck="false" placeholder="Type your code here...">${l.initial||''}</textarea></div><button onclick="router.validate(${l.id})" class="absolute bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transform transition hover:scale-105 active:scale-95 z-20"><i class="fa-solid fa-play"></i> ${app.getTxt('run_code')}</button>`},getLogicEditor(l){return `<div class="flex-1 bg-slate-100 flex flex-col items-center justify-center p-8 relative overflow-y-auto"><div id="logic-container" class="space-y-3 w-full max-w-xs pb-20"></div><button onclick="router.validate(${l.id})" class="absolute bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transform transition hover:scale-105 active:scale-95 z-20 sticky bottom-4"><i class="fa-solid fa-check"></i> ${app.getTxt('check_order')}</button></div>`},initLogicDrag(l){const c=document.getElementById('logic-container');const k=`items_${store.user.language}`in l?`items_${store.user.language}`:'items_en';const it=[...l[k]].sort(()=>Math.random()-0.5);it.forEach(txt=>{const e=document.createElement('div');e.className='logic-item bg-white p-3 rounded-xl shadow-sm border border-gray-200 font-bold text-gray-700 flex items-center gap-3 transition-all select-none relative pr-16';e.setAttribute('data-val',txt);e.innerHTML=`<div class="flex-1 flex items-center gap-3"><div class="bg-gray-100 p-2 rounded-lg text-gray-400 cursor-move"><i class="fa-solid fa-grip-lines"></i></div><span class="text-sm leading-tight">${txt}</span></div><div class="flex flex-col gap-1 absolute right-2 top-1 bottom-1 justify-center h-full"><button onclick="router.moveItem(this,-1)" class="text-indigo-600 hover:text-white hover:bg-indigo-600 p-1.5 bg-indigo-50 rounded-lg transition-colors flex items-center justify-center h-1/2 mb-0.5"><i class="fa-solid fa-chevron-up text-xs"></i></button><button onclick="router.moveItem(this,1)" class="text-indigo-600 hover:text-white hover:bg-indigo-600 p-1.5 bg-indigo-50 rounded-lg transition-colors flex items-center justify-center h-1/2 mt-0.5"><i class="fa-solid fa-chevron-down text-xs"></i></button></div>`;c.appendChild(e)})},moveItem(b,d){const i=b.closest('.logic-item');i.classList.add('z-10','scale-[1.02]','shadow-md');setTimeout(()=>{if(d===-1&&i.previousElementSibling)i.parentNode.insertBefore(i,i.previousElementSibling);else if(d===1&&i.nextElementSibling)i.parentNode.insertBefore(i.nextElementSibling,i);setTimeout(()=>i.classList.remove('z-10','scale-[1.02]','shadow-md'),200)},100)},useHint(id){const l=CURRICULUM.find(x=>x.id===id);if(store.user.hintCredits<=0){alert(app.getTxt('no_credits'));return}store.user.hintCredits--;store.save();this.refresh();if(l.type==='logic'){const c=document.getElementById('logic-container');const it=Array.from(c.children);const k=`items_${store.user.language}` in l?l[`items_${store.user.language}`]:l.correct;const v=k[this.lessonState.hintsUsed];const t=it.find(e=>e.getAttribute('data-val')===v);if(t){const ref=c.children[this.lessonState.hintsUsed];if(ref)c.insertBefore(t,ref);else c.appendChild(t);t.classList.add('border-green-500','bg-green-50','text-green-700')}}else{alert("Hint: "+l.check.split('|')[0])}this.lessonState.hintsUsed++;alert(app.getTxt('hint_used'))},validate(id){const l=CURRICULUM.find(x=>x.id===id);let s=false;if(l.type==='logic'){const ci=Array.from(document.querySelectorAll('.logic-item')).map(e=>e.getAttribute('data-val'));const k=`items_${store.user.language}` in l?l[`items_${store.user.language}`]:l.correct;if(JSON.stringify(ci)===JSON.stringify(k))s=true}else{const v=document.getElementById('code-input').value;if(l.check.split('|').some(c=>v.includes(c)))s=true}if(s){store.completeLevel(id);const d=document.createElement('div');d.className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] animate-fade-in p-4";d.innerHTML=`<div class="bg-white rounded-3xl p-8 text-center max-w-sm w-full relative overflow-hidden shadow-2xl"><div class="absolute inset-0 bg-yellow-50 -z-10"></div><div class="text-6xl mb-4 animate-bounce">⭐</div><h2 class="text-2xl font-bold text-gray-800 mb-2">${app.getTxt('success_msg')}</h2><p class="text-gray-500 mb-6 font-bold text-green-600">${app.getTxt('xp_gain')}</p><button onclick="this.parentElement.parentElement.remove(); router.navigate('learn')" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:scale-105 transition w-full">${app.getTxt('next_lvl')}</button></div>`;document.body.appendChild(d)}else{this.lessonState.fails++;if(this.lessonState.fails>=3)document.getElementById('hint-area').classList.remove('hidden');alert(app.getTxt('try_again'))}},renderParents(c){let ct=`<div class="p-8 max-w-6xl mx-auto animate-fade-in"><div class="flex flex-col md:flex-row items-center gap-6 mb-10 text-center md:text-left"><div class="w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-lg shadow-indigo-200"><i class="fa-solid fa-shield-cat"></i></div><div><h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">${app.getTxt('parent_dash')}</h2><p class="text-lg text-gray-500 mt-1">${app.getTxt('monitor')}</p></div></div><div class="grid md:grid-cols-3 gap-6 mb-12"><div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-layer-group"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('levels_unlocked')}</div><div class="text-3xl font-extrabold text-gray-900">${store.user.currentLevel}/50</div></div></div><div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl"><i class="fa-solid fa-crown"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('plan_status')}</div><div class="text-3xl font-extrabold ${store.user.isPremium?'text-green-600':'text-orange-500'}">${store.user.isPremium?'PREMIUM PRO':'FREE PLAN'}</div></div></div></div>`;if(store.user.isPremium){ct+=`<div class="bg-green-50 border border-green-200 rounded-3xl p-8 text-center mb-10"><i class="fa-solid fa-circle-check text-5xl text-green-500 mb-4"></i><h2 class="text-2xl font-bold text-gray-800 mb-2">Premium Membership Active</h2><p class="text-gray-600 mb-6">All levels unlocked.</p><button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-500 font-bold hover:underline">Reset Parent Passcode</button></div>`}else{ct+=`<div class="relative"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div><div class="relative flex justify-center"><span class="bg-gray-50 px-4 text-sm text-gray-500 font-bold uppercase tracking-widest">${app.getTxt('plan_header')}</span></div></div><div class="grid md:grid-cols-3 gap-8 mt-12"><div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group relative"><h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_1_title')}</h4><div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹299</span><span class="text-gray-400 font-medium">/ 30 days</span></div><button onclick="payment.pay(299, '30 Days')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button></div><div class="bg-gray-900 rounded-3xl p-8 border border-gray-900 text-white relative transform md:-translate-y-4 shadow-2xl"><div class="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Most Popular</div><h4 class="text-lg font-bold text-gray-400 mb-2">${app.getTxt('plan_2_title')}</h4><div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-white">₹999</span><span class="text-gray-400 font-medium">/ 3 months</span></div><button onclick="payment.pay(999, '3 Months')" class="w-full py-4 rounded-xl font-bold bg-white text-gray-900 hover:bg-gray-100 transition-colors">${app.getTxt('buy_now')}</button></div><div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group"><h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_3_title')}</h4><div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹999</span><span class="text-gray-400 font-medium">/ 6 months</span></div><button onclick="payment.pay(999, '6 Months')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button></div></div><div class="mt-8 text-center"><button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-400 text-sm hover:text-red-600 hover:underline">Reset Parent Passcode</button></div>`}ct+=`</div>`;c.innerHTML=ct},renderArcade(c){c.innerHTML=`<div class="p-10 text-center pt-32 animate-fade-in"><i class="fa-solid fa-gamepad text-6xl text-indigo-200 mb-4 animate-bounce"></i><h2 class="text-2xl font-bold text-gray-400">${app.getTxt('arcade')} - Coming Soon</h2></div>`},renderProfile(c){c.innerHTML=`<div class="p-10 text-center animate-fade-in"><div class="w-32 h-32 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-5xl shadow-lg border-4 border-white relative">👨‍🚀</div><h2 class="text-3xl font-extrabold text-gray-800 mb-2">${store.user.name}</h2><span class="bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-bold">${store.user.ageGroup?store.user.ageGroup+' Years Old':'Young Coder'}</span><div class="mt-8 grid grid-cols-2 gap-4 max-w-sm mx-auto"><div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><div class="text-2xl font-bold text-indigo-600">${store.user.currentLevel}</div><div class="text-xs text-gray-400 uppercase font-bold">Level</div></div><div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100"><div class="text-2xl font-bold text-orange-500">${store.user.xp}</div><div class="text-xs text-gray-400 uppercase font-bold">XP</div></div></div><div class="mt-6"><span class="text-sm font-bold text-gray-500">${app.getTxt('hint_rem')} ${store.user.hintCredits} 💡</span></div></div>`}};const payment={pay(a,d){const o={"key":"rzp_live_RZYwcdaxyYCvoD","amount":a*100,"currency":"INR","name":"SparkCoder Academy","description":d,"handler":function(r){store.user.isPremium=true;store.save();confetti({particleCount:500,spread:200});alert("Subscription Active!");router.navigate('parents')}};const r=new Razorpay(o);r.open()}};document.addEventListener('DOMContentLoaded',()=>{store.init();document.getElementById('onboarding-form').addEventListener('submit',app.completeOnboarding);window.router=router;if(store.user.name)router.navigate('dashboard')});
+</script>
 </body>
 </html>
