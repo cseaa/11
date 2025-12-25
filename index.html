@@ -310,8 +310,8 @@
     <script>
         // --- CONFIG & CONSTANTS ---
         const CONSTANTS = {
-            STORAGE_KEY: 'sparkcoder_pro_v_global_unlocked', 
-            PREMIUM_GATE_LEVEL: 51 // UNLOCKED ALL LEVELS (User Requested 50)
+            STORAGE_KEY: 'sparkcoder_pro_v_final_1', 
+            PREMIUM_GATE_LEVEL: 30 // LOCKED at 30. Purchase required for 31-50.
         };
 
         // --- TRANSLATION DATA (18 Languages) ---
@@ -844,50 +844,57 @@
             },
 
             renderParents(container) {
-                container.innerHTML = `
+                let content = `
                     <div class="p-8 max-w-6xl mx-auto animate-fade-in">
-                        <!-- Header -->
                         <div class="flex flex-col md:flex-row items-center gap-6 mb-10 text-center md:text-left">
-                            <div class="w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-lg shadow-indigo-200">
-                                <i class="fa-solid fa-shield-cat"></i>
-                            </div>
-                            <div>
-                                <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">${app.getTxt('parent_dash')}</h2>
-                                <p class="text-lg text-gray-500 mt-1">${app.getTxt('monitor')}</p>
-                            </div>
+                            <div class="w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-lg shadow-indigo-200"><i class="fa-solid fa-shield-cat"></i></div>
+                            <div><h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">${app.getTxt('parent_dash')}</h2><p class="text-lg text-gray-500 mt-1">${app.getTxt('monitor')}</p></div>
                         </div>
-
-                        <!-- Stats Overview -->
                         <div class="grid md:grid-cols-3 gap-6 mb-12">
-                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-layer-group"></i></div>
-                                <div>
-                                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('levels_unlocked')}</div>
-                                    <div class="text-3xl font-extrabold text-gray-900">${store.user.currentLevel}/50</div>
-                                </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-layer-group"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('levels_unlocked')}</div><div class="text-3xl font-extrabold text-gray-900">${store.user.currentLevel}/50</div></div></div>
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl"><i class="fa-solid fa-crown"></i></div><div><div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('plan_status')}</div><div class="text-3xl font-extrabold ${store.user.isPremium?'text-green-600':'text-orange-500'}">${store.user.isPremium ? 'PREMIUM PRO' : 'FREE PLAN'}</div></div></div>
+                        </div>`;
+                
+                if (store.user.isPremium) {
+                    content += `
+                        <div class="bg-green-50 border border-green-200 rounded-3xl p-8 text-center mb-10">
+                            <i class="fa-solid fa-circle-check text-5xl text-green-500 mb-4"></i>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Premium Membership Active</h2>
+                            <p class="text-gray-600 mb-6">All levels are unlocked. Your hard copy certificate is being processed.</p>
+                            <button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-500 font-bold hover:underline">Reset Parent Passcode</button>
+                        </div>
+                    `;
+                } else {
+                    content += `
+                        <div class="relative"><div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-200"></div></div><div class="relative flex justify-center"><span class="bg-gray-50 px-4 text-sm text-gray-500 font-bold uppercase tracking-widest">${app.getTxt('plan_header')}</span></div></div>
+                        <div class="grid md:grid-cols-3 gap-8 mt-12">
+                            <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group relative">
+                                <h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_1_title')}</h4>
+                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹299</span><span class="text-gray-400 font-medium">/ 30 days</span></div>
+                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-medal text-pink-500 mt-1"></i><span>${app.getTxt('plan_1_perk')}</span></li></ul>
+                                <button onclick="payment.pay(299, '30 Days')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button>
                             </div>
-                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl"><i class="fa-solid fa-crown"></i></div>
-                                <div>
-                                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">${app.getTxt('plan_status')}</div>
-                                    <div class="text-3xl font-extrabold text-green-600">UNLOCKED</div>
-                                </div>
+                            <div class="bg-gray-900 rounded-3xl p-8 border border-gray-900 text-white relative transform md:-translate-y-4 shadow-2xl">
+                                <div class="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Most Popular</div>
+                                <h4 class="text-lg font-bold text-gray-400 mb-2">${app.getTxt('plan_2_title')}</h4>
+                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-white">₹999</span><span class="text-gray-400 font-medium">/ 3 months</span></div>
+                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-green-400 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-medal text-yellow-400 mt-1"></i><span>${app.getTxt('plan_2_perk')}</span></li><li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-truck-fast text-blue-400 mt-1"></i><span>Free Shipping of Certificate</span></li></ul>
+                                <button onclick="payment.pay(999, '3 Months')" class="w-full py-4 rounded-xl font-bold bg-white text-gray-900 hover:bg-gray-100 transition-colors">${app.getTxt('buy_now')}</button>
+                            </div>
+                            <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-500 transition-all hover:shadow-xl group">
+                                <h4 class="text-lg font-bold text-gray-500 mb-2">${app.getTxt('plan_3_title')}</h4>
+                                <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl font-extrabold text-gray-900">₹999</span><span class="text-gray-400 font-medium">/ 6 months</span></div>
+                                <ul class="space-y-4 mb-8"><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Unlock All 50 Levels</span></li><li class="flex items-start gap-3 text-sm text-gray-600"><i class="fa-solid fa-trophy text-yellow-500 mt-1"></i><span>${app.getTxt('plan_3_perk')}</span></li></ul>
+                                <button onclick="payment.pay(999, '6 Months')" class="w-full py-4 rounded-xl font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">${app.getTxt('buy_now')}</button>
                             </div>
                         </div>
-
-                        <!-- SUBSCRIPTION PLANS -->
-                        <div class="relative">
-                             <div class="relative flex justify-center mb-10">
-                                <span class="bg-indigo-50 px-6 py-2 rounded-full text-sm text-indigo-700 font-bold uppercase tracking-widest border border-indigo-200">Full Access Unlocked 🎉</span>
-                            </div>
+                        <div class="mt-8 text-center">
+                            <button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset'); router.navigate('dashboard')" class="text-red-400 text-sm hover:text-red-600 hover:underline">Reset Parent Passcode</button>
                         </div>
-                        
-                        <div class="bg-white p-8 rounded-3xl border border-gray-200 text-center">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Reset Passcode</h3>
-                            <button onclick="store.user.parentPasscode=null; store.save(); alert('Passcode Reset. You can create a new one next time.'); router.navigate('dashboard')" class="bg-red-50 text-red-600 px-6 py-3 rounded-xl font-bold hover:bg-red-100 transition">Reset Parent Passcode</button>
-                        </div>
-                    </div>
-                `;
+                    `;
+                }
+                content += `</div>`;
+                container.innerHTML = content;
             },
             
             renderArcade(c) {
@@ -901,7 +908,22 @@
 
         const payment = {
             pay(amt, desc) {
-                alert("All Levels are currently unlocked for free!");
+                const options = {
+                    "key": "rzp_live_RZYwcdaxyYCvoD", 
+                    "amount": amt * 100,
+                    "currency": "INR",
+                    "name": "SparkCoder Academy",
+                    "description": desc,
+                    "handler": function (response){
+                        store.user.isPremium = true;
+                        store.save();
+                        confetti({ particleCount: 500, spread: 200 });
+                        alert("Subscription Active! Full Access Unlocked.");
+                        router.navigate('parents');
+                    }
+                };
+                const rzp = new Razorpay(options);
+                rzp.open();
             }
         };
 
