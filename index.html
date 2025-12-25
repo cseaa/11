@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SparkCoder Pro | Coding GK for Kids</title>
     
-    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Custom Font: Nunito (Works well for Latin/Cyrillic/Indic) -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Noto Sans for broader support including Arabic/CJK if needed by system fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -37,7 +34,6 @@
             transition: direction 0.3s ease;
         }
 
-        /* Glassmorphism Classes */
         .glass-panel {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -59,7 +55,6 @@
             background: rgba(255, 255, 255, 0.95);
         }
 
-        /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
@@ -77,22 +72,15 @@
             transform: scale(0.9);
         }
 
-        /* Utility */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
         
-        /* Hide Scrollbar for Horizontal Scrolling Header */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 
-        /* RTL Specific Adjustments */
         body[dir="rtl"] .fa-arrow-left { transform: rotate(180deg); }
         body[dir="rtl"] #sidebar { border-right: none; border-left: 1px solid rgba(255,255,255,0.6); }
 
-        /* Pin Input Styles */
         .pin-dot {
             width: 16px;
             height: 16px;
@@ -108,10 +96,8 @@
 </head>
 <body class="antialiased selection:bg-indigo-200 selection:text-indigo-900">
 
-    <!-- APP CONTAINER -->
     <div id="app" class="relative min-h-screen flex flex-col md:flex-row max-w-7xl mx-auto md:p-4 gap-4">
         
-        <!-- SIDEBAR (Desktop) -->
         <aside id="sidebar" class="hidden md:flex flex-col w-64 glass-panel rounded-3xl p-6 h-[calc(100vh-2rem)] sticky top-4 z-40">
             <div class="flex items-center gap-3 mb-10">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg animate-bounce">
@@ -143,22 +129,18 @@
             </div>
         </aside>
 
-        <!-- MAIN CONTENT -->
         <main class="flex-1 flex flex-col h-[calc(100vh-2rem)] relative">
             
-            <!-- MOBILE HEADER (Sticky Top, Scrollable) -->
-            <header class="md:hidden glass-panel mb-2 px-2 py-2 rounded-b-xl z-50 sticky top-0 backdrop-blur-xl shadow-sm overflow-x-auto no-scrollbar">
-                <div class="flex items-center gap-2 w-max">
-                    <!-- 1. Logo -->
-                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white text-sm">
-                        <i class="fa-solid fa-bolt"></i>
+            <header class="md:hidden glass-panel mb-2 px-2 py-2 rounded-b-xl z-50 sticky top-0 backdrop-blur-xl shadow-sm w-full">
+                <div class="flex items-center justify-between w-full gap-1">
+                    <div class="flex items-center gap-1 shrink-0">
+                        <div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="font-extrabold text-sm text-indigo-900 leading-none hidden sm:block">SparkCoder</span>
                     </div>
-                    
-                    <!-- 2. App Name -->
-                    <span class="font-extrabold text-lg text-indigo-900 flex-shrink-0 mr-1">SparkCoder</span>
 
-                    <!-- 3. Language Selector -->
-                    <select id="mobile-lang-select" onchange="app.setLanguage(this.value)" class="bg-indigo-50 text-indigo-800 text-xs font-bold rounded-lg px-2 py-1 outline-none border border-indigo-100 w-24 flex-shrink-0">
+                    <select id="mobile-lang-select" onchange="app.setLanguage(this.value)" class="bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-md px-1 py-1 outline-none border border-indigo-100 w-20 shrink">
                          <option value="en">English</option>
                         <option value="kn">ಕನ್ನಡ</option>
                         <option value="hi">हिंदी</option>
@@ -179,28 +161,25 @@
                         <option value="ar">العربية</option>
                     </select>
 
-                    <!-- 4. Streak -->
-                    <div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-lg border border-orange-100 flex-shrink-0">
-                        <i class="fa-solid fa-fire text-orange-500 text-xs animate-pulse"></i>
-                        <span class="text-xs font-bold text-orange-600" id="mobile-streak-display">0</span>
-                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <div class="flex items-center gap-0.5 bg-orange-50 px-1.5 py-1 rounded-md border border-orange-100">
+                            <i class="fa-solid fa-fire text-orange-500 text-[10px] animate-pulse"></i>
+                            <span class="text-[10px] font-bold text-orange-600" id="mobile-streak-display">0</span>
+                        </div>
 
-                    <!-- 5. XP -->
-                    <div class="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg border border-yellow-100 flex-shrink-0">
-                        <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-                        <span class="text-xs font-bold text-yellow-600" id="mobile-xp-display">0 XP</span>
-                    </div>
+                        <div class="flex items-center gap-0.5 bg-yellow-50 px-1.5 py-1 rounded-md border border-yellow-100">
+                            <i class="fa-solid fa-star text-yellow-500 text-[10px]"></i>
+                            <span class="text-[10px] font-bold text-yellow-600" id="mobile-xp-display">0</span>
+                        </div>
 
-                    <!-- 6. Profile -->
-                    <div onclick="router.navigate('profile')" class="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center border border-indigo-200">
-                         <i class="fa-solid fa-user-astronaut text-indigo-600 text-xs"></i>
+                        <div onclick="router.navigate('profile')" class="w-7 h-7 rounded-full bg-indigo-100 flex items-center justify-center border border-indigo-200">
+                             <i class="fa-solid fa-user-astronaut text-indigo-600 text-xs"></i>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Desktop) -->
             <div id="top-bar" class="hidden md:flex justify-end items-center gap-4 mb-6 px-2">
-                 <!-- Full Language Selector -->
                 <select id="lang-select" onchange="app.setLanguage(this.value)" class="glass-panel px-3 py-1.5 rounded-lg text-sm font-bold text-gray-600 outline-none cursor-pointer hover:bg-white transition-colors w-40">
                     <option value="en">🇺🇸 English</option>
                     <option value="kn">🇮🇳 Kannada (ಕನ್ನಡ)</option>
@@ -238,11 +217,9 @@
                 </div>
             </div>
 
-            <!-- View Container -->
             <div id="view-container" class="flex-1 overflow-y-auto pb-24 md:pb-0 scroll-smooth rounded-3xl relative"></div>
         </main>
 
-        <!-- Mobile Bottom Nav -->
         <nav class="md:hidden fixed bottom-0 left-0 w-full glass-panel border-t border-gray-200 flex justify-around p-3 z-50 pb-safe backdrop-blur-xl">
             <button onclick="router.navigate('dashboard')" class="flex flex-col items-center gap-1 text-gray-500 hover:text-indigo-600 transition-colors">
                 <i class="fa-solid fa-house text-xl"></i><span class="text-[10px] font-bold" data-translate="home">Home</span>
@@ -259,7 +236,6 @@
         </nav>
     </div>
 
-    <!-- Onboarding Modal -->
     <div id="onboarding-modal" class="fixed inset-0 z-[60] bg-white hidden flex items-center justify-center p-4">
         <div class="max-w-md w-full text-center">
             <div class="w-24 h-24 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl text-indigo-600 mascot-float">
@@ -291,7 +267,6 @@
         </div>
     </div>
 
-    <!-- Child Message Modal (Premium Lock) -->
     <div id="child-msg-modal" class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center relative overflow-hidden shadow-2xl transform transition-all scale-100">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-500 to-purple-500"></div>
@@ -311,7 +286,20 @@
         </div>
     </div>
 
-    <!-- Passcode Modal -->
+    <div id="parent-gate-modal" class="fixed inset-0 z-[80] bg-black/80 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl">
+            <i class="fa-solid fa-shield-halved text-4xl text-gray-400 mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-800 mb-2" data-translate="parents_only">Parents Only</h3>
+            <p class="text-gray-500 text-sm mb-4" data-translate="solve_math">Please solve this to continue:</p>
+            <div id="gate-question" class="text-xl font-bold mb-4 font-mono text-indigo-600 bg-indigo-50 py-2 rounded-lg"></div>
+            <input type="number" id="gate-answer" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg mb-4 text-center text-lg focus:border-indigo-500 outline-none font-bold" placeholder="?">
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="document.getElementById('parent-gate-modal').classList.add('hidden')" class="px-4 py-2 rounded-lg bg-gray-100 font-bold text-gray-600 hover:bg-gray-200 transition" data-translate="cancel">Cancel</button>
+                <button onclick="app.checkParentGate()" class="px-4 py-2 rounded-lg bg-indigo-600 font-bold text-white hover:bg-indigo-700 transition" data-translate="verify">Verify</button>
+            </div>
+        </div>
+    </div>
+
     <div id="passcode-modal" class="fixed inset-0 z-[90] bg-black/90 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl animate-fade-in relative overflow-hidden">
             <button onclick="document.getElementById('passcode-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -323,7 +311,6 @@
             <h3 id="passcode-title" class="text-xl font-extrabold text-gray-900 mb-2">Parents Zone</h3>
             <p id="passcode-desc" class="text-sm text-gray-500 mb-6 font-bold">Enter Passcode to Access</p>
 
-            <!-- Dots Display -->
             <div class="flex justify-center gap-3 mb-8">
                 <div class="pin-dot" id="dot-1"></div>
                 <div class="pin-dot" id="dot-2"></div>
@@ -331,7 +318,6 @@
                 <div class="pin-dot" id="dot-4"></div>
             </div>
 
-            <!-- Keypad -->
             <div class="grid grid-cols-3 gap-3 max-w-[240px] mx-auto">
                 <button onclick="passcode.tap(1)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">1</button>
                 <button onclick="passcode.tap(2)" class="h-14 rounded-xl bg-gray-50 font-bold text-xl hover:bg-gray-100 active:scale-95 transition">2</button>
@@ -349,15 +335,12 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // --- CONFIG & CONSTANTS ---
         const CONSTANTS = {
             STORAGE_KEY: 'sparkcoder_pro_v_final_18lang_v2', 
             PREMIUM_GATE_LEVEL: 30
         };
 
-        // --- TRANSLATION DATA (18 Languages) ---
         const I18N = {
             en: { home: "Home", map: "Map", arcade: "Arcade", profile: "Profile", parents: "Parents Zone", streak: "Streak", oops: "Oops! Locked! 🔒", child_msg: "Pappa/Amma I had completed this all level now successfully how can i complete full all levels on this and become pro coder?", parents_only: "Parents Only", solve_math: "Please solve this to continue:", cancel: "Cancel", verify: "Verify", welcome: "Welcome to SparkCoder!", setup: "Let's set up your coding adventure.", name_q: "What's your name?", age_q: "How old are you?", start_btn: "Start My Adventure 🚀", hi: "Hi", level_status: "Level", continue_btn: "Continue", journey: "Your Journey", cat_logic: "Computer Basics", cat_web: "Internet & Web", cat_python: "Coding Concepts", locked: "Locked", play: "Play", completed: "Done", mission: "Your Mission:", hint_title: "Hint:", run_code: "Run Code", check_order: "Check Order", success_msg: "Level Complete!", xp_gain: "+50 XP Earned", next_lvl: "Next Level ➡", parent_dash: "Parent Dashboard", monitor: "Monitor progress", plan_header: "Unlock Full Access", plan_1_title: "30 Days Starter", plan_1_perk: "Digital Beginner Medal + Hard Copy Certificate", plan_2_title: "3 Months Growth", plan_2_perk: "Digital Intermediate Medal + Hard Copy Certificate", plan_3_title: "6 Months Pro", plan_3_perk: "Digital Pro Medal + Hard Copy Certificate", buy_now: "Buy Now", free_plan: "FREE PLAN", premium_plan: "PREMIUM PRO", levels_unlocked: "Levels Unlocked", plan_status: "Plan Status", try_again: "Try Once Again", use_hint: "Use Hint (-1 Credit)", hint_used: "Hint Used! Correct item moved.", no_credits: "Ask parents for more hint credits!", hint_rem: "Credits:", cert_shipping: "Certificate will be shipped." },
             kn: { home: "ಮನೆ", map: "ನಕ್ಷೆ", arcade: "ಆಟಗಳು", profile: "ಪ್ರೊಫೈಲ್", parents: "ಪೋಷಕರು", streak: "ಸರಣಿ", oops: "ಲಾಕ್ ಆಗಿದೆ! 🔒", child_msg: "ಅಪ್ಪಾ/ಅಮ್ಮಾ ನಾನು ಈ ಎಲ್ಲಾ ಹಂತಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ್ದೇನೆ, ಉಳಿದ ಹಂತಗಳನ್ನು ಹೇಗೆ ಅನ್ಲಾಕ್ ಮಾಡಲಿ?", parents_only: "ಪೋಷಕರಿಗೆ ಮಾತ್ರ", solve_math: "ಬಿಡಿಸಿ:", cancel: "ರದ್ದು", verify: "ಪರಿಶೀಲಿಸಿ", welcome: "ಸ್ವಾಗತ!", setup: "ಪ್ರಾರಂಭಿಸೋಣ.", name_q: "ನಿಮ್ಮ ಹೆಸರೇನು?", age_q: "ವಯಸ್ಸು?", start_btn: "ಪ್ರಾರಂಭಿಸಿ 🚀", hi: "ನಮಸ್ತೆ", level_status: "ಹಂತ", continue_btn: "ಮುಂದುವರಿಸಿ", journey: "ನಿಮ್ಮ ಪಯಣ", cat_logic: "ಕಂಪ್ಯೂಟರ್ ಮೂಲಗಳು", cat_web: "ಇಂಟರ್ನೆಟ್", cat_python: "ಕೋಡಿಂಗ್", locked: "ಲಾಕ್", play: "ಆಟವಾಡಿ", completed: "ಮುಗಿದಿದೆ", mission: "ಗುರಿ:", hint_title: "ಸಲಹೆ:", run_code: "ರನ್ ಮಾಡಿ", check_order: "ಪರಿಶೀಲಿಸಿ", success_msg: "ಹಂತ ಪೂರ್ಣ!", xp_gain: "+50 XP", next_lvl: "ಮುಂದೆ ➡", parent_dash: "ಪೋಷಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", monitor: "ಪ್ರಗತಿ ನೋಡಿ", plan_header: "ಅನ್ಲಾಕ್ ಮಾಡಿ", plan_1_title: "30 ದಿನಗಳು", plan_1_perk: "ಡಿಜಿಟಲ್ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", plan_2_title: "3 ತಿಂಗಳು", plan_2_perk: "ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", plan_3_title: "6 ತಿಂಗಳು", plan_3_perk: "ಪ್ರೊ ಮೆಡಲ್ + ಪ್ರಮಾಣಪತ್ರ", buy_now: "ಖರೀದಿಸಿ", free_plan: "ಉಚಿತ", premium_plan: "ಪ್ರೀಮಿಯಂ", levels_unlocked: "ಹಂತಗಳು", plan_status: "ಸ್ಥಿತಿ", try_again: "ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ", use_hint: "ಸುಳಿವು ಬಳಸಿ (-1)", hint_used: "ಸುಳಿವು ಬಳಸಲಾಗಿದೆ!", no_credits: "ಪೋಷಕರನ್ನು ಕೇಳಿ!", hint_rem: "ಕ್ರೆಡಿಟ್:", cert_shipping: "ಪ್ರಮಾಣಪತ್ರ ಕಳುಹಿಸಲಾಗುವುದು." },
@@ -380,7 +363,6 @@
         };
 
         const CURRICULUM = [
-            // 1-10: Computer Basics (Logic/Sorting) - TRANSLATED LOGIC ITEMS
             { id: 1, type: 'logic', 
               title_en: 'What is Code?', desc_en: 'Code is instructions for computers.', goal_en: 'Order the communication flow.', items_en: ['Human Thinks', 'Writes Code', 'Computer Obeys'],
               title_kn: 'ಕೋಡ್ ಎಂದರೇನು?', desc_kn: 'ಕೋಡ್ ಎಂದರೆ ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗೆ ನೀಡುವ ಸೂಚನೆಗಳು.', goal_kn: 'ಸಂವಹನ ಹರಿವನ್ನು ಜೋಡಿಸಿ.', items_kn: ['ಮಾನವ ಯೋಚಿಸುತ್ತಾನೆ', 'ಕೋಡ್ ಬರೆಯುತ್ತಾನೆ', 'ಕಂಪ್ಯೂಟರ್ ಪಾಲಿಸುತ್ತದೆ'],
@@ -432,7 +414,6 @@
             { id: 9, type: 'logic', title_en: 'Memory (RAM)', desc_en: 'RAM is short-term memory.', goal_en: 'Run a program.', items_en: ['Load to RAM', 'Use App', 'Close (Clear RAM)'], correct: ['Load to RAM', 'Use App', 'Close (Clear RAM)'] },
             { id: 10, type: 'logic', title_en: 'Algorithms', desc_en: 'An algorithm is a recipe.', goal_en: 'Make Algorithm.', items_en: ['Step 1', 'Step 2', 'Result'], correct: ['Step 1', 'Step 2', 'Result'] },
             
-            // 11-30: HTML/Web
             { id: 11, type: 'html', title_en: 'The Internet', desc_en: 'A web of connected computers.', goal_en: 'Use <h1>Internet</h1>', initial: '', check: '<h1>', hint: '<h1>Internet</h1>' },
             { id: 12, type: 'html', title_en: 'Wi-Fi', desc_en: 'Wireless internet signals.', goal_en: 'Type <p>Wireless</p>', initial: '', check: '<p>', hint: '<p>Wireless</p>' },
             { id: 13, type: 'html', title_en: 'Web Browser', desc_en: 'Chrome, Edge are browsers.', goal_en: '<b>Chrome</b>', initial: '', check: '<b>', hint: '<b>Chrome</b>' },
@@ -454,7 +435,6 @@
             { id: 29, type: 'html', title_en: 'Viruses', desc_en: 'Sickness for computers.', goal_en: '<i>Antivirus</i>', initial: '', check: '<i>', hint: '<i>Antivirus</i>' },
             { id: 30, type: 'html', title_en: 'Encryption', desc_en: 'Secret code writing.', goal_en: '<p>Secret</p>', initial: '', check: '<p>', hint: '<p>Secret</p>' },
             
-            // 31-50: Python
             { id: 31, type: 'python', title_en: 'Languages', desc_en: 'Python, Java, C++ are languages.', goal_en: 'print("Python")', initial: '', check: 'print', hint: 'print("Name")' },
             { id: 32, type: 'python', title_en: 'Syntax', desc_en: 'Grammar rules of coding.', goal_en: 'print("Correct")', initial: '', check: 'print', hint: 'Quotes are important.' },
             { id: 33, type: 'python', title_en: 'Variables', desc_en: 'Boxes to store data.', goal_en: 'box = "Toy"', initial: '', check: '=', hint: 'name = "Value"' },
@@ -477,7 +457,6 @@
             { id: 50, type: 'python', title_en: 'Pro Coder', desc_en: 'You are now a coder!', goal_en: 'print("I am Pro")', initial: '', check: 'print', hint: 'Celebrate!' },
         ];
 
-        // --- STATE MANAGEMENT ---
         const store = {
             user: {
                 name: '',
@@ -522,12 +501,10 @@
             updateUI() {
                 document.getElementById('username-display').innerText = this.user.name || 'Kiddo';
                 
-                // Update Desktop UI
                 document.getElementById('xp-display').innerText = this.user.xp;
                 document.getElementById('streak-display').innerText = this.user.streak;
                 document.getElementById('lang-select').value = this.user.language || 'en';
                 
-                // Update Mobile UI
                 if(document.getElementById('mobile-xp-display')) document.getElementById('mobile-xp-display').innerText = `${this.user.xp} XP`;
                 if(document.getElementById('mobile-streak-display')) document.getElementById('mobile-streak-display').innerText = this.user.streak;
                 if(document.getElementById('mobile-lang-select')) document.getElementById('mobile-lang-select').value = this.user.language || 'en';
@@ -536,7 +513,6 @@
             }
         };
 
-        // --- APP LOGIC ---
         const app = {
             setLanguage(lang) {
                 store.user.language = lang;
@@ -606,7 +582,6 @@
             }
         };
 
-        // --- PASSCODE LOGIC ---
         const passcode = {
             buffer: "",
             mode: "AUTH",
@@ -670,7 +645,6 @@
             }
         };
 
-        // --- ROUTER ---
         const router = {
             currentRoute: 'dashboard',
             currentParams: null,
